@@ -3,6 +3,7 @@ package com.zen.ui.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -171,6 +172,8 @@ public class ModePopupWindow extends PopupWindow implements View.OnClickListener
 
     private void normalize(Button b) {
         b.setBackgroundResource(R.drawable.mode_menu_bt_bg);
-        b.setTextColor(b.getContext().getColor(R.color.mode_menu_bt));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            b.setTextColor(b.getContext().getColor(R.color.mode_menu_bt));
+        }
     }
 }

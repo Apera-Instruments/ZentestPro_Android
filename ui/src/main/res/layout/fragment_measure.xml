@@ -2,7 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
 
 
     <RelativeLayout
@@ -23,24 +26,28 @@
             android:src="@mipmap/bg" />
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_top_rows"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="250dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="70dp"
-            android:orientation="vertical">
+            android:layout_marginTop="40dp">
 
             <!-- Row 1: pH -->
             <LinearLayout
                 android:id="@+id/main_value_row_ph"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/main_value_row_cond"
+                app:layout_constraintVertical_chainStyle="packed">
 
                 <TextView
                     android:id="@+id/tv_mode_label_ph"
@@ -114,13 +121,17 @@
             <!-- Row 2: COND -->
             <LinearLayout
                 android:id="@+id/main_value_row_cond"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_value_row_ph"
+                app:layout_constraintBottom_toTopOf="@id/main_value_row_orp">
 
                 <TextView
                     android:id="@+id/tv_mode_label_cond"
@@ -194,13 +205,17 @@
             <!-- Row 3: ORP -->
             <LinearLayout
                 android:id="@+id/main_value_row_orp"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_value_row_cond"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                     android:id="@+id/tv_mode_label_orp"
@@ -271,7 +286,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 <!--        <ImageButton-->

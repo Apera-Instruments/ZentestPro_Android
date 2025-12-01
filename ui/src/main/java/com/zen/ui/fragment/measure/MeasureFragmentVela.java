@@ -36,6 +36,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.NotificationCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -159,6 +161,11 @@ public class MeasureFragmentVela extends BaseFragment
 
     private ImageButton ib_hold, bt_set_timer;
     private RelativeLayout iv_menu;
+
+    private ConstraintLayout mainValueContainer;
+    private View mainRowPh;
+    private View mainRowCond;
+    private View mainRowOrp;
 
     private TextView tv_value_ph, tv_danwei1_ph;
     private TextView tv_value_cond, tv_danwei1_cond;
@@ -350,7 +357,8 @@ public class MeasureFragmentVela extends BaseFragment
                     modePatternManager.setSelectedModes(phSel, condSel, orpSel);
 
                     clearHistory();
-                    updateView();
+
+                    updateViewWithoutSync();
 
                     // update button visual states
                     mModePopupWindow.setMultiSelectState(phSel, condSel, orpSel);
@@ -366,6 +374,25 @@ public class MeasureFragmentVela extends BaseFragment
         );
 
         mModePopupWindow.showAsDropDown(iv_menu, 0, 0);
+    }
+
+    private void updateMainValueRowVisibility() {
+
+        boolean phSel   = modePatternManager.isPhSelected();
+        boolean condSel = modePatternManager.isCondSelected();
+        boolean orpSel  = modePatternManager.isOrpSelected();
+
+        // PH visibility
+        if (mainRowPh != null)
+            mainRowPh.setVisibility(phSel ? View.VISIBLE : View.GONE);
+
+        // COND visibility
+        if (mainRowCond != null)
+            mainRowCond.setVisibility(condSel ? View.VISIBLE : View.GONE);
+
+        // ORP visibility
+        if (mainRowOrp != null)
+            mainRowOrp.setVisibility(orpSel ? View.VISIBLE : View.GONE);
     }
 
     // ---------------------------------------------------------------------
@@ -535,6 +562,11 @@ public class MeasureFragmentVela extends BaseFragment
         mModePopupWindow = null;
 
         // PH / COND / ORP values
+        mainValueContainer = view.findViewById(R.id.layout_top_rows);
+        mainRowPh = view.findViewById(R.id.main_value_row_ph);
+        mainRowCond = view.findViewById(R.id.main_value_row_cond);
+        mainRowOrp = view.findViewById(R.id.main_value_row_orp);
+
         tv_value_ph = view.findViewById(R.id.tv_value_ph);
         tv_danwei1_ph = view.findViewById(R.id.tv_danwei1_ph);
         tv_value_cond = view.findViewById(R.id.tv_value_cond);
@@ -858,177 +890,16 @@ public class MeasureFragmentVela extends BaseFragment
     @Override
     public void updateView() {
         super.updateView();
+        DataBean bean = MyApi.getInstance().getDataApi().getData();
+        new UpdatePipeline().runWithoutSync(bean);
+    }
 
-        Log.v(getTAG(), "mModeType=" + mModeType + " viewPager currentItem=" + viewPager.getCurrentItem());
-        DataApi dataApi = MyApi.getInstance().getDataApi();
-        DataBean bean = dataApi.getData();
-        Log.v(getTAG(), "bean = " + bean.toString());
 
-        // Sync mode from device
-        modeManager.syncModeFromDataBean(bean);
-        modePatternManager.syncPatternFromDataBean(bean);
-
-        // --- Calibration UI depending on mGraphModeType ---
-        calibrationManager.updateCalibrationUI(bean);
-
-        // Hold / alarm small indicators
-        if (bean.isHold()) {
-            mTextViewHoldBt.setText(R.string.unhold);
-        } else {
-            mTextViewHoldBt.setText(R.string.hold);
-        }
-
-        mCurrentTemp = bean.getTemp();
-        mModeType = bean.getMode();
-        mTempTextView.setText(getFormatDouble(mCurrentTemp, bean.getTempPointDigit()));
-
-        Data data = bean.getData();
-
-        if (data != null) {
-            int digit = data.getPointDigit();
-            mModeType = data.getMode();
-            String unitStr = data.getUnitString();
-            String valueStr = getFormatDouble(data.getValue(), digit);
-
-            // update three “primary” displays
-            switch (mModeType) {
-                case Constant.MODE_VELA_PH:
-                    mCurrentValue = bean.getPh();
-                    tv_value_ph.setText(valueStr);
-                    tv_danwei1_ph.setText(unitStr);
-                    alarmid = getAlarmId(mCurrentValue, bean.getTemp(), 0);
-                    break;
-                case Constant.MODE_VELA_COND:
-                    mCurrentValue = bean.getEc();
-                    tv_value_cond.setText(valueStr);
-                    tv_danwei1_cond.setText(unitStr);
-                    alarmid = getAlarmId(mCurrentValue, bean.getTemp(), 2);
-                    break;
-                case Constant.MODE_VELA_ORP:
-                    mCurrentValue = bean.getOrp();
-                    tv_value_orp.setText(valueStr);
-                    tv_danwei1_orp.setText(unitStr);
-                    alarmid = getAlarmId(mCurrentValue, bean.getTemp(), 1);
-                    break;
-                case Constant.MODE_VELA_RES:
-                case Constant.MODE_VELA_SALT:
-                case Constant.MODE_VELA_TDS:
-                    // not shown on top row in this layout
-                    break;
-            }
-
-            // pick graph “current parameter” & unit based on mModeType
-            double phValue = bean.getPh();
-            double condValue = bean.getEc();
-            double orpValue = bean.getOrp();
-
-            String phUnit = tv_danwei1_ph.getText().toString();
-            String condUnit = tv_danwei1_cond.getText().toString();
-            String orpUnit = tv_danwei1_orp.getText().toString();
-
-            String phValueString = tv_value_ph.getText().toString();
-            String condValueString = tv_value_cond.getText().toString();
-            String orpValueString = tv_value_orp.getText().toString();
-
-            String mCurrentValueStr = "";
-
-            switch (mModeType) {
-                case Constant.MODE_VELA_PH:
-                    mCurrentValue = phValue;
-                    mCurrentValueStr = phValueString;
-                    mCurrentUnit = phUnit;
-                    alarmid = getAlarmId(mCurrentValue, mCurrentTemp, 0);
-                    break;
-                case Constant.MODE_VELA_COND:
-                    mCurrentValue = condValue;
-                    mCurrentValueStr = condValueString;
-                    mCurrentUnit = condUnit;
-                    alarmid = getAlarmId(mCurrentValue, mCurrentTemp, 2);
-                    break;
-                case Constant.MODE_VELA_ORP:
-                    mCurrentValue = orpValue;
-                    mCurrentValueStr = orpValueString;
-                    mCurrentUnit = orpUnit;
-                    alarmid = getAlarmId(mCurrentValue, mCurrentTemp, 1);
-                    break;
-            }
-
-            // sync left axis label
-            if (lineLeftTextView != null) {
-                lineLeftTextView.setText(mCurrentUnit);
-            }
-
-            // --- graph / dial / alarm logic ---
-            updateViewGraph();
-            setDialValue(mCurrentValue);
-
-            // line & table only when not auto-saving continuously
-            if (!mAutoSaveRun) {
-                Log.d(getTAG(), "current mode: " + data.getMode() + " selected: " + mGraphModeType);
-                if (data.getMode() == mGraphModeType) {
-                    updateViewGraph3(data.getValue(), data.getTemp());
-                    updateViewGraph4(
-                            valueStr + " " + unitStr,
-                            mTempTextView.getText().toString() + " " + mTempUnitTextView.getText().toString()
-                    );
-                }
-            }
-
-            // calibration auto trigger
-            if (data != null && data.getUnit2() == 0) {
-                boolean isCalibration = MyApi.getInstance().getDataApi().isCalibration();
-                if (!isCalibration) {
-                    int mode = MyApi.getInstance().getDataApi().conventMode(data.getMode());
-                    if (mode == Constant.MODE_PH || mode == Constant.MODE_COND) {
-                        Intent intent = new Intent(getContext(), CalibrationActivity.class);
-                        intent.putExtra("MODE", mode);
-                        startActivity(intent);
-                    } else {
-                        Log.d(getTAG(), "mode = " + mode);
-                    }
-                }
-            } else {
-                if (data != null && (mTempUnit != data.getUnit2())) {
-                    switch (data.getUnit2()) {
-                        case Data.UNIT_C:
-                            mTempUnitStr = "C";
-                            mTempUnitTextView.setText(R.string.temp_degree_c);
-                            mTempUnit = data.getUnit2();
-                            if (lineRightTextView != null) {
-                                lineRightTextView.setText(mTempUnitTextView.getText());
-                            }
-                            break;
-                        case Data.UNIT_F:
-                            mTempUnitStr = "F";
-                            mTempUnitTextView.setText(R.string.zen_temp_degree_f);
-                            mTempUnit = data.getUnit2();
-                            if (lineRightTextView != null) {
-                                lineRightTextView.setText(mTempUnitTextView.getText());
-                            }
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                Log.v(getTAG(), "data : " + data);
-            }
-
-            // Reminder
-            if (bean.hasReminder()) {
-                mLayoutHint.setVisibility(View.INVISIBLE);
-                int n = MyApi.getInstance().getDataApi().getReminder();
-                mRemindersTextView.setText(
-                        n > 1
-                                ? String.format(getString(R.string.n_hits), n)
-                                : getText(R.string.one_hits)
-                );
-            } else {
-                mLayoutHint.setVisibility(View.INVISIBLE);
-            }
-
-            // Background / big alarm widget
-            alarmManager.updateAlarmBackground(alarmid);
-        }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void updateViewWithoutSync() {
+        super.updateView();
+        DataBean bean = MyApi.getInstance().getDataApi().getData();
+        new UpdatePipeline().runWithoutSync(bean);
     }
 
     @Override
@@ -1349,6 +1220,8 @@ public class MeasureFragmentVela extends BaseFragment
         // When mode selection or mode pattern changes
         // -------------------------------------------------
         private void onPatternChanged() {
+            MeasureFragmentVela.this.updateMainValueRowVisibility();
+
             clearHistory();
             updateViewGraph();
             updateViewGraph3Clear();
@@ -2734,6 +2607,190 @@ public class MeasureFragmentVela extends BaseFragment
             }
 
             mNewMode = false;
+        }
+    }
+
+    /**
+     * UpdatePipeline – Orchestrates updateView() into small clean modules
+     */
+    private class UpdatePipeline {
+
+        void run(DataBean bean) {
+            if (bean == null) return;
+
+            deviceSync(bean);
+            updateHoldUI(bean);
+            updatePrimaryValues(bean);
+            updateTemperature(bean);
+            updateLeftAxisUnit();
+            updateCalibrationUI(bean);
+            updateGraphDial(bean);
+            updateGraphLine(bean);
+            updateTable(bean);
+            updateReminder(bean);
+            updateAlarmBackground();
+        }
+
+        void runWithoutSync(DataBean bean) {
+            if (bean == null) return;
+
+            updateHoldUI(bean);
+            updatePrimaryValues(bean);
+            updateTemperature(bean);
+            updateLeftAxisUnit();
+            updateCalibrationUI(bean);
+            updateGraphDial(bean);
+            updateGraphLine(bean);
+            updateTable(bean);
+            updateReminder(bean);
+            updateAlarmBackground();
+        }
+
+        // -------------------------------------------------------------
+        // 1) Device sync (mode + pattern)
+        // -------------------------------------------------------------
+        private void deviceSync(DataBean bean) {
+            modeManager.syncModeFromDataBean(bean);
+            modePatternManager.syncPatternFromDataBean(bean);
+            mGraphModeType = modePatternManager.getActiveGraphMode();
+        }
+
+        // -------------------------------------------------------------
+        // 2) Hold button
+        // -------------------------------------------------------------
+        private void updateHoldUI(DataBean bean) {
+            mTextViewHoldBt.setText(bean.isHold() ? R.string.unhold : R.string.hold);
+        }
+
+        // -------------------------------------------------------------
+        // 3) PH/COND/ORP primary readings
+        // -------------------------------------------------------------
+        private void updatePrimaryValues(DataBean bean) {
+            Data data = bean.getData();
+            if (data == null) return;
+
+            mModeType = data.getMode();
+
+            String unitStr = data.getUnitString();
+            String valueStr = getFormatDouble(data.getValue(), data.getPointDigit());
+
+            switch (mModeType) {
+                case Constant.MODE_VELA_PH:
+                    mCurrentValue = bean.getPh();
+                    tv_value_ph.setText(valueStr);
+                    tv_danwei1_ph.setText(unitStr);
+                    break;
+
+                case Constant.MODE_VELA_COND:
+                    mCurrentValue = bean.getEc();
+                    tv_value_cond.setText(valueStr);
+                    tv_danwei1_cond.setText(unitStr);
+                    break;
+
+                case Constant.MODE_VELA_ORP:
+                    mCurrentValue = bean.getOrp();
+                    tv_value_orp.setText(valueStr);
+                    tv_danwei1_orp.setText(unitStr);
+                    break;
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 4) Temperature section
+        // -------------------------------------------------------------
+        private void updateTemperature(DataBean bean) {
+            mCurrentTemp = bean.getTemp();
+            mTempTextView.setText(getFormatDouble(mCurrentTemp, bean.getTempPointDigit()));
+
+            int unit2 = bean.getData() != null ? bean.getData().getUnit2() : mTempUnit;
+
+            if (unit2 != mTempUnit) {
+                if (unit2 == Data.UNIT_C) {
+                    mTempUnitTextView.setText(R.string.temp_degree_c);
+                } else if (unit2 == Data.UNIT_F) {
+                    mTempUnitTextView.setText(R.string.zen_temp_degree_f);
+                }
+                mTempUnit = unit2;
+                if (lineRightTextView != null) {
+                    lineRightTextView.setText(mTempUnitTextView.getText());
+                }
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 5) Left axis unit
+        // -------------------------------------------------------------
+        private void updateLeftAxisUnit() {
+            if (lineLeftTextView != null) {
+                switch (mModeType) {
+                    case Constant.MODE_VELA_PH:   lineLeftTextView.setText(tv_danwei1_ph.getText()); break;
+                    case Constant.MODE_VELA_COND: lineLeftTextView.setText(tv_danwei1_cond.getText()); break;
+                    case Constant.MODE_VELA_ORP:  lineLeftTextView.setText(tv_danwei1_orp.getText()); break;
+                }
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 6) Calibration UI
+        // -------------------------------------------------------------
+        private void updateCalibrationUI(DataBean bean) {
+            calibrationManager.updateCalibrationUI(bean);
+        }
+
+        // -------------------------------------------------------------
+        // 7) Dial update
+        // -------------------------------------------------------------
+        private void updateGraphDial(DataBean bean) {
+            updateViewGraph();     // background dial
+            setDialValue(mCurrentValue);
+        }
+
+        // -------------------------------------------------------------
+        // 8) Line graph update
+        // -------------------------------------------------------------
+        private void updateGraphLine(DataBean bean) {
+            Data data = bean.getData();
+            if (data == null) return;
+
+            if (!mAutoSaveRun && data.getMode() == mGraphModeType) {
+                updateViewGraph3(data.getValue(), data.getTemp());
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 9) Table update
+        // -------------------------------------------------------------
+        private void updateTable(DataBean bean) {
+            Data data = bean.getData();
+            if (data == null) return;
+
+            if (!mAutoSaveRun && data.getMode() == mGraphModeType) {
+                String v = getFormatDouble(data.getValue(), data.getPointDigit()) + " " + data.getUnitString();
+                String t = mTempTextView.getText() + " " + mTempUnitTextView.getText();
+                updateViewGraph4(v, t);
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 10) Reminder UI
+        // -------------------------------------------------------------
+        private void updateReminder(DataBean bean) {
+            if (bean.hasReminder()) {
+                mLayoutHint.setVisibility(View.INVISIBLE);
+                int n = MyApi.getInstance().getDataApi().getReminder();
+                mRemindersTextView.setText(
+                        n > 1 ? getString(R.string.n_hits, n)
+                                : getString(R.string.one_hits));
+            } else {
+                mLayoutHint.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        // -------------------------------------------------------------
+        // 11) Alarm background
+        // -------------------------------------------------------------
+        private void updateAlarmBackground() {
+            alarmManager.updateAlarmBackground(alarmid);
         }
     }
 }
