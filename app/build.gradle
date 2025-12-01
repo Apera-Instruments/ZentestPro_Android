@@ -1,0 +1,151 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+
+//plugins {
+//    // AGP版本
+//    id 'com.android.application' version '8.1.0' apply false
+//    id 'com.android.library' version '8.1.0' apply false
+//    // Kotlin版本 (没变)
+//    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
+//}
+
+android {
+    compileSdkVersion 34
+    //buildToolsVersion "27.0.3"
+
+    def versionMajor = 1
+    def versionMinor = 9
+    def versionPatch = 17
+    def versionBuild = 1
+
+    signingConfigs {
+        releaseConfig {
+            //keytool -genkey -alias "acloud" -keyalg "RSA" -keystore "acloud.keystore"  -dname "CN=localhost, OU=localhost, O=localhost, L=SH, ST=SH, C=CN" -keypass "acloud"  -validity 10950
+            // keytool -list  -v -keystore acloud.keystore -storepass acloud
+            storeFile file("acloud.keystore")
+            storePassword "acloud"
+            keyAlias "acloud"
+            keyPassword "acloud"
+            v2SigningEnabled true
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.zen.zentest"
+        buildConfigField "String", "DATE", "\"${getDate()}\""
+        buildConfigField "String", "APP_NAME", "\"ZenTest\""
+        buildConfigField "String", "GIT_REVISION", "\"${getGitVersion()}\""
+        minSdkVersion 18
+        targetSdkVersion 34
+        multiDexEnabled = true
+        versionCode getVersionCode(versionMajor, versionMinor, versionPatch,versionBuild)
+        versionName getVersionName(versionMajor, versionMinor, versionPatch)
+       // ndk {
+        //    abiFilters "armeabi","armeabi-v7a","x86"
+        //}
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            signingConfig  signingConfigs.releaseConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig  signingConfigs.releaseConfig
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    namespace 'com.zen.zentest'
+    lint {
+        abortOnError false
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName= "ZentTest"+ "_" + buildType.name + "_v" + defaultConfig.versionName+"(Build${versionBuild})" + "-${getGitVersion()}.apk";
+            }
+    }
+}
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+/*    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })*/
+    //compile 'cn.pedant.sweetalert:library:1.3'
+    //implementation 'com.android.support:appcompat-v7:27.0.2'
+    //implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation project(":api")
+    implementation project(":biz")
+    implementation project(":ui")
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.alibaba:fastjson:1.2.24'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    //compile 'com.pgyersdk:sdk:2.8.0'
+    //implementation 'com.pgyersdk:sdk:2.8.0'
+    implementation  'com.android.support:multidex:1.0.3'
+
+    //compile 'cn.pedant.sweetalert:library:1.3'
+
+
+    //compile 'org.greenrobot:eventbus:3.0.0'
+
+
+    //implementation 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
+    implementation 'net.zetetic:android-database-sqlcipher:4.4.3@aar'
+
+    //compile 'org.bouncycastle:bcprov-jdk15on:1.55'
+    //compile 'com.alibaba:fastjson:1.2.21'
+    //compile 'com.squareup.okhttp3:okhttp:3.4.1'
+    //compile 'com.squareup.retrofit2:retrofit:2.1.0'
+
+    //compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'com.blankj:utilcode:1.13.5'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation ("com.github.foolchen:AndroidTracker:0.3.3"){
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+def getGitVersion() {
+    try {
+        return 'git rev-parse --short HEAD'.execute().text.trim()
+    } catch (Exception e) {
+        return "null"
+    }
+}
+
+def getDate() {
+    return Calendar.getInstance().format("yyyy-MM-dd HH:mm:ss.SSS");
+}
+
+def getVersionName(v1, v2, v3) {
+    if (v3 > 0)
+        return "${v1}.${v2}.${v3}"
+    else return "${v1}.${v2}"
+}
+
+def getVersionCode(v1,v2,v3,v4) {
+    return (v1 *100*100*1000) + (v2*100*1000) + (v3*1000) +v4
+}

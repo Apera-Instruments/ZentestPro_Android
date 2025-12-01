@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="user_name">Benutzername (E-Mail)</string>
+  <string name="password">Passwort</string>
+  <string name="demo_try">Demo</string>
+  <string name="sign_in">Anmelden</string>
+  <string name="create_account">Benutzerkonto erstellen</string>
+  <string name="forget_pw">Passwort vergessen</string>
+  <string name="email">Email</string>
+  <string name="reenter_pw">Bitte Passwort nochmals eingeben.</string>
+  <string name="no_dev">kein Gerät verbunden</string>
+  <string name="back_measure">zurück zur Messung</string>
+  <string name="measure">Messen</string>
+  <string name="calibration">Kalibrierung</string>
+  <string name="data">Daten</string>
+  <string name="setting">Einstellungen</string>
+  <string name="info">Info</string>
+  <string name="associated_devices">zugehörige Geräte</string>
+  <string name="available_devices">verfügbare Geräte</string>
+  <string name="searching_for_devices">Suche nach Geräten.</string>
+  <string name="save">speichern</string>
+  <string name="hold">Halten</string>
+  <string name="hold_uppercase">Halten</string>
+  <string name="calibrated_points">kalibrierte Punkte</string>
+  <string name="zero_potential">Offset</string>
+  <string name="slop">Steigung</string>
+  <string name="last_calibbration">letzte Kalibrierung</string>
+  <string name="sn">Seriennummer</string>
+  <string name="date">Datum</string>
+  <string name="time">Zeit</string>
+  <string name="value">Wert</string>
+  <string name="temp">Temp.</string>
+  <string name="salinity">Salzgehalt</string>
+  <string name="resistivity">spez. Widerstand </string>
+  <string name="general">allgemein</string>
+  <string name="parameter">Parameter</string>
+  <string name="data_storage">Datenspeicherung </string>
+  <string name="alarm">Alarm</string>
+  <string name="logout">Ausloggen</string>
+  <string name="temp_unit">Temperatureinheit</string>
+  <string name="auto_hold">Automatisches Halten</string>
+  <string name="stable_reading_standard">Stabiler Messstandard</string>
+  <string name="calibration_reminder">Kalibrierungserinnerung</string>
+  <string name="backlight_time">Dauer der Hintergrundbeleuchtung</string>
+  <string name="auto_power_off">Automatisches Ausschalten </string>
+  <string name="factory_reset">Zurücksetzen auf Werkseinstellung</string>
+  <string name="high">hoch</string>
+  <string name="low">niedrig</string>
+  <string name="conductivity_rang">Leitfähigkeitsmessbereich</string>
+  <string name="orp_range">ORP-Messbereich</string>
+  <string name="ph_range">pH-Messbereich</string>
+  <string name="resistivity_range">spez. Widerstandsmessbereich</string>
+  <string name="salinity_range">Salzgehalt-Messbereich</string>
+  <string name="tds_range">TDS-Messbereich</string>
+  <string name="all_data">alle Daten</string>
+  <string name="measuring_value">Messwerte</string>
+  <string name="time_data">h:min:s</string>
+  <string name="date_time">h:min:s</string>
+  <string name="serial_no">Seriennummer</string>
+  <string name="temperature">Temperatur</string>
+  <string name="calibration_records">Kalibrierungsaufzeichnungen</string>
+  <string name="electrode_model">Elektroden-Modell</string>
+  <string name="gps_loaction">GPS-Standort</string>
+  <string name="information">Information</string>
+  <string name="ele_info">Elektrodeninformation</string>
+  <string name="ele_model">Elektroden-Modell</string>
+  <string name="measuring_parameters">Messparameter</string>
+  <string name="ele_life">Zustand der Elektrode</string>
+  <string name="suitable_app">Passende Anwendung</string>
+  <string name="other_ele">Kompatible/auswechselbare Sensoren</string>
+  <string name="other_ele1">Kompatible Sensoren</string>
+  <string name="ins_info">Geräteinformation</string>
+  <string name="ins_model">Gerätemodell</string>
+  <string name="ins_sn">Geräte-Seriennummer</string>
+  <string name="factory_calibration_date">Werkskalibrierungsdatum</string>
+  <string name="firmware_version">Firmware-Version</string>
+  <string name="conductivity">Leitfähigkeit</string>
+  <string name="send">senden</string>
+  <string name="category">Kategorie</string>
+  <string name="delete">löschen</string>
+  <string name="enter">Eingabe</string>
+  <string name="operation_flow">Kalibrierungsablauf</string>
+  <string name="wait_readings">Bitte warten Sie auf stabile Messwerte </string>
+  <string name="select_buffer_solution">Select buffer solution</string>
+  <string name="num3_ph7">Dip into 7.00 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph4">Dip into 4.00 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph41">Dip into 4.01 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph918">Dip into 9.18 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph1001">Dip into 10.01 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph168">Dip into 1.68 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph1245">Dip into 12.45 pH solution, stir gently and let it stand still</string>
+  <string name="num3_ph686">Dip into 6.86 pH solution, stir gently and let it stand still</string>
+  <string name="num3_168">Dip into 1.68 pH solution, stir gently and let it stand still</string>
+  <string name="num3_1246">Dip into 12.46 solution, stir gently and let it stand still</string>
+  <string name="num3_1413">Dip into 1413 solution, stir gently and let it stand still</string>
+  <string name="num3_84">Dip into 84 solution, stir gently and let it stand still</string>
+  <string name="num3_1288">Dip into 12.88 solution, stir gently and let it stand still</string>
+  <string name="finish_cailbration">Drücken Sie auf die Taste ENT, um die Kalibrierung abzuschließen</string>
+  <string name="not_recognize">Standardlösungen können nicht erkannt werden</string>
+  <string name="temp_degree_c">℃</string>
+  <string name="zen_temp_degree_f">℉</string>
+  <string name="note">Notiz</string>
+  <string name="n_hits">%d Erinnerung - bitte klicken</string>
+  <string name="one_hits">1 Erinnerung - bitte klicken</string>
+  <string name="type">Typ</string>
+  <string name="timer_set">Zeit</string>
+  <string name="auto_save">Auto. Save</string>
+  <string name="name">Aktiv</string>
+  <string name="admin">Administrator</string>
+  <string name="notes">Notizen</string>
+  <string name="photo">angehängtes Photo</string>
+  <string name="add">hinzufügen</string>
+  <string name="change_password">Passwort ändern</string>
+  <string name="sign_up">Registrieren</string>
+  <string name="submit">einsenden</string>
+  <string name="verify_code">Bestätigungscode</string>
+  <string name="get_verify_code">Bestätigungscode abrufen</string>
+  <string name="confirm">Bestätigen</string>
+  <string name="known">Bestätigen</string>
+  <string name="send_file">Datei senden</string>
+  <string name="rinse_the_probe">Spülen Sie den Sensor ab</string>
+  <string name="shake_dry_or_dry_with_tissue">Schütteln Sie den Sensor trocken oder tupfen Sie ihn trocken (reiben Sie ihn NIEMALS).</string>
+  <string name="after">nach</string>
+  <string name="seconds">Sekunden</string>
+  <string name="minutes">Minuten</string>
+  <string name="self_diagnosis">Selbstdiagnose</string>
+  <string name="possible_problems_and_how_to_fix"> Mögliche Probleme und Lösungen </string>
+  <string name="are_you_sure">Bestätigen?</string>
+  <string name="logout_the_account">Konto verlassen!</string>
+  <string name="yes_logout">Beendet!</string>
+  <string name="reminder">Erinnerung (für Details klicken)</string>
+  <string name="buffer_class_selection">Auswahl der Standardpufferserien</string>
+  <string name="resolution">Auflösung</string>
+  <string name="ref_temperature">Referenztemperatur</string>
+  <string name="temp_coeff">Temp. Ausgleichsfaktor</string>
+  <string name="due_calib">Kalibrierungserinnerung</string>
+  <string name="factory_reset_default">Zurücksetzen auf Werkseinstellung</string>
+  <string name="tds_factor">TDS-Faktor</string>
+  <string name="salt_unit">Salzgehalt-Einheit</string>
+  <string name="yes_factory_reset">Ja, auf Werkseinstellungen zurücksetzen</string>
+  <string name="input">eingeben</string>
+  <string name="empty_str">Leerer String</string>
+  <string name="select">auswählen</string>
+  <string name="cancel">beenden</string>
+  <string name="select_all">Wählen Sie Alle</string>
+  <string name="select_none">Keine Wahl</string>
+  <string name="file_none">Die Datendatei ist leer</string>
+  <string name="exists">ist bereits vorhanden</string>
+  <string name="add_to_category">zu Kategorie hinzufügen</string>
+  <string name="not_calibrated">%s Keine Kalibrierung erforderlich</string>
+  <string name="unhold">Nicht behalten</string>
+  <string name="other_comp_ele_str">PH60-DE: Für die pH-Messung von allgemeinen wässrigen Lösungen \nPH60F-DE: Für die Messung von Oberflächen, z.B. Haut, Papier, Stoffe, Textilien, Leder, und klein Volume Proben \nPH60S-DE: für halbfeste Proben z.B. Käse, Sushi-Reis, Fleisch, Früchte, etc. \nEC60-E: für die Leitfähigkeits-/TDS-/Salzgehalt-/spez. Widerstand-Messung von wässrigen Lösungen  \nORP60-DA: Für die ORP-Messung von allgemeinen wässrigen Lösungen \nPC60-DE: für die pH-/Leitfähigkeits-/TDS-/Salzgehalt-/spez. Widerstand-Messung von wässrigen Lösungen。</string>
+  <string name="suitable_app_str">Für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.";.\nP.S.: Allgemeine wässrige Lösungen sind nicht-viskose Flüssigkeiten mit mittlerer bis hoher Ionenkonzentration, bei denen die Temperatur 5 bis 50˚C beträgt, der pH- Wert 2 bis 12 beträgt, und die keine Proteine oder Sulfide enthalten</string>
+  <string name="unit_err">Falsche Einheit</string>
+  <string name="value_err">Numerischer Fehler</string>
+  <string name="location">Position</string>
+  <string name="salinity_type">Salzgehalt-Typ</string>
+  <string name="salt_type">Salzgehalt-Typ</string>
+  <string name="life_excellent">Hervorragend</string>
+  <string name="life_good">Gut</string>
+  <string name="life_ok">OK</string>
+  <string name="life_replacement">Ersatz benötigt</string>
+  <string name="account_should_be_mail_address">account_should_be_mail_address</string>
+  <string name="password_is_incorrect"> Falsches Passwort Oder unregelmäßig </string>
+  <string name="reenter_password_is_incorrect">Bitte Passwort nochmals eingeben.</string>
+  <string name="password_is_not_match">The_password_should_as_the_same_value</string>
+  <string name="register_success">Registrierung erfolgreich</string>
+  <string name="login_fail">Registrierung fehlgeschlagen</string>
+  <string name="username_is_empty">Benutzername ist leer</string>
+  <string name="username_is_not_email"> Das Konto muss eine E-Mail-Adresse sein </string>
+  <string name="password_is_empty_or_space"> Passwort kann nicht leer sein </string>
+  <string name="not_need_caslib"> Beenden Sie die Kalibrierung der Leitfähigkeit, dann werden TDS, Salzgehalt und spezifischer Widerstand automatisch kalibriert.</string>
+  <string name="info_measure">pH, Leitfähigkeit, TDS, Salzgehalt, spez. Widerstand, Temp.</string>
+  <string name="err1">Standardlösungen können nicht erkannt werden</string>
+  <string name="err2">Bitte warten Sie auf ein stabiles Messergebnis, bevor Sie ENT drücken</string>
+  <string name="err3">Die Messwerte sind lange Zeit instabil</string>
+  <string name="err4"><![CDATA[pH-Elektroden-Nullpotential der pH-Elektrode außerhalb des Bereichs（<-60mV oder >60mV）]]></string>
+  <string name="err5" formatted="false"><![CDATA[Steigung der pH-Elektrode außerhalb des Bereichs（<85% oder >110%）]]></string>
+  <string name="err6">Zeit, den pH-Wert neu zu kalibrieren</string>
+  <string name="fix1">1. Bitte tauchen Sie die Elektrode vollständig in die Kalibrierungslösung ein. \ n2. Der erste Kalibrierungspunkt muss pH 7,00 sein. \ n3. Bitte überprüfen Sie, ob die Kalibrierungslösung gut ist - nicht abgelaufen oder kontaminiert \ n4. Bitte überprüfen Sie, ob die Elektrode beschädigt ist (z. B. Glassensor gebrochen oder ein Riss im Sensor). Wenn ja, ersetzen Sie bitte die Elektrode. \ n5. Der Glassensor oder das Diaphragma könnten stark kontaminiert sein. Bitte verwenden Sie eine weiche, mit Seifenwasser getränkte Bürste, um die Elektrode zu reinigen. Spülen Sie sie dann mit destilliertem Wasser ab, und weichen Sie sie 24 Stunden lang in 3M KCl ein, bevor Sie sie erneut verwenden. \ n6. Bei anderen Problemen kontaktieren Sie uns bitte unter info@aperainst.de</string>
+  <string name="fix2">Nein. Warten Sie, bis das Smiley-Gesicht angezeigt wird, und verlassen Sie das Display nicht; dann ENT drücken</string>
+  <string name="fix3">1.     Bitte überprüfen Sie, ob die Elektrode beschädigt ist (z.B. gebrochener Glassensor oder ein Riss im Sensor). Wenn ja, bitte die Elektrode ersetzen. \n2.     Der Glassensor oder das Diaphragma könnten stark kontaminiert sein. Bitte verwenden Sie eine weiche, mit Seifenwasser getränkte Bürste, um die Elektrode zu reinigen. Spülen Sie sie dann mit destilliertem Wasser ab, und weichen Sie sie 24 Stunden lang in 3M KCl ein, bevor Sie sie wiederverwenden. \n3.     Die Elektrode könnte stark gealtert sein (Reaktionszeit ist signifikant langsam; über ein Jahr in Gebrauch). Bitte die Elektrode ersetzen.\n4. Diese Elektrode ist möglicherweise nicht zum Messen Ihrer Proben geeignet. Bitte kontaktieren sie uns, um ein geeignetes Modell für Ihre Anwendung zu finden. \n5.     Bei anderen Problemen kontaktieren Sie und unter info@aperainst.de。</string>
+  <string name="fix4">1.     Überprüfen Sie, ob die Auswahl der Standardserie in der Parametereinstellung mit den Kalibrierlösungen übereinstimmt (USA-Standard ist 4,00, 7,00, 10,01; NIST-Standard ist 4,00, 6,86, 9,18) \n2. Überprüfen Sie, ob die Kalibrierlösungen abgelaufen oder kontaminiert sind. \n3.    Bitte überprüfen Sie, ob die Elektrode beschädigt ist (z.B. ein gebrochener Glassensor oder ein Riss im Sensor). Falls ja, bitte tauschen Sie die Elektrode aus. \n4.     Elektrode ungültig (Fehler 4 oder Fehler 5 werden nach der Kalibrierung konstant angezeigt, während die drei oben genannten Probleme ausgeschlossen werden). Bitte die Elektrode ersetzen; \n5.     Die Elektrode könnte stark veraltet sein (die Reaktionszeit ist signifikant langsam; über ein Jahr in Gebrauch). Bitte ersetzen Sie die Elektrode；\n6.    Bei anderen Problemen kontaktieren Sie uns unter info@aperainst.de。</string>
+  <string name="fix5">1.     Überprüfen Sie, ob die Auswahl der Standardserie in der Parametereinstellung mit den Kalibrierlösungen übereinstimmt (USA-Standard ist 4,00; 7,00; 10,01; NIST-Standard ist 4,00; 6,86; 9,18) \n2.    Überprüfen Sie, ob die Kalibrierlösungen abgelaufen oder kontaminiert sind. \n3.     Bitte überprüfen Sie, ob die Elektrode beschädigt ist (z.B. ein gebrochener Glassensor oder ein Riss im Sensor). Falls ja, bitte tauschen Sie die Elektrode aus. \n4.     Elektrode ungültig (Fehler 4 oder Fehler 5 werden nach der Kalibrierung konstant angezeigt, während die drei oben genannten Probleme ausgeschlossen werden). Bitte die Elektrode ersetzen; \n5.     Die Elektrode könnte stark veraltet sein (die Reaktionszeit ist signifikant langsam; über ein Jahr in Gebrauch). Bitte ersetzen Sie die Elektrode；\n6.    Bei anderen Problemen kontaktieren Sie uns unter info@aperainst.de</string>
+  <string name="fix6">Bitte rufen Sie den Kalibrierungsmodus auf, und führen Sie die Kalibrierung durch, oder wechseln Sie zu allgemeine Einstellungen, um die Kalibrierungserinnerung abzubrechen.</string>
+  <string name="delete_the_record">Der Datensatz wurde gelöscht!</string>
+  <string name="yes_delete">gelöscht!</string>
+  <string name="auth_code_is_incorrect">Der Bestätigungscode ist nicht korrekt</string>
+  <string name="location_none">Keine GPS-Informationen</string>
+  <string name="picture_none">kann kein Bild finden</string>
+  <string name="acquire_code_success">Bestätigunscode ok</string>
+  <string name="acquire_code_fail">Bestätigungscode konnte nicht abgerufen werden</string>
+  <string name="change_password_success">Das Passwort wurde erfolgreich geändert. Bitte loggen Sie sich ein</string>
+  <string name="change_password_fail">Passwortänderung fehlgeschlagen</string>
+  <string name="press_back_again"> Drücken Sie erneut "Zurück", um den Vorgang zu beenden </string>
+
+  <string name="first_name">Nachname</string>
+  <string name="last_name">Vorname</string>
+  <string name="unit">Einheit</string>
+  <string name="not_need_calibrated_orp"> ORP kann nur auf ORP60-Z kalibriert werden </string>
+
+  <string name="info_measure1">pH, Leitfähigkeit, TDS, Salzgehalt, spez. Widerstand, Temp., ORP (separate Elektrode erforderlich）</string>
+  <string name="other_comp_ele_str1" formatted="false"><![CDATA[PC60-DE: Für die pH-/Leitfähigkeits-/TDS-/Salzgehalts-/Widerstandsmessung von allgemeinen wässrigen Lösungen (Leitfähigkeitsmessbereich: 0 bis 20 mS/20.000 µS).\n
+PH60-DE: Für die pH-Messung von allgemeinen wässrigen Lösungen.\n
+PH60S-DE: Für die direkte pH-Messung von Lebensmittelproben wie Obst, Käse, Teig, Sushi-Reis, Joghurt, Marmelade, Soße, Butter, Sahne usw.\n
+PH60F-DE: Für die pH-Messung an flachen Proben wie Papier, Haut, Textilien, Leder, Teppich usw.\n
+GS2-E: Für die direkte pH-Messung von Boden (mit einem Speersensor).\n
+EC60-DE: Für die Leitfähigkeits-/TDS-/Salzgehalts-/Widerstandsmessung von wässrigen Lösungen (Leitfähigkeitsmessbereich: 0 bis 20 mS/20.000 µS).\n
+ORP60-DA: Für den ORP-Test von allgemeinen wässrigen Lösungen (ORP-Messbereich: -1000 bis 1000 mV).\n
+LabSen 335: Für die pH-Messung von Abwasser, Suspensionen, Emulsionen und anderen verschmutzten Flüssigkeiten.\n
+LabSen 246-5: Für die pH-Messung von allgemeinen wässrigen Lösungen mit kleinem oder mikroskopischem Volumen (ab 60 Mikroliter).\n
+LabSen 765: Für die direkte pH-Messung von rohem oder gefrorenem Fleisch (mit einem Klingen-Speersensor).\n
+LabSen 805: Für die pH-Messung von reinem Wasser wie destilliertem/Trink-/RO-/Oberflächen-/Kessel-/Regen-/Brunnen-/deionisiertem Wasser.\n
+LabSen 835: Für die pH-Messung von stark sauren Lösungen (<pH 2) oder HF-haltigen Lösungen (HF-Konzentration < 0,1 mol/L oder 2000 ppm).\n
+LabSen 845: Für die pH-Messung von stark alkalischen Lösungen (>pH 12) oder hochsalzhaltigen Lösungen (>5000 ppm/0,5%).\n
+LabSen 855: Für die pH-Messung von viskosen Flüssigkeitsproben wie Hautpflegeprodukten, Farben, Beschichtungen, Schlämmen, Klebstoffen, Honig, flüssigem Harz.\n
+LabSen 865: Für die pH-Messung von hochtemperatur- und/oder korrosiven wässrigen Lösungen wie Galvaniklösungen.\n\n
+*Hinweis: Allgemeine wässrige Lösungen sind wasserbasierte Lösungen, die alle folgenden Bedingungen erfüllen:\n
+1. Sie sind weder zu sauer noch zu alkalisch (pH-Bereich von 2 bis 12).\n
+2. Die Temperatur liegt zwischen 10°C und 50°C (50˚F bis 122˚F).\n
+3. Sie enthalten einen mittleren Gehalt an gelösten Ionen (Leitfähigkeitsbereich: 100 µS/cm bis 10.000 µS/cm oder Salzgehalt).]]></string>
+  <string name="suitable_app_str1"><![CDATA[Für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.]]></string>
+
+  <string name="info_measure2">pH, Temperatur, ORP (separate Elektrode erforderlich)</string>
+  <string name="other_comp_ele_str2" formatted="false"><![CDATA[PH60-DE: Für die pH-Messung von allgemeinen wässrigen Lösungen.\n
+PH60S-DE: Für die direkte pH-Messung von Lebensmittelproben wie Obst, Käse, Teig, Sushi-Reis, Joghurt, Marmelade, Soße, Butter, Sahne usw.\n
+PH60F-DE: Für die pH-Messung an flachen Proben wie Papier, Haut, Textilien, Leder, Teppich usw.\n
+GS2-E: Für die direkte pH-Messung von Boden (mit einem Speersensor).\n
+ORP60-DA: Für den ORP-Test von allgemeinen wässrigen Lösungen (ORP-Messbereich: -1000 bis 1000 mV).\n
+LabSen 335: Für die pH-Messung von Abwasser, Suspensionen, Emulsionen und anderen verschmutzten Flüssigkeiten.\n
+LabSen 246-5: Für die pH-Messung von allgemeinen wässrigen Lösungen mit kleinem oder mikroskopischem Volumen (ab 60 Mikroliter).\n
+LabSen 765: Für die direkte pH-Messung von rohem oder gefrorenem Fleisch (mit einem Klingen-Speersensor).\n
+LabSen 805: Für die pH-Messung von reinem Wasser wie destilliertem/Trink-/RO-/Oberflächen-/Kessel-/Regen-/Brunnen-/deionisiertem Wasser.\n
+LabSen 835: Für die pH-Messung von stark sauren Lösungen (<pH 2) oder HF-haltigen Lösungen (HF-Konzentration < 0,1 mol/L oder 2000 ppm).\n
+LabSen 845: Für die pH-Messung von stark alkalischen Lösungen (>pH 12) oder hochsalzhaltigen Lösungen (>5000 ppm/0,5%).\n
+LabSen 855: Für die pH-Messung von viskosen Flüssigkeitsproben wie Hautpflegeprodukten, Farben, Beschichtungen, Schlämmen, Klebstoffen, Honig, flüssigem Harz.\n
+LabSen 865: Für die pH-Messung von hochtemperatur- und/oder korrosiven wässrigen Lösungen wie Galvaniklösungen.\n\n
+*Hinweis: Allgemeine wässrige Lösungen sind wasserbasierte Lösungen, die alle folgenden Bedingungen erfüllen:\n
+1. Sie sind weder zu sauer noch zu alkalisch (pH-Bereich von 2 bis 12).\n
+2. Die Temperatur liegt zwischen 10°C und 50°C (50˚F bis 122˚F).\n
+3. Sie enthalten einen mittleren Gehalt an gelösten Ionen (Leitfähigkeitsbereich: 100 µS/cm bis 10.000 µS/cm oder Salzgehalt).]]></string>
+  <string name="suitable_app_str2"><![CDATA[Für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.。]]></string>
+
+  <string name="info_measure3">pH, Temperatur, ORP (separate Elektrode erforderlich)</string>
+  <string name="other_comp_ele_str3" formatted="false"><![CDATA[PH60S-DE: Für die direkte pH-Messung von Lebensmittelproben wie Obst, Käse, Teig, Sushi-Reis, Joghurt, Marmelade, Soße, Butter, Sahne usw.\n
+PH60-DE: Für die pH-Messung von allgemeinen wässrigen Lösungen.\n
+PH60F-DE: Für die pH-Messung an flachen Proben wie Papier, Haut, Textilien, Leder, Teppich usw.\n
+GS2-E: Für die direkte pH-Messung von Boden (mit einem Speersensor).\n
+ORP60-DA: Für den ORP-Test von allgemeinen wässrigen Lösungen (ORP-Messbereich: -1000 bis 1000 mV).\n
+LabSen 335: Für die pH-Messung von Abwasser, Suspensionen, Emulsionen und anderen verschmutzten Flüssigkeiten.\n
+LabSen 246-5: Für die pH-Messung von allgemeinen wässrigen Lösungen mit kleinem oder mikroskopischem Volumen (ab 60 Mikroliter).\n
+LabSen 765: Für die direkte pH-Messung von rohem oder gefrorenem Fleisch (mit einem Klingen-Speersensor).\n
+LabSen 805: Für die pH-Messung von reinem Wasser wie destilliertem/Trink-/RO-/Oberflächen-/Kessel-/Regen-/Brunnen-/deionisiertem Wasser.\n
+LabSen 835: Für die pH-Messung von stark sauren Lösungen (<pH 2) oder HF-haltigen Lösungen (HF-Konzentration < 0,1 mol/L oder 2000 ppm).\n
+LabSen 845: Für die pH-Messung von stark alkalischen Lösungen (>pH 12) oder hochsalzhaltigen Lösungen (>5000 ppm/0,5%).\n
+LabSen 855: Für die pH-Messung von viskosen Flüssigkeitsproben wie Hautpflegeprodukten, Farben, Beschichtungen, Schlämmen, Klebstoffen, Honig, flüssigem Harz.\n
+LabSen 865: Für die pH-Messung von hochtemperatur- und/oder korrosiven wässrigen Lösungen wie Galvaniklösungen.\n\n
+*Hinweis: Allgemeine wässrige Lösungen sind wasserbasierte Lösungen, die alle folgenden Bedingungen erfüllen:\n
+1. Sie sind weder zu sauer noch zu alkalisch (pH-Bereich von 2 bis 12).\n
+2. Die Temperatur liegt zwischen 10°C und 50°C (50˚F bis 122˚F).\n
+3. Sie enthalten einen mittleren Gehalt an gelösten Ionen (Leitfähigkeitsbereich: 100 µS/cm bis 10.000 µS/cm oder Salzgehalt).]]></string>
+  <string name="suitable_app_str3"><![CDATA[Für die direkte pH-Messung von halbfesten Proben wie z.B. Käse, Obst, Sushi-Reis, Fleisch, etc.Auch geeignet für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.]]></string>
+
+  <string name="info_measure4">pH, Temperatur, ORP (separate Elektrode erforderlich)</string>
+  <string name="other_comp_ele_str4" formatted="false"><![CDATA[PH60F-DE: Für die pH-Messung an flachen Proben wie Papier, Haut, Textilien, Leder, Teppich usw.\n
+PH60S-DE: Für die direkte pH-Messung von Lebensmittelproben wie Obst, Käse, Teig, Sushi-Reis, Joghurt, Marmelade, Soße, Butter, Sahne usw.\n
+PH60-DE: Für die pH-Messung von allgemeinen wässrigen Lösungen.\n
+GS2-E: Für die direkte pH-Messung von Boden (mit einem Speersensor).\n
+ORP60-DA: Für den ORP-Test von allgemeinen wässrigen Lösungen (ORP-Messbereich: -1000 bis 1000 mV).\n
+LabSen 335: Für die pH-Messung von Abwasser, Suspensionen, Emulsionen und anderen verschmutzten Flüssigkeiten.\n
+LabSen 246-5: Für die pH-Messung von allgemeinen wässrigen Lösungen mit kleinem oder mikroskopischem Volumen (ab 60 Mikroliter).\n
+LabSen 765: Für die direkte pH-Messung von rohem oder gefrorenem Fleisch (mit einem Klingen-Speersensor).\n
+LabSen 805: Für die pH-Messung von reinem Wasser wie destilliertem/Trink-/RO-/Oberflächen-/Kessel-/Regen-/Brunnen-/deionisiertem Wasser.\n
+LabSen 835: Für die pH-Messung von stark sauren Lösungen (<pH 2) oder HF-haltigen Lösungen (HF-Konzentration < 0,1 mol/L oder 2000 ppm).\n
+LabSen 845: Für die pH-Messung von stark alkalischen Lösungen (>pH 12) oder hochsalzhaltigen Lösungen (>5000 ppm/0,5%).\n
+LabSen 855: Für die pH-Messung von viskosen Flüssigkeitsproben wie Hautpflegeprodukten, Farben, Beschichtungen, Schlämmen, Klebstoffen, Honig, flüssigem Harz.\n
+LabSen 865: Für die pH-Messung von hochtemperatur- und/oder korrosiven wässrigen Lösungen wie Galvaniklösungen.\n\n
+*Hinweis: Allgemeine wässrige Lösungen sind wasserbasierte Lösungen, die alle folgenden Bedingungen erfüllen:\n
+1. Sie sind weder zu sauer noch zu alkalisch (pH-Bereich von 2 bis 12).\n
+2. Die Temperatur liegt zwischen 10°C und 50°C (50˚F bis 122˚F).\n
+3. Sie enthalten einen mittleren Gehalt an gelösten Ionen (Leitfähigkeitsbereich: 100 µS/cm bis 10.000 µS/cm oder Salzgehalt).]]></string>
+  <string name="suitable_app_str4"><![CDATA[Für die Oberflächenmessung z.B von Haut, Papier, Textilien, Stoffen, Leder und kleinvolumigen Flüssigkeitsmessungen.Auch geeignet für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc nP.S.: Allgemeine wässrige Lösungen sind nicht-viskose Flüssigkeiten mit mittlerer bis hoher Ionenkonzentration, bei denen die Temperatur 5 bis 50˚C beträgt, der pH- Wert 2 bis 12 beträgt, und die keine Proteine oder Sulfide enthalten.]]></string>
+
+  <string name="info_measure5">Leitfähigkeit, TDS, Salzgehalt, spez. Widerstand, Temperatur</string>
+  <string name="other_comp_ele_str5"><![CDATA[EC60-DE: Für die Leitfähigkeits-/TDS-/Salzgehalts-/Widerstandsmessung von wässrigen Lösungen (Leitfähigkeitsmessbereich: 0 bis 20 mS/20.000 µS).]]></string>
+  <string name="suitable_app_str5"><![CDATA[Für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.]]></string>
+
+  <string name="info_measure6">ORP, Temperatur</string>
+  <string name="other_comp_ele_str6"><![CDATA[ORP60-DE: Für den ORP-Test von allgemeinen wässrigen Lösungen (ORP-Messbereich: -1000 bis 1000 mV).]]></string>
+  <string name="suitable_app_str6"><![CDATA[Für allgemeine wässrige Lösungen, z.B. Pools und Spas, Hydrokultur, Aquakultur, Aquarien, Wasserversorgung, Umweltüberwachung, Getränkeherstellung, Bildung, Kühltürme, etc.]]></string>
+  <string name="bt">Bluetooth</string>
+  <string name="bt_turn_on">Bitte schalten Sie das Bluetooth Ihres Smartphones ein.</string>
+  <string name="bt_open">anschalten</string>
+  <string name="photograph">Fotos machen</string>
+  <string name="select_from_the_album">Wählen Sie aus dem Album</string>
+  <string name="account_not_found_fail">Konto existiert nicht！</string>
+
+
+  <string name="GPSOpen">Ortungsdienste aus</string>
+  <string name="GPSToast">Für das Android-System müssen Ortungsdienste aktiviert sein, damit eine Verbindung zu Bluetooth-Geräten hergestellt werden kann</string>
+
+  <string name="Assect_data">Aktiv</string>
+  <string name="Assect_admin">Aktivmanagement</string>
+  <string name="Assect_new">Neu</string>
+  <string name="Assect_name">Aktivname eingeben</string>
+  <string name="Assect_Image">Mache ein Foto</string>
+  <string name="Assect_Save">Speichern</string>
+  <string name="Assect_change">Aktivbearbeiten</string>
+  <string name="Assect_Link">Link der Aktiven daten</string>
+  <string name="Assect_Cancle">Abbrechen</string>
+  <string name="Assect_Confirm">Bestätigen</string>
+  <string name="Assect_DataMore">Aktive Daten</string>
+  <string name="Assect_Select">Auswählen</string>
+  <string name="Assect_Temp">Temp.</string>
+  <string name="Assect_Reading">Lesen</string>
+  <string name="Assect_Time">Datum/Zeit</string>
+  <string name="Assect_DelegetOk">Gelöscht</string>
+  <string name="Assect_NameAgain">Der Asset-Name wird dupliziert.</string>
+  <string name="Assect_Newok">Neu ist das erstellte Asset</string>
+  <string name="Assect_NameNil">Bitte geben Sie einen Namen für Ihr Vermögen ein.</string>
+  <string name="Assect_changeok">Aktualisiert</string>
+  <string name="Assect_Links">Verknüpftes Asset:</string>
+  <string name="User_exists">Konto existiert bereits</string>
+  <string name="Login_failed">Login fehlgeschlagen</string>
+  <string name="Asset_EnterName">Geben Sie hier den Asset-Namen ein</string>
+  <string name="Asset_AddImage">Fügen Sie ein Foto Ihres Assets hinzu</string>
+
+  <string name="max_number_format">Diese Eingabe muss aus Zahlen bestehen</string>
+  <string name="min_number_format">Diese Eingabe muss aus Zahlen bestehen</string>
+  <string name="max_must_be">Der Maximalwert muss größer als der Minimalwert sein</string>
+  <string name="max_must_benotover">Der Maximalwert darf den größten Messbereich nicht überschreiten</string>
+  <string name="min_must_beoverthe">Der Mindestwert darf nicht unter dem niedrigsten Messbereich liegen</string>
+
+  <string name="Alerm_text">**ALARM!** Der Messwert liegt außerhalb des voreingestellten sicheren Bereichs. Bitte überprüfen Sie ihn so schnell wie möglich.</string>
+
+  <string name="Blutooth_al">Drücken Sie hier, um das Messgerät zu verbinden</string>
+
+  <string name="Privacy_sta">《Erklärung zum Datenschutz》</string>
+  <string name="Privacy_all">1. Erläuterung der Offenlegung von Nutzerinformationen\n\n\u3000\u3000Die Achtung der Privatsphäre der Benutzer ist eine grundlegende Politik in ihren Informationen. Ltd. wird ihre Registrierungsdaten und nicht-öffentlichen Inhalte, die in dieser Anwendung gespeichert sind, nicht ohne die Genehmigung der rechtmäßigen Nutzer offenlegen, bearbeiten oder offenbaren, es sei denn, es liegen die folgenden Umstände vor:\n\u3000\u3000(1) Einschlägige Gesetze und Verordnungen oder Vorschriften des Rechtsdienstleistungsprogramms von Apera Instruments;
+\n\u3000\u3000(2) Zum Schutz der Rechte und Interessen der Nutzer und der Öffentlichkeit in Notfällen;\n\u3000\u3000（(3) Zum Schutz des Markenrechts, des Patentrechts und aller anderen gesetzlichen Rechte und Interessen von Apera Instruments;\n\u3000\u3000(4) Andere Fälle, die eine Offenlegung, Bearbeitung oder Weitergabe von personenbezogenen Daten erfordern;\n\u3000\u3000Ltd. hat das Recht, die persönlichen Daten des Nutzers in den folgenden Fällen (einschließlich, aber nicht beschränkt auf) zu verwenden:\n\u3000\u3000(1) Shanghai Apera Instruments kann Nutzerinformationen mit Daten Dritter abgleichen;\n\u3000\u3000(2) Apera Instruments wird zusammengefasste Nutzerstatistiken an potenzielle Partner, Werbetreibende und andere Dritte weitergeben, um ihnen seine Dienstleistungen für andere legitime Zwecke zu beschreiben;\n\n2. Anwendungsbereich der Datenschutzpolitik\n\n\u3000\u3000(1) Persönlich identifizierbare Informationen, die der Nutzer bei der Nutzung des Anwendungsservers hinterlässt;\n\u3000\u3000(2) Verschiedene Arten von Informationen, die von Nutzern an andere Nutzer oder Nichtnutzer über diesen Anwendungsserver übermittelt werden;\n\u3000\u3000(3) Verschiedene Informationen über andere Nutzer oder Nicht-Nutzer, die die Anwendung mit ihren Geschäftspartnern teilt;\n\u3000\u3000(4) Apera Instruments legt großen Wert auf den Schutz der Privatsphäre der Nutzer und hat die "Privacy Policy" formuliert, kann der Benutzer auch durch die "Privacy Policy", bestätigt der Benutzer und stimmt zu, dass die Verwendung seiner Informationen Software, um Dienstleistungen zu erbringen, wird als zu akzeptieren, die "Privacy Policy".\n\n3. Offenlegung und Weitergabe von Informationen\n\n\u3000\u3000Ltd. wird die persönlichen Daten und Informationen der Nutzer nicht vorsätzlich an Dritte weitergeben, vermieten oder verkaufen. Außer in den folgenden Fällen:\n\u3000\u3000(1) Der Nutzer selbst ist mit der Weitergabe von Informationen und Daten an Dritte einverstanden.\n\u3000\u3000(2) Bestimmte vom Nutzer angeforderte Produkte und Dienstleistungen können nur dann angeboten werden, wenn die persönlichen Daten und Informationen des Nutzers offengelegt werden.
+\n\u3000\u3000(3) Auf Anfrage der Subjekte, die Produkte oder Dienstleistungen im Namen dieser Anwendung anbieten (sofern wir Sie nicht anderweitig benachrichtigen, haben diese Subjekte nicht das Recht, die persönlichen Daten und Informationen des betreffenden Nutzers für andere Zwecke als die Bereitstellung von Produkten und Dienstleistungen zu verwenden): In Übereinstimmung mit den Anforderungen von Gesetzen, Verordnungen oder behördlichen Anordnungen zur Verfügung gestellt; für die Bedürfnisse der externen Audits zur Verfügung gestellt; Benutzer, die gegen die Nutzungsbedingungen der Anwendung oder die Bestimmungen der Nutzung von anderen Produkten und Dienstleistungen verstoßen; von der Diese Seite bewertet, dass das Konto des Benutzers gefährdet ist und geschützt werden muss.\n\u3000\u3000(4)Um eine präzise Verbindung im Bluetooth-Bereich zur Geräteidentifizierung herzustellen, werden wir Ihre Geräteinformationen erfassen (einschließlich IMEI, Android-ID, MEID). \n\u3000\u3000(5)Um Messdaten als CSV-Dateien zu speichern und mit anderen Geräten oder Plattformen zu teilen, werden wir um Ihre Berechtigung zur Speicherung bitten, um auf externe Speicherinformationen zugreifen zu können. \n\u3000\u3000(6) Für die Bequemlichkeit der Gastanmeldung und zur lokalen Datenspeicherung, um Datenverlust zu vermeiden, werden wir um Ihre Berechtigung zur Speicherung bitten, um auf externe Speicherinformationen zugreifen zu können.\n\n4. Nicht-private Informationen\n\n\u3000\u3000Um die Technologie und die Dienstleistungen von Apera Instruments zu verbessern und den Nutzern einen besseren Service zu bieten, kann Shanghai Peerless Instruments Co., Ltd. nicht-personenbezogene Daten der Nutzer sammeln, verwenden oder an Dritte weitergeben.
+\n\n\n\n </string>
+  <string name="Agreement_title">《Dienstleistungsvertrag》</string>
+  <string name="Agreement_text">\u3000\u3000Sehr geehrte Nutzerinnen und Nutzer, herzlich willkommen zur Nutzung der von Apera Instruments angebotenen Dienste. Bevor Sie den Service nutzen, lesen Sie bitte die folgende Servicevereinbarung, die Nutzung dieser Anwendung bedeutet, dass Sie diese Vereinbarung akzeptieren, diese Vereinbarung erzeugt rechtliche Wirkung, insbesondere mit der Befreiung oder Beschränkung der Haftung Bestimmungen, lesen Sie bitte sorgfältig. \n\n1. Anerkennung und Akzeptanz der Servicebedingungen\n\n\u3000\u3000Durch den Zugriff auf oder die Nutzung dieser Anwendung erklärt sich der Nutzer mit allen Bedingungen und Bestimmungen dieser Vereinbarung einverstanden.\n\n2. Änderungen und Modifikationen der Servicebedingungen\n\n\u3000\u3000Apera Instruments behält sich das Recht vor, die Nutzungsbedingungen bei Bedarf zu ändern. Sobald die Nutzungsbedingungen geändert werden, werden die Änderungen auf den wichtigen Seiten angezeigt. Wenn Sie mit den geänderten Inhalten nicht einverstanden sind, können Sie den Informationsdienst dieser Anwendung aufgeben. Wenn der Nutzer weiterhin die Informationsdienste dieser Anwendung nutzt, wird davon ausgegangen, dass er die Änderungen der Nutzungsbedingungen akzeptiert. Die Anwendung behält sich das Recht vor, den Dienst jederzeit ohne Benachrichtigung des Nutzers zu ändern oder zu unterbrechen. Die Anwendung übt das Recht aus, den Dienst zu ändern oder zu unterbrechen, ohne dem Nutzer oder einem Dritten gegenüber verantwortlich zu sein.\n\n3 Benutzerkonto, Passwort und Sicherheit\n\n\u3000\u3000Sie können wählen, ob Sie Ihr Konto nach Ihren Bedürfnissen registrieren oder nicht. Wenn Sie sich für das Besucher-Login entscheiden, werden die Daten lokal gespeichert und nicht auf den Cloud-Server hochgeladen; der Nachteil ist, dass Sie die ursprünglichen Daten verlieren, wenn Sie Ihr Handy-Login ändern. Wenn Sie sich für die Registrierung entscheiden, verwenden Sie bitte Ihre E-Mail-Adresse zur Registrierung, wir binden nicht Ihre Handynummer oder andere Authentifizierungsmethoden, nach der Registrierung behalten Sie bitte Ihr Konto, die Daten des Tests werden an dieses Konto gebunden; Apera Instruments wird die Testdaten des Benutzers ordnungsgemäß speichern.\n\n4. Inhalt des Dienstes\n\n\u3000\u3000Der spezifische Inhalt dieses Dienstes wird durch seine Informationen entsprechend der tatsächlichen Situation zur Verfügung gestellt, Apera Instruments kann den Dienst, den es zur Verfügung stellt, ändern, und der Inhalt des Dienstes, der durch seine Informationen zur Verfügung gestellt wird, kann zu jeder Zeit geändert werden. Die Software ist eine kostenlose Anwendung.
+Die Software ist eine kostenlose Anwendung, und der Benutzer wird in keiner Weise oder unter keinem Namen belastet.\n\n\n\n</string>
+
+  <string name="Agreement_agree">Zustimmen</string>
+  <string name="Agreement_agreeNo">Nicht einverstanden und beenden</string>
+  <string name="Agreement_agreetitle">Dienstleistungsvertrag und Datenschutzrichtlinie</string>
+  <string name="Agreement_agreetext">\u3000\u3000Bitte stellen Sie sicher, dass Sie die Bestimmungen des "Dienstleistungsvertrags" und der "Datenschutzrichtlinie" sorgfältig lesen und vollständig verstehen, einschließlich, aber nicht beschränkt auf: Um Ihnen Dienstleistungen wie Datenspeicherung, Standort für Datentests, Messproben und Bluetooth-Verbindung anzubieten, müssen wir Ihre Fotos und Medien, Standortinformationen und Bluetooth-Daten erfassen. Sie können personenbezogene Daten einsehen, ändern, löschen und Ihre Berechtigungen in den "Einstellungen" verwalten. Für detaillierte Informationen können Sie den "Dienstleistungsvertrag", die "Datenschutzrichtlinie" und die "Richtlinien zur Berechtigungsnutzung" lesen. Wenn Sie zustimmen, klicken Sie bitte auf "Akzeptieren", um unsere Dienstleistungen zu nutzen.</string>
+</resources>

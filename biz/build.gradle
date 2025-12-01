@@ -1,0 +1,98 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 34
+    //buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 34
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+//
+//    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+//    }
+    greendao {
+        schemaVersion 9
+        daoPackage 'com.zen.biz.greendao.gen'
+        targetGenDir 'src/main/java'
+    }
+    namespace 'com.zen.biz'
+    lint {
+        abortOnError false
+    }
+}
+
+
+
+// https://www.jianshu.com/p/87dd513c7dac
+//添加依赖关系 https://github.com/greenrobot/greenDAO/issues/1110
+tasks.whenTaskAdded { task ->
+    if (task.name.matches("compile\\w*Kotlin")) {
+        task.dependsOn('greendao')
+    }
+}
+
+dependencies {
+    // implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testImplementation 'junit:junit:4.12'
+
+    compileOnly project(":api")
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'org.greenrobot:greendao:3.3.0'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+//    implementation 'net.zetetic:android-database-sqlcipher:3.5.7@aar'
+    implementation 'net.zetetic:android-database-sqlcipher:4.4.3@aar'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.56'
+    implementation 'com.alibaba:fastjson:1.2.24'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    //https://github.com/Jasonchenlijian/FastBle
+    implementation project(':fastble')
+    // implementation 'com.clj.fastble:FastBleLib:2.1.7'
+    // implementation 'com.clj.fastble:FastBleLib:2.3.4'
+    // implementation files('libs/FastBleLib-2.1.7.aar')
+
+    implementation 'de.greenrobot:java-common:2.3.1'
+
+    implementation 'com.orhanobut:logger:2.2.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.beust:klaxon:2.1.14' //https://github.com/cbeust/klaxon
+    implementation ("com.github.foolchen:AndroidTracker:0.3.3"){
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+    }
+    //https://github.com/chibatching/Kotpref
+
+}
+repositories {
+    mavenCentral()
+}

@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+//plugins {
+//    // AGP版本
+//    id 'com.android.application' version '8.1.0' apply false
+//    id 'com.android.library' version '8.1.0' apply false
+//    //Kotlin版本 (没变)
+//    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
+//}
+
+android {
+    compileSdkVersion 34
+   // buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 34
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    namespace 'com.zen.api'
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+ /*   androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })*/
+    implementation 'com.alibaba:fastjson:1.2.24'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+//    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url 'https://maven.aliyun.com/repository/releases' }
+//        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+    maven { url 'https://maven.aliyun.com/repository/google' }
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    maven { url 'https://maven.aliyun.com/repository/public' }
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+}

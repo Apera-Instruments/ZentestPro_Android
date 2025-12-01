@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_name">User Name (email)</string>
+    <string name="password">Password</string>
+    <string name="demo_try">Visitor Mode</string>
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="forget_pw">Forget Password</string>
+    <string name="email">Email</string>
+    <string name="reenter_pw">Please input password again.</string>
+    <string name="no_dev">No Device Connected</string>
+    <string name="back_measure">Back to measure</string>
+    <string name="measure">Measure</string>
+    <string name="calibration">Calibration</string>
+    <string name="data">Data</string>
+    <string name="setting">Settings</string>
+    <string name="info">Information</string>
+    <string name="associated_devices">Associated Devices</string>
+    <string name="available_devices">Available Devices</string>
+    <string name="searching_for_devices">Searching For Devices …</string>
+    <string name="save">Save</string>
+    <string name="hold">Hold</string>
+    <string name="hold_uppercase">HOLD</string>
+    <string name="calibrated_points">Calibrated Points</string>
+    <string name="zero_potential">Offset</string>
+    <string name="slop">Slope</string>
+    <string name="last_calibbration">Last Calibration</string>
+    <string name="sn">SN</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="value">Value</string>
+    <string name="temp">Temp.</string>
+    <string name="salinity">Salinity</string>
+    <string name="resistivity">Resistivity</string>
+    <string name="general">General</string>
+    <string name="parameter">Parameter</string>
+    <string name="data_storage">Data Storage</string>
+    <string name="alarm">Alarm</string>
+    <string name="logout">Log Out</string>
+    <string name="temp_unit">Temperature Unit</string>
+    <string name="auto_hold">Automatic Hold</string>
+    <string name="stable_reading_standard">Stable Reading Standard</string>
+    <string name="calibration_reminder">Calibration Reminder</string>
+    <string name="backlight_time">Backlight Time</string>
+    <string name="auto_power_off">Automatic Power-off</string>
+    <string name="factory_reset">Reset to Factory Default</string>
+    <string name="high">High</string>
+    <string name="low">Low</string>
+    <string name="conductivity_rang">Conductivity range</string>
+    <string name="orp_range">ORP range</string>
+    <string name="ph_range">pH range</string>
+    <string name="resistivity_range">Resistivity range</string>
+    <string name="salinity_range">Salinity range</string>
+    <string name="tds_range">TDS range</string>
+    <string name="all_data">All Data</string>
+    <string name="measuring_value">Measuring Values</string>
+    <string name="time_data">Time/Data</string>
+    <string name="date_time">Date/Time</string>
+    <string name="serial_no">Serial Number</string>
+    <string name="temperature">Temperature</string>
+    <string name="calibration_records">Calibration Records</string>
+    <string name="electrode_model">Electrode Model</string>
+    <string name="gps_loaction">GPS Location</string>
+    <string name="information">Information</string>
+    <string name="ele_info">Electrode Information</string>
+    <string name="ele_model">Electrode Model</string>
+    <string name="measuring_parameters">Measuring Parameters</string>
+    <string name="ele_life">Electrode Condition</string>
+    <string name="suitable_app">Suitable Application</string>
+    <string name="other_ele">Compatible/Interchangeable Sensors</string>
+    <string name="other_ele1">Compatible Sensors</string>
+    <string name="ins_info">Instrument information</string>
+    <string name="ins_model">Instrument Model</string>
+    <string name="ins_sn">Instrument Serial Number</string>
+    <string name="factory_calibration_date">Factory Calibration Date</string>
+    <string name="firmware_version">Firmware Version</string>
+    <string name="conductivity">Conductivity</string>
+    <string name="send">Send</string>
+    <string name="category">Category</string>
+    <string name="delete">Delete</string>
+    <string name="enter">Enter</string>
+    <string name="operation_flow">Calibration Flow</string>
+    <string name="wait_readings">Please wait for stable readings</string>
+    <string name="select_buffer_solution">Select buffer solution</string>
+    <string name="num3_ph7">Dip into 7.00 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph4">Dip into 4.00 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph41">Dip into 4.01 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph918">Dip into 9.18 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph1001">Dip into 10.01 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph168">Dip into 1.68 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph1245">Dip into 12.45 pH solution, stir gently and let it stand still</string>
+    <string name="num3_ph686">Dip into 6.86 pH solution, stir gently and let it stand still</string>
+    <string name="num3_168">Dip into 1.68 pH solution, stir gently and let it stand still</string>
+    <string name="num3_1246">Dip into 12.46 solution, stir gently and let it stand still</string>
+    <string name="num3_1413">Dip into 1413 solution, stir gently and let it stand still</string>
+    <string name="num3_84">Dip into 84 solution, stir gently and let it stand still</string>
+    <string name="num3_1288">Dip into 12.88 solution, stir gently and let it stand still</string>
+    <string name="finish_cailbration">Press ENT to finish calibration</string>
+    <string name="not_recognize">Cannot recognize standard solutions</string>
+    <string name="temp_degree_c">℃</string>
+    <string name="zen_temp_degree_f">℉</string>
+    <string name="note">Note</string>
+    <string name="n_hits">%d Reminders (Click for details)</string>
+    <string name="one_hits">1 Reminder (Click for details)</string>
+    <string name="type">Type</string>
+    <string name="timer_set">Time Set</string>
+    <string name="auto_save">Auto. Save</string>
+    <string name="name">Asset</string>
+    <string name="admin">Admin</string>
+    <string name="notes">Notes</string>
+    <string name="photo">Attached photo</string>
+    <string name="add">Add</string>
+    <string name="change_password">Change Password</string>
+    <string name="sign_up">Register</string>
+    <string name="submit">Submit</string>
+    <string name="verify_code">Verification Code</string>
+    <string name="get_verify_code">Get Verification Code</string>
+    <string name="confirm">Confirm</string>
+    <string name="known">OK</string>
+    <string name="send_file">Send Data</string>
+    <string name="rinse_the_probe">Rinse off the probe</string>
+    <string name="shake_dry_or_dry_with_tissue">Shake-dry or blot-dry (NEVER rub the sensor)</string>
+    <string name="after">After</string>
+    <string name="seconds">Second(s)</string>
+    <string name="minutes">Minute(s)</string>
+    <string name="self_diagnosis">Self-Diagnosis</string>
+    <string name="possible_problems_and_how_to_fix">Potential problems and how to fix</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="logout_the_account">Logout the account!</string>
+    <string name="yes_logout">Yes,Logout!</string>
+    <string name="reminder">Reminder</string>
+    <string name="buffer_class_selection">Buffer Class Selection</string>
+    <string name="resolution">Resolution</string>
+    <string name="ref_temperature">Reference Temp.</string>
+    <string name="temp_coeff">Temp. Comp. Factor</string>
+    <string name="due_calib">Calibration Reminder</string>
+    <string name="factory_reset_default">Reset to Factory Default</string>
+    <string name="tds_factor">TDS Factor</string>
+    <string name="salt_unit">Salt Unit</string>
+    <string name="yes_factory_reset">Yes,factory reset.</string>
+    <string name="input">Input</string>
+    <string name="empty_str">The string is empty</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_all">Select all</string>
+    <string name="select_none">Select none</string>
+    <string name="exists">Existed</string>
+    <string name="add_to_category">Add to Category</string>
+    <string name="not_calibrated">%s dosn`t need to be calibrated</string>
+    <string name="unhold">Unhold</string>
+    <string name="unit_err">Unit is wrong</string>
+    <string name="value_err">Value is wrong</string>
+    <string name="location">Location</string>
+    <string name="salinity_type">Salinity Type</string>
+    <string name="salt_type">Salinty Type</string>
+    <string name="life_excellent">Excellent</string>
+    <string name="life_good">Good</string>
+    <string name="life_ok">OK</string>
+    <string name="life_replacement">Replacement needed</string>
+    <string name="account_should_be_mail_address">Account should be email address!</string>
+    <string name="password_is_incorrect">Password is incorrect</string>
+    <string name="reenter_password_is_incorrect">Please input password again.</string>
+    <string name="password_is_not_match">Two passwords should be the same.</string>
+    <string name="register_success">Registration completed.</string>
+    <string name="login_fail">Unable to register</string>
+    <string name="username_is_empty">Username is empty</string>
+    <string name="username_is_not_email">Account should be email address!</string>
+    <string name="password_is_empty_or_space">Password is empty or contains space</string>
+    <string name="not_need_caslib">When conductivity calibrate finish, TDS, Salinity or Resistivity auto calibrated </string>
+
+    <string name="err1">Cannot recognize standard solutions</string>
+    <string name="err2">Please wait for a stable reading before pressing ENT</string>
+    <string name="err3">Readings being unstable for a long time</string>
+    <string name="err4"><![CDATA[ pH Electrode zero potential of pH probe out of range（<60mV or>60mV）]]></string>
+    <string name="err5" formatted="false"><![CDATA[Slope of pH probe out of range（<85% or >110%）]]></string>
+    <string name="err6">Time to perform calibration</string>
+    <string name="fix1">1. Please fully immerse the probe into calibration solution.\n 2. The first point of calibration must be pH 7.00.\n 3. Please check if the calibration solution is good – not expired or contaminated\n 4. Please check if the probe is damaged (e.g. broken glass sensor or a crack on the sensor). If so, please replace the probe.\n 5. The glass sensor or junction of the probe could get contaminated severely. Please use a soft brush dipped with soap water to clean the probe, then rinse it with purified water, and soak it in 3M KCL for 24 hours before use again.\n 6. For other problems, please contact us at 614–285–3080 or info@aperainst.com\n</string>
+    <string name="fix2">None. Wait for the smiley face to come up and stay on screen, then press ENT</string>
+    <string name="fix3">1. Please check if there is any air bubble inside the glass bulb sensor. If so, please shake the meter with force for several times to remove the air bubble(s).\n 2. Please check if the probe is damaged (e.g. broken glass sensor or a crack on the sensor). If so, please replace the probe.\n 3. The glass bulb sensor or junction of the probe could get contaminated severely. Please use a soft brush dipped with soap water to clean the probe, then rinse it with purified water, and soak it in 3M KCL for 24 hours before use again.\n 4. The probe could be severely aged (response time is significantly slow; used for over 1 year). Please replace the probe.\n 5. This tester is not suitable for testing your sample. Please contact us to find a proper model most suitable for your application.\n 6. For other problems, please contact us at 614–285–3080 or info@aperainst.com</string>
+    <string name="fix4">1. Check if the standard series setup in the pH parameter setting is consistent with the calibration solutions’(U.S.A standard is 4.00, 7.00, 10.01; NIST standard is 4.00, 6.86, 9.18)\n 2. Check if the calibration solutions got expired or contaminated.\n 3. Please check if the probe is damaged (e.g. broken glass sensor or a crack on the sensor). If so, please replace the probe.\n 4. Electrode invalidated (Error 4 or Error 5 show up consistently after calibration while the above 3 problems are excluded). Please replace the electrode;\n 5. The probe could be severely aged (response time is significantly slow; used for over 1 year). Please replace the probe；\n 6. For other problems, please contact us at 614–285–3080 or info@aperainst.com\n</string>
+    <string name="fix5">@string/fix4</string>
+    <string name="fix6">Please enter calibration mode and perform calibration; or enter general settings to cancel the calibration reminder</string>
+    <string name="delete_the_record">The record is deleted!</string>
+    <string name="yes_delete">Deleted.</string>
+    <string name="auth_code_is_incorrect">Verification code is incorrect</string>
+    <string name="location_none">Location is missing</string>
+    <string name="picture_none">The picture is missing</string>
+    <string name="acquire_code_success">Acquire code success</string>
+    <string name="acquire_code_fail">Acquire code fail</string>
+    <string name="change_password_success">Change password success</string>
+    <string name="change_password_fail">Change password fail</string>
+    <string name="press_back_again">Press back key again to exit</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="unit">Unit</string>
+    <string name="not_need_calibrated_orp">ORP calibration currently can only be operated at the ORP60-Z tester.</string>
+
+    <string name="info_measure">pH,Conductivity,TDS,Salinity,Resistivity,Temperature</string>
+    <string name="other_comp_ele_str">PH60-DE: for regular water solutions\' pH test PH60F-DE: for flat surface test e.g. skin, paper, fabrics, leather, and samll volume liquid test PH60S-DE: for soft solid samples e.g. cheese, sushi rice, meat, soil etc. EC60-E: for regular water solutions\' Conductivity/TDS/salinity/resistivity test ORP60-DA: for regular water solutions\' ORP test PC60-DE: for regular water solutions\' pH and conductivity/TDS/salinity/resistivity test</string>
+    <string name="suitable_app_str"><![CDATA[General water solutions e.g. pools& spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc. \nP.S.: General water solutions are non-viscous liquids that have medium to high ion concentration, at which temperature is 5 to 50˚C, pH is 2 to 12, and don’t contain proteins or sulfides.]]></string>
+
+
+    <string name="info_measure1">pH,conductivity,TDS, salinity, resistivity, temperature, ORP (a separate probe needed)</string>
+    <string name="other_comp_ele_str1" formatted="false"><![CDATA[PC60-DE: for pH/conductivity/TDS/salinity/resistivity measurement of general water solutions (conductivity measurement range: 0 to 20 mS/20,000 µS)\n
+PH60-DE: for pH measurement of general water solutions\n
+PH60S-DE: for direct pH measurement of food samples e.g. fruits, cheese, dough, sushi rice, yogurt, jam, sauce, butter, cream, etc.\n
+PH60F-DE: for pH measurement on flat samples e.g. paper, skin, textiles, leather, carpet, etc.\n
+GS2-E: for direct pH measurement of soil (with a spear sensor)\n
+EC60-DE: for conductivity/TDS/salinity/resistivity measurement of water solutions (conductivity measurement range: 0 to 20 mS/20,000 µS)\n
+ORP60-DA: for ORP test of general water solutions (ORP measurement range: -1000 to 1000 mV)\n
+LabSen 335: for pH measurement of wastewater, suspensions, emulsions and other dirty liquids\n
+LabSen 246-5: for pH measurement of general water solutions with small or micro volume (as low as 60 micro liters)\n
+LabSen 765: for direct pH measurement of raw or frozen meats (with a blade spear sensor)\n
+LabSen 805: for pH measurement of pure water e.g. distilled/drinking/RO/surface/boiler/storm/well/deionized water\n
+LabSen 835: for pH measurement of strong acidic solutions (<pH 2) or HF-containing solutions (HF concentration < 0.1mol/L or 2000 ppm)\n
+LabSen 845: for pH measurement of strong alkaline solutions (>pH 12) or high salinity solutions (>5000 ppm/0.5%)\n
+LabSen 855: for pH measurement of viscous liquid samples e.g. skincare products, paints, coatings, slurry, glues, honey, liquid resin\n
+LabSen 865: for pH measurement of high-temperature and/or corrosive water solutions such as electroplating solutions\n\n
+*Note: General Water Solutions are water-based solutions that meet all of the following conditions:\n
+1) are NOT too acidic or too alkaline (pH range is 2 to 12).\n
+2) at a temperature between 10°C and 50°C (50˚F to 122˚F).\n
+3) contain a medium level of dissolved ions (conductivity range: 100 µS/cm to 10,000 µS/cm or salinity level <5000 ppm or 0.5%)]]></string>
+    <string name="suitable_app_str1"><![CDATA[General water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.\nP.S.: General water solutions are fluid that have medium to high ion concentration (conductivity>20µS/cm), at which temperature is 5 to 50˚C, pH is 2 to 12, and non-protein solution\n]]></string>
+
+    <string name="info_measure2">pH,temperature, ORP (a separate probe needed)</string>
+    <string name="other_comp_ele_str2" formatted="false"><![CDATA[PH60-DE: for pH measurement of general water solutions\n
+PH60S-DE: for direct pH measurement of food samples e.g. fruits, cheese, dough, sushi rice, yogurt, jam, sauce, butter, cream, etc.\n
+PH60F-DE: for pH measurement on flat samples e.g. paper, skin, textiles, leather, carpet, etc. \n
+GS2-E: for direct pH measurement of soil (with a spear sensor)\n
+ORP60-DA: for ORP test of general water solutions (ORP range: -1000 to 1000 mV)\n
+LabSen 335: for pH measurement of wastewater, suspensions, emulsions and other dirty liquids\n
+LabSen 246-5: for pH measurement of general water solutions with small or micro volume (as low as 60 micro liters)\n
+LabSen 765: for direct pH measurement of raw or frozen meats (with a blade spear sensor)\n
+LabSen 805: for pH measurement of pure water e.g. distilled/drinking/RO/surface/boiler/storm/well/deionized water\n
+LabSen 835: for pH measurement of strong acidic solutions (<pH 2) or HF-containing solutions (HF concentration < 0.1mol/L or 2000 ppm)\n
+LabSen 845: for pH measurement of strong alkaline solutions (>pH 12) or high salinity solutions (>5000 ppm/0.5%)\n
+LabSen 855: for pH measurement of viscous liquid samples e.g. skincare products, paints, coatings, slurry, glues, honey, liquid resin\n
+LabSen 865: for pH measurement of high-temperature and/or corrosive water solutions such as electroplating solutions\n\n
+*Note: General Water Solutions are water-based solutions that meet all of the following conditions:
+1) are NOT too acidic or too alkaline (pH range is 2 to 12).
+2) at a temperature between 10°C and 50°C (50˚F to 122˚F).
+3) contain a medium level of dissolved ions (conductivity range: 100 µS/cm to 10,000 µS/cm or salinity level <5000 ppm or 0.5%)]]></string>
+    <string name="suitable_app_str2"><![CDATA[General water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.\nP.S.: General water solutions are fluid that have medium to high ion concentration (conductivity>20µS/cm), at which temperature is 5 to 50˚C, pH is 2 to 12, and non-protein solution\n]]></string>
+
+    <string name="info_measure3">pH,temperature, ORP (a separate probe needed)</string>
+    <string name="other_comp_ele_str3" formatted="false"><![CDATA[PH60S-DE: for direct pH measurement of food samples e.g. fruits, cheese, dough, sushi rice, yogurt, jam, sauce, butter, cream, etc.\n
+PH60F-DE: for pH measurement on flat samples e.g. paper, skin, textiles, leather, carpet, etc.\n
+GS2-E: for direct pH measurement of soil (with a spear sensor)\n
+PH60-DE: for pH measurement of general water solutions\n
+ORP60-DA: for ORP test of general water solutions (ORP range: -1000 to 1000 mV)\n
+LabSen 335: for pH measurement of wastewater, suspensions, emulsions and other dirty liquids\n
+LabSen 246-5: for pH measurement of general water solutions with small or micro volume (as low as 60 micro liters)\n
+LabSen 765: for direct pH measurement of raw or frozen meats (with a blade spear sensor)\n
+LabSen 805: for pH measurement of pure water e.g. distilled/drinking/RO/surface/boiler/storm/well/deionized water\n
+LabSen 835: for pH measurement of strong acidic solutions (<pH 2) or HF-containing solutions (HF concentration < 0.1mol/L or 2000 ppm)\n
+LabSen 845: for pH measurement of strong alkaline solutions (>pH 12) or high salinity solutions (>5000 ppm/0.5%)\n
+LabSen 855: for pH measurement of viscous liquid samples e.g. skincare products, paints, coatings, slurry, glues, honey, liquid resin\n
+LabSen 865: for pH measurement of high-temperature and/or corrosive water solutions such as electroplating solutions\n\n
+*Note: General Water Solutions are water-based solutions that meet all of the following conditions:\n
+1) are NOT too acidic or too alkaline (pH range is 2 to 12).\n
+2) at a temperature between 10°C and 50°C (50˚F to 122˚F).\n
+3) contain a medium level of dissolved ions (conductivity range: 100 µS/cm to 10,000 µS/cm or salinity level <5000 ppm or 0.5%)]]></string>
+    <string name="suitable_app_str3"><![CDATA[ For soft solid sampligs direct pH test e.g. cheese, fruit, sushi rice, meat, soil, etc.\nAlso works well for general water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.\nP.S.: General water solutions are fluid that have medium to high ion concentration (conductivity>20µS/cm), at which temperature is 5 to 50˚C, pH is 2 to 12, and non-protein solution]]></string>
+
+    <string name="info_measure4">pH,temperature, ORP (a separate probe needed)</string>
+    <string name="other_comp_ele_str4" formatted="false"><![CDATA[PH60F-DE: for pH measurement on flat samples e.g. paper, skin, textiles, leather, carpet, etc.\n
+PH60S-DE: for direct pH measurement of food samples e.g. fruits, cheese, dough, sushi rice, yogurt, jam, sauce, butter, cream, etc.\n
+GS2-E: for direct pH measurement of soil (with a spear sensor)\n
+PH60-DE: for pH measurement of general water solutions\n
+ORP60-DA: for ORP test of general water solutions (ORP range: -1000 to 1000 mV)\n
+LabSen 335: for pH measurement of wastewater, suspensions, emulsions and other dirty liquids\n
+LabSen 246-5: for pH measurement of general water solutions with small or micro volume (as low as 60 micro liters)\n
+LabSen 765: for direct pH measurement of raw or frozen meats (with a blade spear sensor)\n
+LabSen 805: for pH measurement of pure water e.g. distilled/drinking/RO/surface/boiler/storm/well/deionized water\n
+LabSen 835: for pH measurement of strong acidic solutions (<pH 2) or HF-containing solutions (HF concentration < 0.1mol/L or 2000 ppm)\n
+LabSen 845: for pH measurement of strong alkaline solutions (>pH 12) or high salinity solutions (>5000 ppm/0.5%)\n
+LabSen 855: for pH measurement of viscous liquid samples e.g. skincare products, paints, coatings, slurry, glues, honey, liquid resin\n
+LabSen 865: for pH measurement of high-temperature and/or corrosive water solutions such as electroplating solutions\n\n
+*Note: General Water Solutions are water-based solutions that meet all of the following conditions:\n
+1) are NOT too acidic or too alkaline (pH range is 2 to 12).\n
+2) at a temperature between 10°C and 50°C (50˚F to 122˚F).\n
+3) contain a medium level of dissolved ions (conductivity range: 100 µS/cm to 10,000 µS/cm or salinity level <5000 ppm or 0.5%)]]></string>
+    <string name="suitable_app_str4"><![CDATA[For flat surface direct pH test e.g. skin, paper, fabrics,leather, concrete, and samll volume liquid test.\nAlso works well for general water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.\nP.S.: General water solutions are fluid that have medium to high ion concentration (conductivity>20µS/cm), at which temperature is 5 to 50˚C, pH is 2 to 12, and non-protein solution.]]></string>
+
+    <string name="info_measure5">Conductivity,TDS,Salinity,Resistivity,Temperature</string>
+    <string name="other_comp_ele_str5"><![CDATA[EC60-DE: for conductivity/TDS/salinity/resistivity measurement of water solutions (conductivity range: 0 to 20 mS/20,000 µS)]]></string>
+    <string name="suitable_app_str5"><![CDATA[General water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.]]></string>
+
+    <string name="info_measure6">ORP, Temperature</string>
+    <string name="other_comp_ele_str6"><![CDATA[ORP60-DE: for ORP test of general water solutions (ORP range: -1000 to 1000 mV)]]></string>
+    <string name="suitable_app_str6"><![CDATA[General water solutions e.g. pools and spas, hydroponics, aquaculture, aquarium, water treatment, environmental monitoring, beverage making, education, cooling towers, etc.]]></string>
+    <string name="bt">Bluetooth</string>
+    <string name="bt_turn_on">Please turn on Bluetooth of your phone.</string>
+    <string name="bt_open">Open</string>
+    <string name="photograph">Take a picture</string>
+    <string name="select_from_the_album">Select from the album</string>
+    <string name="file_none">Data file is empty! </string>
+    <string name="account_not_found_fail">Email not found</string>
+
+    <string name="GPSOpen">Location services turned off</string>
+    <string name="GPSToast">Android requires location services to be turned on for connecting Bluetooth devices</string>
+
+    <string name="Assect_data">Asset</string>
+    <string name="Assect_admin">Asset Management</string>
+    <string name="Assect_new">New</string>
+    <string name="Assect_name">Enter Asset Name</string>
+    <string name="Assect_Image">Take a photo</string>
+    <string name="Assect_Save">Save</string>
+    <string name="Assect_change">Asset Editing</string>
+    <string name="Assect_Link">Link data to asset</string>
+    <string name="Assect_Cancle">Cancel</string>
+    <string name="Assect_Confirm">Confirm</string>
+    <string name="Assect_DataMore">Asset Data</string>
+    <string name="Assect_Select">Select</string>
+    <string name="Assect_Temp">Temp.</string>
+    <string name="Assect_Reading">Reading</string>
+    <string name="Assect_Time">Date/Time</string>
+    <string name="Assect_DelegetOk">Deleted</string>
+    <string name="Assect_NameAgain">Asset name is duplicated.</string>
+    <string name="Assect_Newok">New is asset created</string>
+    <string name="Assect_NameNil">Please enter a name for your asset.</string>
+    <string name="Assect_changeok">Updated</string>
+    <string name="Assect_Links">Linked Asset:</string>
+    <string name="User_exists">Account already exists</string>
+    <string name="Login_failed">Login failed</string>
+
+    <string name="Asset_EnterName">Enter Asset Name Here</string>
+    <string name="Asset_AddImage">Add a photo of your asset</string>
+
+    <string name="max_number_format">This input must be numbers</string>
+    <string name="min_number_format">This input must be numbers</string>
+    <string name="max_must_be">Max value must be greater than Min</string>
+    <string name="max_must_benotover">Max value must not exceed the largest measuring range</string>
+    <string name="min_must_beoverthe">Min value must not be lower than lowest measuring range</string>
+    <string name="Alerm_text">**ALERT** The reading is out of the preset safe range. Please check it ASAP.</string>
+    <string name="Blutooth_al">Press here to connect meter</string>
+    <string name="Privacy_sta">《Privacy Statement》</string>
+    <string name="Privacy_all">1. Explanation of the disclosure of user information.\n\n\u3000\u3000Respect for user privacy is a basic policy in its information. Ltd. will not disclose, edit or reveal its registration data and non-public content saved in this application without the authorization of the legitimate users, unless there are the following circumstances:\n\u3000\u3000(1) Relevant laws and regulations or legal service program regulations of Apera Instruments;\n\u3000\u3000(2) To protect the rights and interests of users and the public in case of emergency;\n\u3000\u3000(3) In order to protect the trademark right, patent right and any other legal rights and interests of Apera Instruments;\n\u3000\u3000(4) Other cases that require disclosure, editing, or disclosure of personal information;\n\u3000\u3000Ltd. has the right to use the user’s personal information in the following (including but not limited to) several cases:\n\u3000\u3000(1) Shanghai Apera Instruments can match user information with third-party data;\n\u3000\u3000(2) Apera Instruments will disclose aggregate user statistics to prospective partners, advertisers, and other third parties, as well as to describe its services to them for other legitimate purposes;\n\n2. Scope of application of the privacy policy\n\n\u3000\u3000(1) Personally identifiable information left by the user while using the application server;\n\u3000\u3000(2) Various types of information transmitted by users to other users or non-users through this application server;\n\u3000\u3000(3) Various information about other users or non-users that the Application shares with its business partners;\n\u3000\u3000(4) Apera Instruments attaches great importance to the protection of user privacy, and has formulated the "Privacy Policy", the user can also through the "Privacy Policy", the user confirms and agrees that the use of its information software to provide services will be deemed to accept the "Privacy Policy".\n\n3. Information disclosure and sharing\n\n\u3000\u3000Ltd. will not willfully disclose, rent or sell the user’s personal information and information to any third party. Except for the following cases:\n\u3000\u3000(1) The user himself/herself agrees to share information and data with third parties.\n\u3000\u3000(2) To provide certain products and services requested by the user only if the user’s personal information and information are disclosed.\n\u3000\u3000(3) Provided at the request of the subjects providing products or services on behalf of this application (unless we notify you otherwise, such subjects do not have the right to use the relevant user’s personal information and information for purposes other than the provision of products and services): Provided in accordance with the requirements of laws, regulations or administrative orders; Provided for the needs of external audits; Users violating the terms of service of the application or the provisions of the use of any other products and services; Provided by the This site assesses that the user’s account is at risk and needs to be protected.\n\u3000\u3000(4)To accurately connect within Bluetooth range for device identification, we will collect your device information (including IMEI, Android ID, MEID). \n\u3000\u3000(5)In order to save measurement data as CSV files for sharing with other devices or platforms, we will request your storage permission to access external storage information. \n\u3000\u3000(6)For the convenience of guest login and local data retention to prevent data loss, we will request your storage permission to access external storage information.\n\n4. Non-Private Information\n\n\u3000\u3000In order to improve the technology and services of Apera Instruments and to provide users with a better service experience, Shanghai Peerless Instruments Co., Ltd. may collect, use, or provide to third parties non-personal information of users.\n\n\n\n </string>
+    <string name="Agreement_title">《Service Agreement》</string>
+    <string name="Agreement_text">\u3000\u3000Dear users, welcome to use the services provided by Apera Instruments. Before using the service, please read the following service agreement, use of this application means that you agree to accept this agreement, this agreement produces legal effect, especially involving the exemption or limitation of its liability provisions, please read carefully. \n\n
+1. Acknowledgment and Acceptance of Terms of Service\n\n\u3000\u3000By accessing or using this application, the user agrees to accept all the conditions and terms of this agreement.\n\n2. Changes and Modifications of Terms of Service\n\n\u3000\u3000Apera Instruments reserves the right to modify the terms of service when necessary. Once the terms of service are changed, the modifications will be indicated on the important pages. If you do not agree with the modified content, you can give up the information service of this application. If the user continues to enjoy the information services of this application, it is deemed to accept the changes in the terms of service. The application reserves the right to modify or interrupt the service at any time without notice to the user. The Application exercises the right to modify or interrupt the service without being responsible to the User or a third party.\n\n3 User account, password and security\n\n\u3000\u3000You can choose to register and not to register your account according to your needs. When choosing visitor login, the data will be saved locally and will not be uploaded to the cloud server; the disadvantage is that if you change your cell phone login, you will lose the original data. When you choose to register, please use your email address to register, we will not bind your cell phone number or other authentication methods, after registration, please keep your account, the data of the test will be bound to this account; Apera Instruments will properly save the user’s test data.\n\n4. Service Content\n\n\u3000\u3000The specific content of this service is provided by its information according to the actual situation, Apera Instruments can change the service it provides, and the content of the service provided by its information may be changed at any time. The software is a free application.
+The software is a free application, and the user will not be charged in any way or under any name.\n\n\n\n\n</string>
+
+    <string name="Agreement_agree">Agree</string>
+    <string name="Agreement_agreeNo">Disagree and Exit</string>
+    <string name="Agreement_agreetitle">Service Agreement and Privacy Policy</string>
+    <string name="Agreement_agreetext">\u3000\u3000Please make sure to carefully read and fully understand the terms of the "Service Agreement" and "Privacy Policy," including but not limited to: in order to provide you with services such as data storage, data testing location, measurement samples, and Bluetooth connection, we need to collect your photos and media, location information, and Bluetooth data. You can view, modify, delete personal information, and manage your authorizations in the "Settings." You can read the "Service Agreement," "Privacy Policy," and "Permission Usage Guidelines" for detailed information. If you agree, please click "Accept" to start using our services.</string>
+</resources>

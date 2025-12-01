@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2FC3FA</color>
+    <color name="colorPrimaryDark">#2FC3FA</color>
+    <!-- <color name="colorAccent">#00bb00</color>-->
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="bg_line">#E7E7E7</color>
+
+    <color name="cell_background_color">#ffffff</color>
+    <color name="cell_background1_color">#E7E7E7</color>
+    <color name="cell_background2_color">#f2f2f2</color>
+    <color name="cell_background3_color">#fafafa</color>
+    <color name="header_line_color">@android:color/holo_red_light</color>
+
+    <color name="white">#ffffffff</color><!-- 白色 -->
+    <!-- Material Design TableView Colors -->
+
+    <!-- Overriding the default values of the tableView -->
+    <!-- <color name="cell_line_color">#dbdbdb</color> -->
+    <!-- <color name="table_view_selected_background_color">@color/md_selected_background_color</color> -->
+    <color name="colHeader1">#27bbf2</color>
+    <color name="colHeader2">#007dc5</color>
+</resources>

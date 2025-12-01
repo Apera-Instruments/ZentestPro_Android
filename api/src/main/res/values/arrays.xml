@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="switch_temp">
+        <item>@string/temp_degree_c</item>
+        <item>@string/zen_temp_degree_f</item>
+
+    </string-array>
+
+    <string-array name="hole_time_array">
+        <item>5 Seconds</item>
+        <item>6 Seconds</item>
+        <item>7 Seconds</item>
+        <item>8 Seconds</item>
+        <item>9 Seconds</item>
+        <item>10 Seconds</item>
+        <item>11 Seconds</item>
+        <item>12 Seconds</item>
+        <item>13 Seconds</item>
+        <item>14 Seconds</item>
+        <item>15 Seconds</item>
+        <item>16 Seconds</item>
+        <item>17 Seconds</item>
+        <item>18 Seconds</item>
+        <item>19 Seconds</item>
+        <item>20 Seconds</item>
+
+    </string-array>
+
+    <string-array name="power_time_array">
+        <item>10 Minutes</item>
+        <item>11 Minutes</item>
+        <item>12 Minutes</item>
+        <item>13 Minutes</item>
+        <item>14 Minutes</item>
+        <item>15 Minutes</item>
+        <item>16 Minutes</item>
+        <item>17 Minutes</item>
+        <item>18 Minutes</item>
+        <item>19 Minutes</item>
+        <item>20 Minutes</item>
+
+    </string-array>
+
+    <string-array name="salt_unit">
+        <item>ppt</item>
+        <item>g/l</item>
+    </string-array>
+
+    <string-array name="ph_selection">
+        <item>USA</item>
+        <item>NIST</item>
+
+    </string-array>
+
+    <string-array name="ph_resolution">
+        <item>0.1</item>
+        <item>0.01</item>
+    </string-array>
+
+
+
+    <string-array name="reference_temp">
+        <item>15℃</item>
+        <item>16℃</item>
+        <item>17℃</item>
+        <item>18℃</item>
+        <item>19℃</item>
+        <item>20℃</item>
+        <item>21℃</item>
+        <item>22℃</item>
+        <item>23℃</item>
+        <item>24℃</item>
+        <item>25℃</item>
+        <item>26℃</item>
+        <item>27℃</item>
+        <item>28℃</item>
+        <item>29℃</item>
+        <item>30℃</item>
+
+    </string-array>
+    <string-array name="temp_coe">
+        <item>0%</item>
+        <item>0.01%</item>
+        <item>9.99%</item>
+    </string-array>
+    <string-array name="tds_factor">
+        <item>0.4</item>
+        <item>0.71</item>
+        <item>1.0</item>
+    </string-array>
+</resources>

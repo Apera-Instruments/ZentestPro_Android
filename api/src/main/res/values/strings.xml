@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">api</string>
+    <string name="temp_degree_c">℃</string>
+    <string name="zen_temp_degree_f">℉</string>
+</resources>

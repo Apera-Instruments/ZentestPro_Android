@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/policy_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            android:text="@string/Agreement_agreetitle"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/policy_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/white"
+            android:layout_margin="20dp"
+            android:gravity="left"
+            android:text="@string/Agreement_agreetext"
+            android:textSize="12sp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+        <Button
+            android:id="@+id/policy_btnprivacy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/Privacy_sta"
+            android:textColor="#0594c3"
+            android:textStyle="bold"
+            android:textSize="12sp" />
+        <Button
+            android:id="@+id/policy_btnservice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:text="@string/Agreement_title"
+            android:textColor="#0594c3"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/policy_btntest"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+            <Button
+                android:id="@+id/policy_btndisagree"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:text="@string/Agreement_agreeNo"
+                android:textColor="#4832b6"
+                android:textSize="17sp" />
+            <Button
+                android:id="@+id/policy_btnagree"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="#484a9e"
+                android:text="@string/Agreement_agree"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

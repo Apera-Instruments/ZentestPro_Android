@@ -1,0 +1,121 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+// apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion 34
+    // buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 34
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+//
+//    repositories {
+//        flatDir {
+//            dirs 'libs'
+//        }
+//    }
+
+//    // 🔹 Enable Compose
+//    buildFeatures {
+//        compose true
+//    }
+//
+//    // 🔹 Set Compose compiler version (match your Kotlin/AGP versions reasonably)
+//    composeOptions {
+//        kotlinCompilerExtensionVersion "1.2.0-rc02"
+//    }
+
+    namespace 'com.zen.ui'
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+/*    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })*/
+
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+//    implementation 'com.android.support:recyclerview-v7:27.1.1'
+//    implementation 'com.android.support:design:27.1.1'
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.12'
+    // implementation('com.jakewharton:butterknife:10.2.3')
+    // annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
+    //kapt "com.jakewharton:butterknife-compiler:10.1.0"
+    // implementation 'com.pgyersdk:sdk:2.8.0'
+    compileOnly project(':api')
+    //implementation project(':tableview')
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation project(':sweet-alert-dialog-library')
+    implementation project(':fastble')
+    // implementation 'com.clj.fastble:FastBleLib:2.1.7'
+    // implementation 'com.clj.fastble:FastBleLib:2.3.4'
+    // implementation files('libs/FastBleLib-2.1.7.aar')
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'com.alibaba:fastjson:1.2.24'
+
+    implementation 'com.blankj:utilcode:1.13.5'//https://github.com/Blankj/AndroidUtilCode
+
+    implementation 'com.orhanobut:logger:2.2.0' //https://github.com/orhanobut/logger
+    //https://github.com/HackPlan/AndroidCharts
+    //compile 'im.dacer:AndroidCharts:1.0.4'
+    //https://github.com/evrencoskun/TableView
+    //compile 'com.evrencoskun.library:tableview:0.8.5.1'
+    // implementation 'com.facebook.android:facebook-login:4.29.0'
+    // compile 'cn.pedant.sweetalert:library:1.3'
+    // compile 'com.kyleduo.switchbutton:library:2.0.0'
+    implementation('lib.kingja.switchbutton:switchbutton:1.1.6')
+    //https://github.com/KingJA/SwitchButton
+    implementation('com.contrarywind:Android-PickerView:3.2.7')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'nl.komponents.kovenant:kovenant:3.3.0'//https://github.com/mplatvoet/kovenant
+    //https://github.com/Bigkoo/Android-PickerView
+    //implementation 'com.github.z2wenfa:SpinnerEditText:0.9'
+    // compile 'com.jakewharton:kotterknife:0.1.0-SNAPSHOT' //https://github.com/JakeWharton/kotterknife
+    // implementation 'com.github.foolchen:AndroidTracker:0.3.3'
+    implementation("com.github.foolchen:AndroidTracker:0.3.3") {
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+    }
+
+//    // 🔹 Jetpack Compose BOM (keeps versions in sync)
+//    implementation platform("androidx.compose:compose-bom:2022.10.00")
+//
+//    // 🔹 Core Compose libraries
+//    implementation "androidx.activity:activity-compose:1.9.0"
+//    implementation "androidx.compose.ui:ui"
+//    implementation "androidx.compose.material3:material3"
+//    implementation "androidx.compose.ui:ui-tooling-preview"
+//
+//    // 🔹 Preview tooling (debug only)
+//    debugImplementation "androidx.compose.ui:ui-tooling"
+
+    api project(path: ':biz')
+}
+repositories {
+    mavenCentral()
+}

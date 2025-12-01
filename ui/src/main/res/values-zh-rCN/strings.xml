@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="user_name">用户名（邮箱）</string>
+  <string name="password">密码</string>
+  <string name="demo_try">游客</string>
+  <string name="sign_in">登录</string>
+  <string name="create_account">创建用户</string>
+  <string name="forget_pw">忘记密码</string>
+  <string name="email">邮箱</string>
+  <string name="reenter_pw">请再次输入密码</string>
+  <string name="no_dev">无设备连接</string>
+  <string name="back_measure">返回测量</string>
+  <string name="measure">测量</string>
+  <string name="calibration">校准</string>
+  <string name="data">数据</string>
+  <string name="setting">设置</string>
+  <string name="info">信息</string>
+  <string name="associated_devices">连接设备</string>
+  <string name="available_devices">有效的设备</string>
+  <string name="searching_for_devices">搜索设备中...</string>
+  <string name="save">保存</string>
+  <string name="hold">保持</string>
+  <string name="hold_uppercase">保持</string>
+  <string name="calibrated_points">校准点</string>
+  <string name="zero_potential">零点位</string>
+  <string name="slop">斜率</string>
+  <string name="last_calibbration">上次校准时间</string>
+  <string name="sn">序号</string>
+  <string name="date">日期</string>
+  <string name="time">时间</string>
+  <string name="value">数值</string>
+  <string name="temp">温度</string>
+  <string name="salinity">盐度</string>
+  <string name="resistivity">电阻率 </string>
+  <string name="general">通用</string>
+  <string name="parameter">参数</string>
+  <string name="data_storage">数据存储</string>
+  <string name="alarm">告警</string>
+  <string name="logout">登出</string>
+  <string name="temp_unit">温度单位</string>
+  <string name="auto_hold">自动锁定</string>
+  <string name="stable_reading_standard">稳定读数标准</string>
+  <string name="calibration_reminder">校准提醒</string>
+  <string name="backlight_time">背光时间</string>
+  <string name="auto_power_off">自动关机 </string>
+  <string name="factory_reset">恢复出厂设置</string>
+  <string name="high">高</string>
+  <string name="low">低</string>
+  <string name="conductivity_rang">电导率量程</string>
+  <string name="orp_range">ORP量程</string>
+  <string name="ph_range">pH量程</string>
+  <string name="resistivity_range">电阻率量程</string>
+  <string name="salinity_range">盐度量程</string>
+  <string name="tds_range">TDS量程</string>
+  <string name="all_data">全部数据</string>
+  <string name="measuring_value">测量值</string>
+  <string name="time_data">时间/日期</string>
+  <string name="date_time">日期/时间</string>
+  <string name="serial_no">序号</string>
+  <string name="temperature">温度</string>
+  <string name="calibration_records">校准记录</string>
+  <string name="electrode_model">电极型号</string>
+  <string name="gps_loaction">GPS位置</string>
+  <string name="information">信息</string>
+  <string name="ele_info">电极信息</string>
+  <string name="ele_model">电极型号</string>
+  <string name="measuring_parameters">测量参数</string>
+  <string name="ele_life">电极性能</string>
+  <string name="suitable_app">适合的应用</string>
+  <string name="other_ele">适配的电极信息</string>
+  <string name="other_ele1">适配的电极信息</string>
+  <string name="ins_info">设备信息</string>
+  <string name="ins_model">仪器型号</string>
+  <string name="ins_sn">仪器序列号</string>
+  <string name="factory_calibration_date">出厂校准日期</string>
+  <string name="firmware_version">固件版本</string>
+  <string name="conductivity">电导率</string>
+  <string name="send">发送</string>
+  <string name="category">类别</string>
+  <string name="delete">删除</string>
+  <string name="enter">确认校准</string>
+  <string name="operation_flow">校准流程</string>
+  <string name="wait_readings">等待读数稳定 </string>
+  <string name="select_buffer_solution">选择缓冲溶液</string>
+  <string name="num3_ph7">浸入7.00pH标准液,保持</string>
+  <string name="num3_ph4">浸入4.00pH标准液,保持</string>
+  <string name="num3_ph41">浸入4.01pH标准液,保持</string>
+  <string name="num3_ph918">浸入9.18pH标准液,保持</string>
+  <string name="num3_ph1001">浸入10.01pH标准液,保持</string>
+  <string name="num3_ph168">浸入1.68pH标准液,保持</string>
+  <string name="num3_ph1245">浸入12.45pH标准液,保持</string>
+  <string name="num3_ph686">浸入6.86pH标准液,保持</string>
+  <string name="num3_168">浸入1.68标准液,保持</string>
+  <string name="num3_1246">浸入12.46标准液,保持</string>
+  <string name="num3_1413">浸入1443标准液,保持</string>
+  <string name="num3_84">浸入84标准液,保持</string>
+  <string name="num3_1288">浸入12.88标准液,保持</string>
+  <string name="finish_cailbration">按ENT完成校验</string>
+  <string name="not_recognize">无法识别校准溶液</string>
+  <string name="temp_degree_c">℃</string>
+  <string name="zen_temp_degree_f">℉</string>
+  <string name="note">备注</string>
+  <string name="n_hits">%d 个提醒-请点击</string>
+  <string name="one_hits">1 个提醒-请点击</string>
+  <string name="type">类型</string>
+  <string name="timer_set">时间设置</string>
+  <string name="auto_save">自动保存</string>
+  <string name="name">测量对象</string>
+  <string name="admin">管理员</string>
+  <string name="notes">备注</string>
+  <string name="photo">附加照片</string>
+  <string name="add">增加</string>
+  <string name="change_password">改变密码</string>
+  <string name="sign_up">注册</string>
+  <string name="submit">提交</string>
+  <string name="verify_code">验证码</string>
+  <string name="get_verify_code">获取验证码</string>
+  <string name="confirm">确认</string>
+  <string name="known">确定</string>
+  <string name="send_file">发送文件</string>
+  <string name="rinse_the_probe">冲洗电极</string>
+  <string name="shake_dry_or_dry_with_tissue">甩⼲或吸⼲多余⽔分（请勿摩擦电极）</string>
+  <string name="after">将在</string>
+  <string name="seconds">秒</string>
+  <string name="minutes">分</string>
+  <string name="self_diagnosis">自我检查</string>
+  <string name="possible_problems_and_how_to_fix">可能的问题及解决方法</string>
+  <string name="are_you_sure">是否确认?</string>
+  <string name="logout_the_account">退出账户!</string>
+  <string name="yes_logout">已退出!</string>
+  <string name="reminder">提醒</string>
+  <string name="buffer_class_selection">缓冲溶液标准</string>
+  <string name="resolution">分辨率</string>
+  <string name="ref_temperature">参考温度</string>
+  <string name="temp_coeff">温度补偿系数</string>
+  <string name="due_calib">校准提醒</string>
+  <string name="factory_reset_default">恢复出厂设置</string>
+  <string name="tds_factor">TDS系数</string>
+  <string name="salt_unit">盐度单位</string>
+  <string name="yes_factory_reset">是的，重置出厂设置</string>
+  <string name="input">输入</string>
+  <string name="empty_str">空字符串</string>
+  <string name="select">选择</string>
+  <string name="cancel">取消</string>
+  <string name="select_all">全选</string>
+  <string name="select_none">没有选择</string>
+  <string name="file_none">数据文件为空</string>
+  <string name="exists">已存在</string>
+  <string name="add_to_category">添加至类别</string>
+  <string name="not_calibrated">%s 不需要校准</string>
+  <string name="unhold">不保持</string>
+  <string name="other_comp_ele_str">PH60-DE: 用于常规水测试\n PH60F-DE:用于平坦表面测试，如皮肤，纸张，纤维织物，皮革，少量液体测试\n PH60S-DE: 用于柔软物体，如起司，寿司，米饭，土壤等。\n EC60-E: 用于常规水方案的电导率，TDS，盐度，电阻率测试\n ORP60-DA:用于常规水方案的ORP测试\n PC60-DE:用于常规水方案的pH，电导率，TDS，盐度，电阻率测试。</string>
+  <string name="suitable_app_str">常规水溶液，如泳池，种植业，水产养殖，观赏鱼，水处理，环境监测，饮料制造，教育，冷却塔等 \n 常规水溶液指的是具有中高离子强度，pH值在2到12之间，温度在5到50度之间，不黏稠，不含蛋白质或硫化物的水溶液。</string>
+  <string name="unit_err">单位错误</string>
+  <string name="value_err">数值错误</string>
+  <string name="location">位置</string>
+  <string name="salinity_type">盐度类型</string>
+  <string name="salt_type">盐度类型</string>
+  <string name="life_excellent">N/A</string>
+  <string name="life_good">良好</string>
+  <string name="life_ok">正常</string>
+  <string name="life_replacement">需更换</string>
+  <string name="account_should_be_mail_address">账号必须邮箱</string>
+  <string name="password_is_incorrect">密码不正确或不合规则</string>
+  <string name="reenter_password_is_incorrect">请再次输入密码</string>
+  <string name="password_is_not_match">两次密码必须相同</string>
+  <string name="register_success">注册成功</string>
+  <string name="login_fail">注册失败</string>
+  <string name="username_is_empty">用户名为空</string>
+  <string name="username_is_not_email">账号必须是邮箱地址</string>
+  <string name="password_is_empty_or_space">密码为空或包含空格</string>
+  <string name="not_need_caslib">完成conductivity校准, TDS, Salinity和Resistivity将自动完成校准。</string>
+  <string name="info_measure">pH，电导率，TDS，盐度，电阻率，温度</string>
+  <string name="err1">无法识别校准溶液</string>
+  <string name="err2">按ENT之前请等待校准稳定</string>
+  <string name="err3">读数长时间不稳定</string>
+  <string name="err4"><![CDATA[仪器电极pH零点位超出范围（ <-60mV or>60mV）]]></string>
+  <string name="err5" formatted="false"><![CDATA[仪器斜率超出范围（ <85% or >110%）]]></string>
+  <string name="err6">重新校验pH</string>
+  <string name="fix1">1.请把仪器浸入校准溶液中。\n 2. 第一点校验必须为pH 7.00 。\n 3. 请检查校准溶液是否过期或污染。\n 4.请检查仪器是否被破坏（比如玻璃传感器是否破碎或破裂），如有请替换仪器。\n 5.请检查玻璃传感器或仪器接合处是否有脏东西，请用软刷子在肥皂水中清洗，然后在清水中洗净或使用前在3M KCL中浸泡24小时。\n 6.如有其它问题请拨打 614–285–3080 或发邮件至info@aperainst.com联系我们</string>
+  <string name="fix2">无。 等待屏幕上出现笑脸符号，然后按ENT</string>
+  <string name="fix3">1.请检查球状传感器中是否有气泡进入。如有，请用力甩几次仪器去除气泡。\n 2.请检查仪器是否被破坏（比如玻璃传感器是否破碎或破裂），如有请替换仪器。\n 3. 请检查玻璃传感器或仪器接合处是否有脏东西，请用软刷子在肥皂水中清洗，然后在清水中洗净或使用前在3M KCL中浸泡24小时。\n 4.仪器使用时间过长（当使用超过1年后仪器反应时间会相应变慢）。\n 5. 测试者没有正确测试样品，可以联系我们为您的应用找到合适的仪器型号。\n 6.如有其它问题请拨打 614–285–3080 或发邮件至info@aperainst.com联系我们。</string>
+  <string name="fix4">1.检查pH设置中的参数设置是否和校准标准溶液一致(U.S.A标准是4.00, 7.00, 10.01; NIST标准是4.00, 6.86, 9.18)。\n 2.请检查校准溶液是否已经过期或被污染。\n 3.请检查仪器是否被破坏（比如玻璃传感器是否破碎或破裂），如有请替换仪器。\n 4. 电极错误(除了以上3个问题外，Error 4 或 Error 5在校准后连续出现 )， 请替换电极。\n 5. 仪器使用时间过长（当使用超过1年后仪器反应时间会相应变慢）。\n 6. 如有其它问题请拨打 614–285–3080 或发邮件至info@aperainst.com联系我们。</string>
+  <string name="fix5">1. 检查pH设置中的参数设置是否和校准标准溶液一致(U.S.A标准是4.00, 7.00, 10.01; NIST标准是4.00, 6.86, 9.18)。\n 2. 请检查校准溶液是否已经过期或被污染。\n 3.请检查仪器是否被破坏（比如玻璃传感器是否破碎或破裂），如有请替换仪器。\n 4. 电极错误(除了以上3个问题外，Error 4 或 Error 5在校准后连续出现 )， 请替换电极\n 5. 仪器使用时间过长（当使用超过1年后仪器反应时间会相应变慢）。\n 6.如有其它问题请拨打 614–285–3080 或发邮件至info@aperainst.com联系我们。</string>
+  <string name="fix6">请进入校准模式，进行校准；或在通用设置中取消校准提醒。</string>
+  <string name="delete_the_record">记录已删除!</string>
+  <string name="yes_delete">已删除!</string>
+  <string name="auth_code_is_incorrect">验证码不正确</string>
+  <string name="location_none">没有GPS信息</string>
+  <string name="picture_none">没有图片</string>
+  <string name="acquire_code_success">获得验证码成功</string>
+  <string name="acquire_code_fail">获得验证码失败</string>
+  <string name="change_password_success">修改密码成功</string>
+  <string name="change_password_fail">修改密码失败</string>
+  <string name="press_back_again">再次按返回键退出</string>
+
+
+  <string name="first_name">姓氏</string>
+  <string name="last_name">名字</string>
+    <string name="unit">单位</string>
+    <string name="not_need_calibrated_orp">ORP只能在ORP60-Z仪器上校准</string>
+
+
+  <string name="info_measure1">pH,电导率,TDS, 盐度, 电阻率, 温度, ORP （需要配置ORP电极）</string>
+  <string name="other_comp_ele_str1" formatted="false"><![CDATA[PC60-DE：用于测量常规水溶液的pH/电导率/TDS/盐度/电阻率（电导率测量范围：0至20 mS/20,000 µS）。\n
+PH60-DE：用于测量常规水溶液的pH值。\n
+PH60S-DE：用于直接测量食品样品的pH值，例如水果、奶酪、面团、寿司米、酸奶、果酱、酱汁、黄油、奶油等。\n
+PH60F-DE：用于测量平面样品的pH值，例如纸张、皮肤、纺织品、皮革、地毯等。\n
+GS2-E：用于直接测量土壤的pH值（使用尖头传感器）。\n
+EC60-DE：用于测量常规水溶液的电导率/TDS/盐度/电阻率（电导率测量范围：0至20 mS/20,000 µS）。\n
+ORP60-DA：用于常规水溶液的氧化还原电位测试（ORP范围：-1000至1000 mV）。\n
+LabSen 335：用于测量废水、悬浮液、乳化液和其他脏污液体的pH值。\n
+LabSen 246-5：用于测量小体积或微量常规水溶液的pH值（最低可达60微升）。\n
+LabSen 765：用于直接测量生肉或冷冻肉的pH值（使用刀片尖头传感器）。\n
+LabSen 805：用于纯净水的pH测量，例如蒸馏水/饮用水/RO水/地表水/锅炉水/暴雨水/井水/去离子水。\n
+LabSen 835：用于测量强酸性溶液（pH < 2）或含氟化氢的溶液（HF浓度 < 0.1mol/L或2000 ppm）的pH值。\n
+LabSen 845：用于测量强碱性溶液（pH > 12）或高盐度溶液（>5000 ppm/0.5%）的pH值。\n
+LabSen 855：用于测量粘稠液体样品的pH值，例如护肤产品、油漆、涂料、浆料、胶水、蜂蜜、液体树脂。\n
+LabSen 865：用于高温和/或腐蚀性水溶液的pH测量，例如电镀溶液。\n\n
+*注：一般水溶液是指满足以下条件的水基溶液：\n
+1）不过于酸或过于碱（pH范围为2至12）\n
+2）温度在10°C至50°C之间（50˚F至122˚F）\n
+3）含有中等水平的溶解离子（电导率范围：100 µS/cm至10,000 µS/cm或盐度水平<5000 ppm或0.5%）]]></string>
+  <string name="suitable_app_str1"><![CDATA[常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等]]></string>
+
+  <string name="info_measure2">pH, 温度, ORP （需要配置ORP电极）</string>
+  <string name="other_comp_ele_str2" formatted="false"><![CDATA[PH60-DE：用于测量常规水溶液的pH值。\n
+PH60S-DE：用于直接测量食品样品的pH值，例如水果、奶酪、面团、寿司米、酸奶、果酱、酱汁、黄油、奶油等。\n
+PH60F-DE：用于测量平面样品的pH值，例如纸张、皮肤、纺织品、皮革、地毯等。\n
+GS2-E：用于直接测量土壤的pH值（使用尖头传感器）。\n
+ORP60-DA：用于常规水溶液的氧化还原电位测试（ORP范围：-1000至1000 mV）。\n
+LabSen 335：用于测量废水、悬浮液、乳化液和其他脏污液体的pH值。\n
+LabSen 246-5：用于测量小体积或微量常规水溶液的pH值（最低可达60微升）。\n
+LabSen 765：用于直接测量生肉或冷冻肉的pH值（使用刀片尖头传感器）。\n
+LabSen 805：用于纯净水的pH测量，例如蒸馏水/饮用水/RO水/地表水/锅炉水/暴雨水/井水/去离子水。\n
+LabSen 835：用于测量强酸性溶液（pH < 2）或含氟化氢的溶液（HF浓度 < 0.1mol/L或2000 ppm）的pH值。\n
+LabSen 845：用于测量强碱性溶液（pH > 12）或高盐度溶液（>5000 ppm/0.5%）的pH值。\n
+LabSen 855：用于测量粘稠液体样品的pH值，例如护肤产品、油漆、涂料、浆料、胶水、蜂蜜、液体树脂。\n
+LabSen 865：用于高温和/或腐蚀性水溶液的pH测量，例如电镀溶液。\n\n
+*注：一般水溶液是指满足以下条件的水基溶液：\n
+1）不过于酸或过于碱（pH范围为2至12）\n
+2）温度在10°C至50°C之间（50˚F至122˚F）\n
+3）含有中等水平的溶解离子（电导率范围：100 µS/cm至10,000 µS/cm或盐度水平<5000 ppm或0.5%）。]]></string>
+  <string name="suitable_app_str2"><![CDATA[常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等。]]></string>
+
+  <string name="info_measure3">pH, 温度, ORP （需要配置ORP电极）</string>
+  <string name="other_comp_ele_str3" formatted="false"><![CDATA[PH60S-DE：用于直接测量食品样品的pH值，例如水果、奶酪、面团、寿司米、酸奶、果酱、酱汁、黄油、奶油等。\n
+PH60-DE：用于测量常规水溶液的pH值。\n
+PH60F-DE：用于测量平面样品的pH值，例如纸张、皮肤、纺织品、皮革、地毯等。\n
+GS2-E：用于直接测量土壤的pH值（使用尖头传感器）。\n
+ORP60-DA：用于常规水溶液的氧化还原电位测试（ORP范围：-1000至1000 mV）。\n
+LabSen 335：用于测量废水、悬浮液、乳化液和其他脏污液体的pH值。\n
+LabSen 246-5：用于测量小体积或微量常规水溶液的pH值（最低可达60微升）。\n
+LabSen 765：用于直接测量生肉或冷冻肉的pH值（使用刀片尖头传感器）。\n
+LabSen 805：用于纯净水的pH测量，例如蒸馏水/饮用水/RO水/地表水/锅炉水/暴雨水/井水/去离子水。\n
+LabSen 835：用于测量强酸性溶液（pH < 2）或含氟化氢的溶液（HF浓度 < 0.1mol/L或2000 ppm）的pH值。\n
+LabSen 845：用于测量强碱性溶液（pH > 12）或高盐度溶液（>5000 ppm/0.5%）的pH值。\n
+LabSen 855：用于测量粘稠液体样品的pH值，例如护肤产品、油漆、涂料、浆料、胶水、蜂蜜、液体树脂。\n
+LabSen 865：用于高温和/或腐蚀性水溶液的pH测量，例如电镀溶液。\n\n
+*注：一般水溶液是指满足以下条件的水基溶液：\n
+1）不过于酸或过于碱（pH范围为2至12）\n
+2）温度在10°C至50°C之间（50˚F至122˚F）\n
+3）含有中等水平的溶解离子（电导率范围：100 µS/cm至10,000 µS/cm或盐度水平<5000 ppm或0.5%）。\n]]></string>
+  <string name="suitable_app_str3"><![CDATA[用于固体样品的直接pH测试，比如水果，蔬菜，肉类，芝士，寿司米，土壤等；
+也适用于常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等。]]></string>
+
+  <string name="info_measure4">pH, 温度, ORP （需要配置ORP电极）</string>
+  <string name="other_comp_ele_str4" formatted="false"><![CDATA[PH60F-DE：用于测量平面样品的pH值，例如纸张、皮肤、纺织品、皮革、地毯等。\n
+PH60S-DE：用于直接测量食品样品的pH值，例如水果、奶酪、面团、寿司米、酸奶、果酱、酱汁、黄油、奶油等。\n
+PH60-DE：用于测量常规水溶液的pH值。\n
+GS2-E：用于直接测量土壤的pH值（使用尖头传感器）。\n
+ORP60-DA：用于常规水溶液的氧化还原电位测试（ORP范围：-1000至1000 mV）。\n
+LabSen 335：用于测量废水、悬浮液、乳化液和其他脏污液体的pH值。\n
+LabSen 246-5：用于测量小体积或微量常规水溶液的pH值（最低可达60微升）。\n
+LabSen 765：用于直接测量生肉或冷冻肉的pH值（使用刀片尖头传感器）。\n
+LabSen 805：用于纯净水的pH测量，例如蒸馏水/饮用水/RO水/地表水/锅炉水/暴雨水/井水/去离子水。\n
+LabSen 835：用于测量强酸性溶液（pH < 2）或含氟化氢的溶液（HF浓度 < 0.1mol/L或2000 ppm）的pH值。\n
+LabSen 845：用于测量强碱性溶液（pH > 12）或高盐度溶液（>5000 ppm/0.5%）的pH值。\n
+LabSen 855：用于测量粘稠液体样品的pH值，例如护肤产品、油漆、涂料、浆料、胶水、蜂蜜、液体树脂。\n
+LabSen 865：用于高温和/或腐蚀性水溶液的pH测量，例如电镀溶液。\n\n
+*注：一般水溶液是指满足以下条件的水基溶液：\n
+1）不过于酸或过于碱（pH范围为2至12）\n
+2）温度在10°C至50°C之间（50˚F至122˚F）\n
+3）含有中等水平的溶解离子（电导率范围：100 µS/cm至10,000 µS/cm或盐度水平<5000 ppm或0.5%）。]]></string>
+  <string name="suitable_app_str4"><![CDATA[适用于平面样品的直接pH测试，比如皮肤，纸张，地毯，纺织品，皮革，及少量液体测试。
+也适用于常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等。]]></string>
+
+  <string name="info_measure5">电导率,TDS, 盐度, 电阻率, 温度</string>
+  <string name="other_comp_ele_str5"><![CDATA[EC60-DE：用于测量常规水溶液的电导率/TDS/盐度/电阻率（电导率测量范围：0至20 mS/20,000 µS）]]></string>
+  <string name="suitable_app_str5"><![CDATA[常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等。]]></string>
+
+  <string name="info_measure6">ORP，温度</string>
+  <string name="other_comp_ele_str6"><![CDATA[ORP60-DE：用于常规水溶液的氧化还原电位测试（ORP范围：-1000至1000 mV）。]]></string>
+  <string name="suitable_app_str6"><![CDATA[常规水溶液，例如：泳池，农业，渔业，水处理，环境监测，饮料，教育，冷却塔等。]]></string>
+    <string name="bt">蓝牙</string>
+    <string name="bt_turn_on">请打开手机蓝牙</string>
+    <string name="bt_open">打开</string>
+  <string name="photograph">拍照</string>
+  <string name="select_from_the_album">从相册选取</string>
+  <string name="account_not_found_fail">账号不存在！</string>
+
+  <string name="GPSOpen">定位服务未打开</string>
+  <string name="GPSToast">安卓系统要求连接蓝牙设备必须打开定位服务</string>
+
+  <string name="Assect_data">测量对象</string>
+  <string name="Assect_admin">测量对象管理</string>
+  <string name="Assect_new">新建</string>
+  <string name="Assect_name">输入测量对象名称</string>
+  <string name="Assect_Image">拍摄照片</string>
+  <string name="Assect_Save">保存</string>
+  <string name="Assect_change">测量对象编辑</string>
+  <string name="Assect_Link">关联测量对象</string>
+  <string name="Assect_Cancle">取消</string>
+  <string name="Assect_Confirm">确认</string>
+  <string name="Assect_DataMore">测量对象数据</string>
+  <string name="Assect_Select">选择</string>
+  <string name="Assect_Temp">温度</string>
+  <string name="Assect_Reading">读数</string>
+  <string name="Assect_Time">日期/时间</string>
+  <string name="Assect_DelegetOk">删除成功</string>
+  <string name="Assect_NameAgain">测量对象名称重复</string>
+  <string name="Assect_Newok">新建成功</string>
+  <string name="Assect_NameNil">名称不能为空</string>
+  <string name="Assect_changeok">修改成功</string>
+  <string name="Assect_Links">样品关联：</string>
+  <string name="User_exists">账号已存在</string>
+  <string name="Login_failed">登录失败</string>
+
+  <string name="Asset_EnterName">输入测量对象名称</string>
+  <string name="Asset_AddImage">添加您的测量对象图片</string>
+
+  <string name="max_number_format">最大值必须是数字</string>
+  <string name="min_number_format">最小值必须数字</string>
+  <string name="max_must_be">最大值必须大于最小值</string>
+  <string name="max_must_benotover">最大值不能超过测量量程最大值</string>
+  <string name="min_must_beoverthe">最小值不能小于测量量程最小值</string>
+  <string name="Alerm_text">**告警** 测量值已经超出预设安全范围！请及时查看。</string>
+  <string name="Blutooth_al">点击此处连接仪器</string>
+  <string name="Privacy_sta">《隐私条款》</string>
+  <string name="Privacy_all">1.用户信息公开情况说明。\n\n\u3000\u3000尊重用户个人隐私是中其信息的一项基本政策。所以，上海沛瑞仪器有限公司不会在未经合法用户授权时公开、编辑或透露其注册资料及保存在本应用中的非公开内容，除非有下列情况：\n\u3000\u3000（1）有关法律规定或上海沛瑞仪器有限公司合法服务程序规定；\n\u3000\u3000（2）在紧急情况下，为维护用户及公众的权益；\n\u3000\u3000（3）为维护上海沛瑞仪器有限公司的商标权、专利权及其他任何合法权益；
+\n\u3000\u3000（4）其他需要公开、编辑或透露个人信息的情况；\n\u3000\u3000在以下（包括但不限于）几种情况下，上海沛瑞仪器有限公司有权使用用户的个人信息：
+\n\u3000\u3000（1）上海沛瑞仪器有限公司可以将用户信息与第三方数据匹配；
+\n\u3000\u3000（2）上海沛瑞仪器有限公司会通过透露合计用户统计数据，向未来的合作伙伴、广告商及其他第三方以及为了其他合法目的而描述中其信息的服务；\n\n2.隐私权政策适用范围\n\n\u3000\u3000（1）用户在使用本应用服务器时留下的个人身份信息；
+\n\u3000\u3000（2）用户通过本应用服务器与其他用户或非用户之间传送的各种资讯；
+\n\u3000\u3000（3）本应用与商业伙伴共享的其他用户或非用户的各种信息；\n\u3000\u3000（4）上海沛瑞仪器有限公司十分注重保护用户的个人隐私，并制定了《隐私政策》，用户亦可以通过《隐私政策》，用户确认并同意使用中其信息软件提供的服务将被视为接受《隐私政策》。\n\n3.资讯公开与共享
+\n\n\u3000\u3000上海沛瑞仪器有限公司不会将用户的个人信息和资讯故意透露、出租或出售给任何第三方。但以下情况除外：
+\n\u3000\u3000（1）用户本人同意与第三方共享信息和资讯;
+\n\u3000\u3000（2）只有透露用户的个人信息和资讯，才能提供用户所要求的某种产品和服务;\n\u3000\u3000（3）应代表本应用提供产品或服务的主体的要求提供（除非我们另行通知，否则该等主体无权将相关用户个人信息和资讯用于提供产品和服务之外的其他用途）：根据法律法规或行政命令的要求提供;因外部审计需要而提供;用户违反了本应用服务条款或任何其他产品及服务的使用规定;经本站评估，用户的帐户存在风险，需要加以保护。\n\u3000\u3000（4）为识别您的设备ID用来精确连接蓝牙范围，我们会收集您的设备信息（包括IMEI、Android ID、MEID、MAC地址、软件安装列表、设备序列号）.\n\u3000\u3000
+（5）为实现保存测量数据成CSV文件用来分享到其他设备或者平台，我们将请求您的存储权限获取外置存储信息。\n\u3000\u3000
+（6）为方便游客登录所以保存数据到本地以防数据丢失，我们将请求您的存储权限获取外置存储信息。\n\n4.非个人隐私信息
+\n\n\u3000\u3000为了改善上海沛瑞仪器有限公司的技术和服务，向用户提供更好的服务体验，上海沛瑞仪器有限公司或可会自行收集使用或向第三方提供用户的非个人隐私信息。
+\n\n\n\n</string>
+    <string name="Agreement_title">《服务协议》</string>
+    <string name="Agreement_text">\u3000\u3000尊敬的用户，欢迎使用由上海沛瑞仪器有限公司（下列简称为“沛瑞”或“上海沛瑞”）提供的服务。在使用前请您阅读如下服务协议，使用本应用即表示您同意接受本协议，本协议产生法律效力，特别涉及免除或者限制中其责任的条款，请仔细阅读。\n\n1. 服务条款的确认和接受\n\n\u3000\u3000通过访问或使用本应用，表示用户同意接受本协议的所有条件和条款。\n\n2. 服务条款的变更和修改\n\n\u3000\u3000上海沛瑞有权在必要时修改服务条款，服务条款一旦发生变更，将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以放弃获得的本应用信息服务。如果用户继续享用本应用的信息服务，则视为接受服务条款的变更。本应用保留随时修改或中断服务而不需要通知用户的权利。本应用行使修改或中断服务的权利，不需对用户或第三方负责。\n\n3. 用户行为\n\n\u3000\u30003.1 用户账号、密码和安全\n\u3000\u3000你可以根据自己需求选择注册和不注册账户，当选择游客登录时，数据会保存在本地，不会上传到云服务器上；缺点是换手机登录就会失去原有数据。当选择注册时请使用邮箱注册，我们不会绑定手机号或者其他验证方式，注册后请保管好自己的账户，测试的数据会和此账户绑定；上海沛瑞会妥善保存用户的测试数据。\n\u3000\u30003.2 账号注册时的禁止行为\n\u3000\u3000（1）请勿以党和国家领导人或其他社会名人的真实姓名、字号、艺名、笔名注册；\n\u3000\u3000（2）冒充任何人或机构，或以虚伪不实的方式谎称或使人误认为与任何人或任何机构有关的名称；\n\u3000\u3000（3）请勿注册和其他网友之名相近、相仿的名字；\n\u3000\u3000（4）请勿注册不文明、不健康名字，或包含歧视、侮辱、猥亵类词语的名字；\n\u3000\u3000（5）请勿注册易产生歧义、引起他人误解的名字；\n\u3000\u30003.3 用户在本应用上不得发布下列违法信息和照片：\n\u3000\u3000（1）反对宪法所确定的基本原则的；\n\u3000\u3000（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；\n\u3000\u3000（3）损害国家荣誉和利益的；\n\u3000\u3000（4）煽动民族仇恨、民族歧视，破坏民族团结的；\n\u3000\u3000（5）破坏国家宗教政策，宣扬邪教和封建迷信的；\n\u3000\u3000（6）散布谣言，扰乱社会秩序，破坏社会稳定的；\n\u3000\u3000（7）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；\n\u3000\u3000（8）侮辱或者诽谤他人，侵害他人合法权益的；\n\u3000\u3000（9）含有法律、行政法规禁止的其他内容的；\n\u3000\u3000（10）禁止骚扰、毁谤、威胁、仿冒网站其他用户；\n\u3000\u3000（11）严禁煽动非法集会、结社、游行、示威、聚众扰乱社会秩序；\n\u3000\u3000（12）严禁发布可能会妨害第三方权益的文件或者信息，例如（包括但不限于）：病毒代码、黑客程序、软件破解注册信息。\n\u3000\u3000（13）禁止上传他人作品。其中包括你从互联网上下载、截图或收集的他人的作品；\n\u3000\u3000（14）禁止上传广告、横幅、标志等网络图片；\n\n4. 服务内容\n\n\u3000\u3000本服务的具体内容由中其信息根据实际情况提供，上海沛瑞可以对其提供的服务予以变更，且中其信息提供的服务内容可能随时变更。该软件属于免费应用，用户使用过程中，本软件不会以任何方式、名义收取任何费用。\n\n\n\n</string>
+    <string name="Agreement_agree">同意</string>
+    <string name="Agreement_agreeNo">不同意并退出</string>
+    <string name="Agreement_agreetitle">服务协议和隐私政策</string>
+    <string name="Agreement_agreetext">\u3000\u3000请您务必审慎阅读、充分理解“服务协议”和“隐私政策”各条款，包括但不限于：为了向您提供数据保存、数据测试的位置、测量样品、连接蓝牙等服务，我们需要收集您的照片和媒体、位置信息、蓝牙。您可以在“设置”中查看、变更、删除个人信息并管理您的授权。你可以阅读《服务协议》，《隐私政策》和《权限使用规则》了解详细信息。如你同意，请点击“同意”开始接受我们的服务。</string>
+    </resources>

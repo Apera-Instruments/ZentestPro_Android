@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bg_modemenu"
+        android:orientation="vertical"
+        android:paddingBottom="2dp">
+    <GridLayout
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:rowCount="3"
+            android:columnCount="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        <Button
+                android:textAllCaps="false"
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt1"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="pH"/>
+
+
+        <Button
+            android:textAllCaps="false"
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt2"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="Sal."/>
+
+
+        <Button
+            android:textAllCaps="false"
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt3"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="@string/orp"/>
+        <Button
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt4"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="TDS"/>
+
+
+        <Button
+            android:textAllCaps="false"
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt5"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="Cond."/>
+
+
+        <Button
+            android:textAllCaps="false"
+                android:textColor="@color/mode_menu_bt"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/mode_menu_bt_bg"
+                android:id="@+id/pop_bt6"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:text="Res."/>
+    </GridLayout>
+
+</LinearLayout>

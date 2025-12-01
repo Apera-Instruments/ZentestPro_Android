@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZenTest</string>
+    <string name="sort_ascending">Sort Ascending</string>
+    <string name="sort_descending">Sort Descending</string>
+    <string name="tds">TDS</string>
+    <string name="orp">ORP</string>
+    <string name="ph">pH</string>
+    <string name="uscm">µS/cm</string>
+    <string name="mv">mV</string>
+    <string name="mcm">MΩ·cm</string>
+    <string name="ppt">ppt</string>
+    <string name="gps">GPS</string>
+    <string name="ppm">ppm</string>
+    <string name="demo_device">Demo Device</string>
+</resources>

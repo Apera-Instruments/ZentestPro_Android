@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/ly_title"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="0dp">
+
+        <TextView
+            android:id="@+id/tv_left"
+            android:layout_marginTop="12dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/statusbar_back"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/Assect_change"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:gravity="center"
+            android:text="@string/Assect_Save"
+            android:id="@+id/tv_Okright"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:background="#00000000"/>
+    </RelativeLayout>
+
+
+    <AutoCompleteTextView
+        android:id="@+id/NewAssectName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/bt_bg"
+        android:inputType="text"
+        android:maxLines="1"
+        android:hint="@string/Asset_EnterName"
+        android:textSize="15sp"
+        android:gravity="center"/>
+
+
+
+    <ImageView
+        android:id="@+id/iv_photo"
+        android:src="@mipmap/btn_addpic"
+        android:layout_below="@+id/tv_photo"
+        android:background="@null"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"/>
+
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:layout_alignTop="@+id/iv_photo"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Asset_AddImage"
+        android:layout_marginTop="-28dp"
+        android:gravity="center"
+        android:textSize="12dp"/>
+
+    <Button
+        android:id="@+id/bt_dels"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/iv_photo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/app_bt_bg"
+        android:text="@string/delete"
+        android:textColor="#ffffff" />
+</RelativeLayout>
