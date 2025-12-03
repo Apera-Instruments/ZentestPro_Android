@@ -20,11 +20,10 @@
         <ImageView
             android:id="@+id/home_bg_imag"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="300dp"
             android:layout_alignParentTop="true"
             android:scaleType="fitXY"
             android:src="@mipmap/bg" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_top_rows"

@@ -34,6 +34,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -55,6 +56,7 @@ import com.zen.api.data.DataBean;
 import com.zen.api.data.DeviceSetting;
 import com.zen.api.data.Record;
 import com.zen.api.event.BleDeviceConnectEvent;
+import com.zen.api.event.ModePatternChangedFromDevice;
 import com.zen.api.event.SyncEventUpload;
 import com.zen.api.protocol.CalibrationCond;
 import com.zen.api.protocol.CalibrationPh;
@@ -63,6 +65,7 @@ import com.zen.api.protocol.Key;
 import com.zen.api.protocol.Measure;
 import com.zen.api.protocol.Mode;
 import com.zen.api.protocol.ParmUp;
+import com.zen.api.protocol.velaprotocal.VelaParamModeAppToDevice;
 import com.zen.ui.CalibrationActivity;
 import com.zen.ui.CategoryActivity;
 import com.zen.ui.HomeActivity;
@@ -270,7 +273,6 @@ public class MeasureFragmentVela extends BaseFragment
     private TableController tableController;
     private AutoSaveManager autoSaveManager;
     private SaveRecordManager saveRecordManager;
-    private SaveViewManager saveViewManager;
     private AlarmManager alarmManager;
     private CalibrationManager calibrationManager;
 
@@ -358,7 +360,9 @@ public class MeasureFragmentVela extends BaseFragment
 
                     clearHistory();
 
-                    updateViewWithoutSync();
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        updateView();
+                    }
 
                     // update button visual states
                     mModePopupWindow.setMultiSelectState(phSel, condSel, orpSel);
@@ -431,7 +435,7 @@ public class MeasureFragmentVela extends BaseFragment
     // ---------------------------------------------------------------------
 
     public void onSave() {
-        autoSaveManager.onSave();
+        saveRecordManager.saveRecord();
     }
 
     public boolean isAutoSave() {
@@ -451,7 +455,7 @@ public class MeasureFragmentVela extends BaseFragment
     }
 
     private void saveRecordData() {
-        saveRecordManager.saveRecordData();
+        saveRecordManager.saveRecord();
     }
 
     // ---------------------------------------------------------------------
@@ -497,22 +501,6 @@ public class MeasureFragmentVela extends BaseFragment
     }
 
     // ---------------------------------------------------------------------
-    // Bitmap / save view (delegate to SaveViewManager)
-    // ---------------------------------------------------------------------
-
-    private void saveView() {
-        saveViewManager.saveView();
-    }
-
-    private Bitmap saveBitmap(Bitmap bitmap) {
-        return saveViewManager.saveBitmap(bitmap);
-    }
-
-    private void showDialog() {
-        saveViewManager.showDialog();
-    }
-
-    // ---------------------------------------------------------------------
     // View setup
     // ---------------------------------------------------------------------
 
@@ -532,8 +520,16 @@ public class MeasureFragmentVela extends BaseFragment
         graphLineController = new GraphLineController();
         tableController = new TableController();
         autoSaveManager = new AutoSaveManager();
-        saveRecordManager = new SaveRecordManager();
-        saveViewManager = new SaveViewManager();
+        saveRecordManager = new SaveRecordManager(
+                getContext(),
+                modePatternManager,
+
+                tv_value_ph, tv_danwei1_ph,
+                tv_value_cond, tv_danwei1_cond,
+                tv_value_orp, tv_danwei1_orp,
+
+                mTempTextView, mTempUnitTextView
+        );
         alarmManager = new AlarmManager();
         calibrationManager = new CalibrationManager();
 
@@ -606,6 +602,7 @@ public class MeasureFragmentVela extends BaseFragment
 
         iv_menu = view.findViewById(R.id.iv_menu);
         iv_menu.setOnClickListener(this);
+
         buttonSave.setOnClickListener(this);
 
         bt_set_timer = view.findViewById(R.id.bt_set_timer);
@@ -891,16 +888,17 @@ public class MeasureFragmentVela extends BaseFragment
     public void updateView() {
         super.updateView();
         DataBean bean = MyApi.getInstance().getDataApi().getData();
-        new UpdatePipeline().runWithoutSync(bean);
+
+        new UpdatePipeline().run(bean);
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public void updateViewWithoutSync() {
-        super.updateView();
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onDevicePatternChanged(ModePatternChangedFromDevice e) {
         DataBean bean = MyApi.getInstance().getDataApi().getData();
-        new UpdatePipeline().runWithoutSync(bean);
+
+        new UpdatePipeline().runSync(bean);
     }
+
 
     @Override
     public void onStop() {
@@ -1014,128 +1012,145 @@ public class MeasureFragmentVela extends BaseFragment
      * Handles mode / graphMode conversions and mode popup.
      */
     private class ModePatternManager {
+
         private boolean isPhSelected = true;
-        private boolean isCondSelected = false;
-        private boolean isOrpSelected = false;
+        private boolean isCondSelected = true;
+        private boolean isOrpSelected = true;
 
-        private DataBean.PhMode phMode = DataBean.PhMode.PH;
+        private DataBean.PhMode phMode  = DataBean.PhMode.PH;
         private DataBean.CondMode condMode = DataBean.CondMode.COND;
-        private DataBean.OrpMode orpMode = DataBean.OrpMode.ORP;
+        private DataBean.OrpMode orpMode   = DataBean.OrpMode.ORP;
 
-        // -------------------------------------------------
+        private boolean isUserChange = false;
+
+        // ---------------------------
         // Public getters
-        // -------------------------------------------------
-        boolean isPhSelected()   { return isPhSelected; }
+        // ---------------------------
+        boolean isPhSelected() { return isPhSelected; }
         boolean isCondSelected() { return isCondSelected; }
-        boolean isOrpSelected()  { return isOrpSelected; }
+        boolean isOrpSelected() { return isOrpSelected; }
 
-        DataBean.PhMode getPhMode()   { return phMode; }
+        DataBean.PhMode getPhMode() { return phMode; }
         DataBean.CondMode getCondMode() { return condMode; }
-        DataBean.OrpMode getOrpMode()   { return orpMode; }
-
-        /**
-         * Get active graph mode.
-         * @return Constant.MODE_VELA_PH, etc.
-         */
-        int getActiveGraphMode() {
-            if (isPhSelected) return Constant.MODE_VELA_PH;
-            if (isCondSelected) return Constant.MODE_VELA_COND;
-            return Constant.MODE_VELA_ORP;
-        }
+        DataBean.OrpMode getOrpMode() { return orpMode; }
 
 
-        /**
-         * Set selected modes.
-         * @param ph
-         * @param cond
-         * @param orp
-         */
+        // ==========================================================
+        // USER triggered changes
+        // ==========================================================
         void setSelectedModes(boolean ph, boolean cond, boolean orp) {
-            this.isPhSelected = ph;
-            this.isCondSelected = cond;
-            this.isOrpSelected = orp;
+            isUserChange = true;
 
-            // Save into DataBean
-            DataBean bean = MyApi.getInstance().getDataApi().getData();
-            if (bean != null) {
-                bean.setPhSelected(ph);
-                bean.setCondSelected(cond);
-                bean.setOrpSelected(orp);
-            }
+            isPhSelected = ph;
+            isCondSelected = cond;
+            isOrpSelected = orp;
 
+            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
             onPatternChanged();
         }
 
-        // ---------------------------------------------------------------------
-        // Sync FROM DataBean → Manager
-        // Similar to ModeManager.syncModeFromDataBean()
-        // ---------------------------------------------------------------------
+        void setPhSubMode(DataBean.PhMode mode) {
+            isUserChange = true;
+            phMode = mode;
+            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
+            onPatternChanged();
+        }
+
+        void setCondSubMode(DataBean.CondMode mode) {
+            isUserChange = true;
+            condMode = mode;
+            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
+            onPatternChanged();
+        }
+
+        void setOrpSubMode(DataBean.OrpMode mode) {
+            isUserChange = true;
+            orpMode = mode;
+            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
+            onPatternChanged();
+        }
+
+
+        // ==========================================================
+        // DEVICE → APP SYNC
+        // (should NOT send commands back!)
+        // ==========================================================
         void syncPatternFromDataBean(DataBean bean) {
             if (bean == null) return;
 
-            // sync selections
-            boolean newPhSel   = bean.isPhSelected();
-            boolean newCondSel = bean.isCondSelected();
-            boolean newOrpSel  = bean.isOrpSelected();
+            isUserChange = false; // IMPORTANT
 
-            // If changed, update and mark pattern as changed
-            boolean changed =
-                    (newPhSel   != isPhSelected) ||
-                            (newCondSel != isCondSelected) ||
-                            (newOrpSel  != isOrpSelected) ||
-                            (bean.getPhMode()  != phMode) ||
-                            (bean.getCondMode() != condMode) ||
-                            (bean.getOrpMode()  != orpMode);
+            isPhSelected  = bean.isPhSelected();
+            isCondSelected = bean.isCondSelected();
+            isOrpSelected  = bean.isOrpSelected();
 
-            isPhSelected  = newPhSel;
-            isCondSelected = newCondSel;
-            isOrpSelected  = newOrpSel;
-
-            // sync sub modes
             phMode  = bean.getPhMode();
             condMode = bean.getCondMode();
             orpMode  = bean.getOrpMode();
+        }
 
-            // update graph mode (like ModeManager sets mModeType)
-            mGraphModeType = getActiveGraphMode();
 
-            if (changed) {
-                Log.d(getTAG(), "ModePatternManager updated: " +
-                        "ph=" + isPhSelected +
-                        " cond=" + isCondSelected +
-                        " orp=" + isOrpSelected +
-                        " phMode=" + phMode +
-                        " condMode=" + condMode +
-                        " orpMode=" + orpMode);
+        // ==========================================================
+        // APPLY changes
+        // ==========================================================
+        private void onPatternChanged() {
 
-                // Do NOT clear history or update UI here — manager only tracks state
+            // Update UI rows
+            updateMainValueRowVisibility();
+
+            clearHistory();
+            updateViewGraph();
+            updateViewGraph3Clear();
+
+            // ONLY send command if USER changed pattern
+            if (isUserChange) {
+                sendPatternToDevice();
             }
         }
 
-        // -------------------------------------------------
-        // Sync FROM DataBean → Manager
-        // Called in updateView()
-        // -------------------------------------------------
-        void loadFromDataBean(DataBean bean) {
-            if (bean == null) return;
 
-            isPhSelected = bean.isPhSelected();
-            isCondSelected = bean.isCondSelected();
-            isOrpSelected = bean.isOrpSelected();
+        // ==========================================================
+        // SEND VelaParamModeAppToDevice to device
+        // ==========================================================
+        private void sendPatternToDevice() {
 
-            phMode = bean.getPhMode();
-            condMode = bean.getCondMode();
-            orpMode = bean.getOrpMode();
+            VelaParamModeAppToDevice msg = new VelaParamModeAppToDevice();
 
-            // update graph mode
-            mGraphModeType = getActiveGraphMode();
+            // PH / MV
+            msg.setPhmv(
+                    isPhSelected,
+                    (phMode == DataBean.PhMode.MV
+                            ? VelaParamModeAppToDevice.PhMvMode.MV
+                            : VelaParamModeAppToDevice.PhMvMode.PH)
+            );
+
+            // COND / TDS / SAL / RES
+            VelaParamModeAppToDevice.CondMode cMode;
+            switch (condMode) {
+                case TDS:  cMode = VelaParamModeAppToDevice.CondMode.TDS; break;
+                case SAL:  cMode = VelaParamModeAppToDevice.CondMode.SALT; break;
+                case RES:  cMode = VelaParamModeAppToDevice.CondMode.RESISTIVITY; break;
+                default:   cMode = VelaParamModeAppToDevice.CondMode.COND;
+            }
+
+            msg.setCond(isCondSelected, cMode);
+
+            // ORP
+            msg.setOrp(isOrpSelected);
+
+            // SEND COMMAND
+            MyApi.getInstance().getBtApi().sendCommand(msg);
+
+            Log.d("MODE_PATTERN", "Sent VelaParamModeAppToDevice: " + msg.getData());
+
+            isUserChange = false; // reset
         }
 
-        // -------------------------------------------------
-        // Sync FROM Manager → DataBean
-        // Call after user changes anything
-        // -------------------------------------------------
-        void saveIntoDataBean(DataBean bean) {
+
+        // ==========================================================
+        // Save into DataBean
+        // ==========================================================
+        private void saveIntoDataBean(DataBean bean) {
             if (bean == null) return;
 
             bean.setPhSelected(isPhSelected);
@@ -1146,168 +1161,114 @@ public class MeasureFragmentVela extends BaseFragment
             bean.setCondMode(condMode);
             bean.setOrpMode(orpMode);
         }
-
-        // -------------------------------------------------
-        // UI triggering (PH)
-        // -------------------------------------------------
-        void selectPh() {
-            isPhSelected = true;
-            isCondSelected = false;
-            isOrpSelected = false;
-
-            mGraphModeType = Constant.MODE_VELA_PH;
-
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // UI triggering (COND)
-        // -------------------------------------------------
-        void selectCond() {
-            isPhSelected = false;
-            isCondSelected = true;
-            isOrpSelected = false;
-
-            mGraphModeType = Constant.MODE_VELA_COND;
-
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // UI triggering (ORP)
-        // -------------------------------------------------
-        void selectOrp() {
-            isPhSelected = false;
-            isCondSelected = false;
-            isOrpSelected = true;
-
-            mGraphModeType = Constant.MODE_VELA_ORP;
-
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // Update PH sub-mode
-        // -------------------------------------------------
-        void setPhSubMode(DataBean.PhMode mode) {
-            this.phMode = mode;
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // Update COND sub-mode
-        // -------------------------------------------------
-        void setCondSubMode(DataBean.CondMode mode) {
-            this.condMode = mode;
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // ORP has only one mode, but method included for symmetry
-        // -------------------------------------------------
-        void setOrpSubMode(DataBean.OrpMode mode) {
-            this.orpMode = mode;
-            saveIntoDataBean(MyApi.getInstance().getDataApi().getData());
-            onPatternChanged();
-        }
-
-        // -------------------------------------------------
-        // When mode selection or mode pattern changes
-        // -------------------------------------------------
-        private void onPatternChanged() {
-            MeasureFragmentVela.this.updateMainValueRowVisibility();
-
-            clearHistory();
-            updateViewGraph();
-            updateViewGraph3Clear();
-        }
     }
 
     /**
-     * Handles saving data items (JSON records) – logic extracted from saveRecordData().
+     * SaveRecordManager for Vela multi-mode system.
+     * Saves: PH + COND/TDS/SAL/RES + ORP + TEMP
+     * -> Into ONE DataBean row in DB
+     * -> Using DataApi.saveData(sn, traceNo, attachJson)
      */
-    private class SaveRecordManager {
+    public class SaveRecordManager {
 
-        void saveRecordData() {
+        private final Context context;
+        private final ModePatternManager modePattern;
+
+        // --- Vela UI fields ---
+        private final TextView tvValuePh, tvUnitPh;
+        private final TextView tvValueCond, tvUnitCond;
+        private final TextView tvValueOrp, tvUnitOrp;
+        private final TextView tvTemp, tvTempUnit;
+
+        private int sn = 0;             // Sequence counter
+        private final String traceNo;   // One traceNo per session/save group
+
+        public SaveRecordManager(
+                Context ctx,
+                ModePatternManager pattern,
+                TextView tvValuePh, TextView tvUnitPh,
+                TextView tvValueCond, TextView tvUnitCond,
+                TextView tvValueOrp, TextView tvUnitOrp,
+                TextView tvTemp, TextView tvTempUnit
+        ) {
+            this.context = ctx;
+            this.modePattern = pattern;
+
+            this.tvValuePh = tvValuePh;
+            this.tvUnitPh = tvUnitPh;
+
+            this.tvValueCond = tvValueCond;
+            this.tvUnitCond = tvUnitCond;
+
+            this.tvValueOrp = tvValueOrp;
+            this.tvUnitOrp = tvUnitOrp;
+
+            this.tvTemp = tvTemp;
+            this.tvTempUnit = tvTempUnit;
+
+            // Same behavior as legacy → one traceNo per session
+            this.traceNo = "T" + System.currentTimeMillis();
+        }
+
+        // ------------------------------------------------------------------
+        // MAIN ENTRY: SAVE RECORD
+        // ------------------------------------------------------------------
+        public void saveRecord() {
+
+            JSONObject json = new JSONObject();
+
             try {
-                String value = mValueTextView.getText().toString() + " " +
-                        mDanweiTextView.getText().toString();
-                String temp1 = mTempTextView.getText().toString() + " " +
-                        mTempUnitTextView.getText().toString();
-                String temp2 = mTempTextView.getText().toString() + " " + mTempUnitStr;
-
-                JSONObject jsonObject = new JSONObject();
-                jsonObject.put("value", value);
-                jsonObject.put("temp", temp2);
-                try {
-                    jsonObject.put("deviceNumber", MyApi.getInstance().getBtApi().getDeviceNumber());
-                    jsonObject.put("location", MyApi.getInstance().getDataApi().getLocation());
-                    jsonObject.put("tempUnit", mTempUnitStr);
-                    if (MyApi.getInstance().getBtApi().getLastDevice() != null
-                            && MyApi.getInstance().getBtApi().getLastDevice().getSetting() != null) {
-
-                        if (mModeType == Constant.MODE_PH) {
-                            if (MyApi.getInstance().getBtApi().getLastDevice().getSetting()
-                                    .getCalibrationPh() != null) {
-                                try {
-                                    Calibration calibration =
-                                            MyApi.getInstance().getBtApi().getLastDevice()
-                                                    .getSetting().getCalibration();
-                                    calibration.setMode("PH");
-                                    calibration.setRefTemp(
-                                            MyApi.getInstance().getDataApi().getLastParm().getRefTemp()
-                                    );
-                                    calibration.setTempCompensate(
-                                            MyApi.getInstance().getDataApi().getLastParm().getTempCompensate()
-                                    );
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                                jsonObject.put(
-                                        "calibration",
-                                        MyApi.getInstance().getBtApi().getLastDevice()
-                                                .getSetting().getCalibrationJson()
-                                );
-                            }
-                        } else if (mModeType == Constant.MODE_COND) {
-                            if (MyApi.getInstance().getBtApi().getLastDevice().getSetting()
-                                    .getCalibrationCond() != null) {
-                                try {
-                                    Calibration calibration =
-                                            MyApi.getInstance().getBtApi().getLastDevice()
-                                                    .getSetting().getCalibration();
-                                    calibration.setMode("COND");
-                                    calibration.setRefTemp(
-                                            MyApi.getInstance().getDataApi().getLastParm().getRefTemp()
-                                    );
-                                    calibration.setTempCompensate(
-                                            MyApi.getInstance().getDataApi().getLastParm().getTempCompensate()
-                                    );
-                                } catch (NullPointerException e) {
-                                    e.printStackTrace();
-                                }
-                                jsonObject.put(
-                                        "calibration",
-                                        MyApi.getInstance().getBtApi().getLastDevice()
-                                                .getSetting().getCalibrationJson()
-                                );
-                            }
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                // -----------------------------------------------------
+                // PH block
+                // -----------------------------------------------------
+                if (modePattern.isPhSelected()) {
+                    json.put("ph_value", tvValuePh.getText().toString());
+                    json.put("ph_unit", tvUnitPh.getText().toString());
+                    json.put("ph_mode", modePattern.getPhMode().name()); // PH / MV
                 }
 
-                MyApi.getInstance().getDataApi().saveData(mSn++, mTraceNo, jsonObject.toJSONString());
-                Log.d(getTAG(), "json " + jsonObject.toJSONString());
+                // -----------------------------------------------------
+                // Conductivity/TDS/Salt/Resistivity block
+                // -----------------------------------------------------
+                if (modePattern.isCondSelected()) {
+                    json.put("cond_value", tvValueCond.getText().toString());
+                    json.put("cond_unit", tvUnitCond.getText().toString());
+                    json.put("cond_mode", modePattern.getCondMode().name()); // COND / TDS / SAL / RES
+                }
+
+                // -----------------------------------------------------
+                // ORP block
+                // -----------------------------------------------------
+                if (modePattern.isOrpSelected()) {
+                    json.put("orp_value", tvValueOrp.getText().toString());
+                    json.put("orp_unit", tvUnitOrp.getText().toString());
+                    json.put("orp_mode", "ORP");
+                }
+
+                // -----------------------------------------------------
+                // Temperature
+                // -----------------------------------------------------
+                json.put("temp_value", tvTemp.getText().toString());
+                json.put("temp_unit", tvTempUnit.getText().toString());
+
+                // -----------------------------------------------------
+                // Metadata (matching original system)
+                // -----------------------------------------------------
+                json.put("timestamp", System.currentTimeMillis());
+                json.put("traceNo", traceNo);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+            // ------------------------------------------------------------------
+            // WRITE TO DATABASE (legacy-compatible)
+            // ------------------------------------------------------------------
+            MyApi.getInstance()
+                    .getDataApi()
+                    .saveData(sn++, traceNo, json.toJSONString());
+
+            Toast.makeText(context, "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1317,7 +1278,6 @@ public class MeasureFragmentVela extends BaseFragment
      * Manages auto-save toggle, timer, and run() behaviour.
      */
     private class AutoSaveManager {
-
         void onSave() {
             if (!mAutoSave) {
                 if (true) {  // permission check stub
@@ -1327,9 +1287,7 @@ public class MeasureFragmentVela extends BaseFragment
                                     + random.nextInt(100)) * 100
                                     + atomicInteger.addAndGet(1)
                     );
-                    saveRecordManager.saveRecordData();
-                    saveView();
-                    showDialog();
+                    saveRecordManager.saveRecord();
                     EventBus.getDefault().post(new SyncEventUpload());
                     mTraceNo = null;
                 } else {
@@ -1339,8 +1297,6 @@ public class MeasureFragmentVela extends BaseFragment
                 if (mAutoSaveRun) {
                     MyApi.getInstance().getBtApi().sendCommand(new Measure(Measure.OFF));
                     closeWakeLock();
-                    saveView();
-                    showDialog();
                     EventBus.getDefault().post(new SyncEventUpload());
                     mAutoSaveRun = false;
                     buttonSave.setImageDrawable(
@@ -1541,7 +1497,6 @@ public class MeasureFragmentVela extends BaseFragment
      * Manages screenshot bitmap saving & SaveImageDialog.
      */
     private class SaveViewManager {
-
         void saveView() {
             mLayoutMeasure.setDrawingCacheEnabled(true);
             Bitmap bitmap = saveBitmap(mLayoutMeasure.getDrawingCache());
@@ -2618,7 +2573,6 @@ public class MeasureFragmentVela extends BaseFragment
         void run(DataBean bean) {
             if (bean == null) return;
 
-            deviceSync(bean);
             updateHoldUI(bean);
             updatePrimaryValues(bean);
             updateTemperature(bean);
@@ -2631,19 +2585,10 @@ public class MeasureFragmentVela extends BaseFragment
             updateAlarmBackground();
         }
 
-        void runWithoutSync(DataBean bean) {
+        void runSync(DataBean bean) {
             if (bean == null) return;
 
-            updateHoldUI(bean);
-            updatePrimaryValues(bean);
-            updateTemperature(bean);
-            updateLeftAxisUnit();
-            updateCalibrationUI(bean);
-            updateGraphDial(bean);
-            updateGraphLine(bean);
-            updateTable(bean);
-            updateReminder(bean);
-            updateAlarmBackground();
+            deviceSync(bean);
         }
 
         // -------------------------------------------------------------
@@ -2652,7 +2597,6 @@ public class MeasureFragmentVela extends BaseFragment
         private void deviceSync(DataBean bean) {
             modeManager.syncModeFromDataBean(bean);
             modePatternManager.syncPatternFromDataBean(bean);
-            mGraphModeType = modePatternManager.getActiveGraphMode();
         }
 
         // -------------------------------------------------------------

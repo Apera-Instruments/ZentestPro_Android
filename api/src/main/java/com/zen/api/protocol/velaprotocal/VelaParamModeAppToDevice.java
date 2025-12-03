@@ -6,7 +6,7 @@ import com.zen.api.protocol.Convent;
 
 import java.util.Arrays;
 
-public class VelaParamModeDownload implements Convent<VelaParamModeDownload> {
+public class VelaParamModeAppToDevice implements Convent<VelaParamModeAppToDevice> {
 
     public static final String TAG = "VelaParamModeDownload";
     public static final byte CODE = 0x4D; // 'M'
@@ -25,7 +25,7 @@ public class VelaParamModeDownload implements Convent<VelaParamModeDownload> {
     private boolean orpSelected = false;
 
     @Override
-    public VelaParamModeDownload unpack(byte[] data) {
+    public VelaParamModeAppToDevice unpack(byte[] data) {
         // Optional: accept an echo frame
         if (data != null && data.length >= 2 && (data[0] & 0xFF) == (CODE & 0xFF)) {
             raw = Arrays.copyOf(data, 2);
@@ -64,17 +64,17 @@ public class VelaParamModeDownload implements Convent<VelaParamModeDownload> {
     @Override public String getData() { return okio.ByteString.of(raw).hex(); }
 
     // Fluent setters
-    public VelaParamModeDownload setPhmv(boolean selected, PhMvMode mode) {
+    public VelaParamModeAppToDevice setPhmv(boolean selected, PhMvMode mode) {
         this.phmvSelected = selected;
         this.phmvMode = (mode == null ? PhMvMode.PH : mode);
         return this;
     }
-    public VelaParamModeDownload setCond(boolean selected, CondMode mode) {
+    public VelaParamModeAppToDevice setCond(boolean selected, CondMode mode) {
         this.condSelected = selected;
         this.condMode = (mode == null ? CondMode.COND : mode);
         return this;
     }
-    public VelaParamModeDownload setOrp(boolean selected) {
+    public VelaParamModeAppToDevice setOrp(boolean selected) {
         this.orpSelected = selected;
         return this;
     }

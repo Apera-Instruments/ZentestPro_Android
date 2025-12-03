@@ -45,9 +45,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.*;
 
+import com.zen.api.event.ModePatternChangedFromDevice;
 import com.zen.api.protocol.velaprotocal.VelaDataInfo;
 import com.zen.api.protocol.Version;
-import com.zen.api.protocol.velaprotocal.VelaParamModeUpload;
+import com.zen.api.protocol.velaprotocal.VelaParamModeDeviceToApp;
 
 import static android.bluetooth.BluetoothGattCharacteristic.PROPERTY_NOTIFY;
 
@@ -491,8 +492,11 @@ public class BtApiImpl implements BtApi {
 
                                                                                 Log.i("BtApiImpl", "Received VelaData: " + vela.toString());
 //                                                                                MyApi.getInstance().getDataApi().setLastData(convertToOldData(vela)); // optional adapter
-                                                                            } else if (object instanceof VelaParamModeUpload) {
-                                                                                VelaParamModeUpload modeUpload = (VelaParamModeUpload) object;
+                                                                            } else if (object instanceof VelaParamModeDeviceToApp) {
+                                                                                VelaParamModeDeviceToApp modeUpload = (VelaParamModeDeviceToApp) object;
+
+                                                                                // Notify MeasureFragmentVela
+                                                                                EventBus.getDefault().post(new ModePatternChangedFromDevice());
 
                                                                                 Log.i("BtApiImpl", "Received Mode Upload: " + modeUpload.toString());
 

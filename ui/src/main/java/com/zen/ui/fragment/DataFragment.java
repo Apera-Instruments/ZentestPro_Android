@@ -151,7 +151,6 @@ public class DataFragment extends BaseFragment implements View.OnClickListener {
         }
                 .show()*/
 
-
     }
 
     public void onCategory() {

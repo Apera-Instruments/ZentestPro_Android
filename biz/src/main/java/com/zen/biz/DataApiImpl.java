@@ -5,10 +5,8 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.orhanobut.logger.Logger;
 import com.zen.api.Constant;
 import com.zen.api.DataApi;
 import com.zen.api.MyApi;
@@ -23,7 +21,7 @@ import com.zen.api.protocol.CalibrationPh;
 import com.zen.api.protocol.Data;
 import com.zen.api.protocol.Error;
 import com.zen.api.protocol.ParmUp;
-import com.zen.api.protocol.velaprotocal.VelaParamModeUpload;
+import com.zen.api.protocol.velaprotocal.VelaParamModeDeviceToApp;
 import com.zen.biz.greendao.gen.CategoryDao;
 import com.zen.biz.greendao.gen.DaoSession;
 import com.zen.biz.greendao.gen.DataBeanDao;
@@ -50,7 +48,7 @@ public class DataApiImpl implements DataApi {
     private Data mLastData;
     private DataBean zeroDataBean = new DataBean();
     private ParmUp mLastParmUp;
-    private VelaParamModeUpload mLastModeUpload;
+    private VelaParamModeDeviceToApp mLastModeUpload;
     private CalibrationCond mLastCalibrationCond;
     private CalibrationPh mLastCalibrationPh;
     private boolean mUpdate = true;
@@ -133,7 +131,7 @@ public class DataApiImpl implements DataApi {
             // ----- PH block -----
             dataBean.setPhSelected(mLastModeUpload.isPhmvSelected());
             dataBean.setPhMode(
-                    (mLastModeUpload.getPhmvMode() == VelaParamModeUpload.PhMvMode.MV)
+                    (mLastModeUpload.getPhmvMode() == VelaParamModeDeviceToApp.PhMvMode.MV)
                             ? DataBean.PhMode.MV
                             : DataBean.PhMode.PH
             );
@@ -1102,7 +1100,7 @@ public class DataApiImpl implements DataApi {
     }
 
     @Override
-    public void setLastVelaModeUpload(VelaParamModeUpload upload) {
+    public void setLastVelaModeUpload(VelaParamModeDeviceToApp upload) {
         this.mLastModeUpload = upload;
     }
 

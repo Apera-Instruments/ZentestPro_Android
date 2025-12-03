@@ -7,7 +7,7 @@ import com.zen.api.protocol.Convent;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class VelaParamModeUpload implements Convent<VelaParamModeUpload> {
+public class VelaParamModeDeviceToApp implements Convent<VelaParamModeDeviceToApp> {
 
     public static final String TAG = "VelaParamModeUpload";
     public static final byte CODE = 0x4D; // 'M'
@@ -27,7 +27,7 @@ public class VelaParamModeUpload implements Convent<VelaParamModeUpload> {
     private boolean orpSelected;
 
     @Override
-    public VelaParamModeUpload unpack(byte[] data) {
+    public VelaParamModeDeviceToApp unpack(byte[] data) {
         if (data == null || data.length < 2) {
             Log.e(TAG, "len < 2 for M frame");
             return null;

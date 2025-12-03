@@ -14,7 +14,7 @@ import com.zen.api.protocol.CalibrationPh;
 import com.zen.api.protocol.Data;
 import com.zen.api.protocol.Error;
 import com.zen.api.protocol.ParmUp;
-import com.zen.api.protocol.velaprotocal.VelaParamModeUpload;
+import com.zen.api.protocol.velaprotocal.VelaParamModeDeviceToApp;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -45,7 +45,7 @@ public interface DataApi {
 
     void setLastParmUp(ParmUp parm);
 
-    public void setLastVelaModeUpload(VelaParamModeUpload upload);
+    public void setLastVelaModeUpload(VelaParamModeDeviceToApp upload);
 
     void setLastCalibrationCond(CalibrationCond calibrationCond);
 
