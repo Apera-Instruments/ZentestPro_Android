@@ -52,6 +52,12 @@ public class RecordDao extends AbstractDao<Record, Long> {
         public final static Property UseState = new Property(25, boolean.class, "useState", false, "USE_STATE");
         public final static Property Calibration = new Property(26, String.class, "calibration", false, "CALIBRATION");
         public final static Property ValueUnit = new Property(27, String.class, "valueUnit", false, "VALUE_UNIT");
+        public final static Property PhValue = new Property(28, Double.class, "phValue", false, "PH_VALUE");
+        public final static Property CondValue = new Property(29, Double.class, "condValue", false, "COND_VALUE");
+        public final static Property OrpValue = new Property(30, Double.class, "orpValue", false, "ORP_VALUE");
+        public final static Property PHUnit = new Property(31, String.class, "pHUnit", false, "P_HUNIT");
+        public final static Property CondUnit = new Property(32, String.class, "condUnit", false, "COND_UNIT");
+        public final static Property OrpUnit = new Property(33, String.class, "orpUnit", false, "ORP_UNIT");
     }
 
 
@@ -94,7 +100,13 @@ public class RecordDao extends AbstractDao<Record, Long> {
                 "\"SYNC_ID\" TEXT," + // 24: syncId
                 "\"USE_STATE\" INTEGER NOT NULL ," + // 25: useState
                 "\"CALIBRATION\" TEXT," + // 26: calibration
-                "\"VALUE_UNIT\" TEXT);"); // 27: valueUnit
+                "\"VALUE_UNIT\" TEXT," + // 27: valueUnit
+                "\"PH_VALUE\" REAL," + // 28: phValue
+                "\"COND_VALUE\" REAL," + // 29: condValue
+                "\"ORP_VALUE\" REAL," + // 30: orpValue
+                "\"P_HUNIT\" TEXT," + // 31: pHUnit
+                "\"COND_UNIT\" TEXT," + // 32: condUnit
+                "\"ORP_UNIT\" TEXT);"); // 33: orpUnit
     }
 
     /** Drops the underlying database table. */
@@ -218,6 +230,36 @@ public class RecordDao extends AbstractDao<Record, Long> {
         if (valueUnit != null) {
             stmt.bindString(28, valueUnit);
         }
+ 
+        Double phValue = entity.getPhValue();
+        if (phValue != null) {
+            stmt.bindDouble(29, phValue);
+        }
+ 
+        Double condValue = entity.getCondValue();
+        if (condValue != null) {
+            stmt.bindDouble(30, condValue);
+        }
+ 
+        Double orpValue = entity.getOrpValue();
+        if (orpValue != null) {
+            stmt.bindDouble(31, orpValue);
+        }
+ 
+        String pHUnit = entity.getPHUnit();
+        if (pHUnit != null) {
+            stmt.bindString(32, pHUnit);
+        }
+ 
+        String condUnit = entity.getCondUnit();
+        if (condUnit != null) {
+            stmt.bindString(33, condUnit);
+        }
+ 
+        String orpUnit = entity.getOrpUnit();
+        if (orpUnit != null) {
+            stmt.bindString(34, orpUnit);
+        }
     }
 
     @Override
@@ -335,6 +377,36 @@ public class RecordDao extends AbstractDao<Record, Long> {
         if (valueUnit != null) {
             stmt.bindString(28, valueUnit);
         }
+ 
+        Double phValue = entity.getPhValue();
+        if (phValue != null) {
+            stmt.bindDouble(29, phValue);
+        }
+ 
+        Double condValue = entity.getCondValue();
+        if (condValue != null) {
+            stmt.bindDouble(30, condValue);
+        }
+ 
+        Double orpValue = entity.getOrpValue();
+        if (orpValue != null) {
+            stmt.bindDouble(31, orpValue);
+        }
+ 
+        String pHUnit = entity.getPHUnit();
+        if (pHUnit != null) {
+            stmt.bindString(32, pHUnit);
+        }
+ 
+        String condUnit = entity.getCondUnit();
+        if (condUnit != null) {
+            stmt.bindString(33, condUnit);
+        }
+ 
+        String orpUnit = entity.getOrpUnit();
+        if (orpUnit != null) {
+            stmt.bindString(34, orpUnit);
+        }
     }
 
     @Override
@@ -372,7 +444,13 @@ public class RecordDao extends AbstractDao<Record, Long> {
             cursor.isNull(offset + 24) ? null : cursor.getString(offset + 24), // syncId
             cursor.getShort(offset + 25) != 0, // useState
             cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26), // calibration
-            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27) // valueUnit
+            cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27), // valueUnit
+            cursor.isNull(offset + 28) ? null : cursor.getDouble(offset + 28), // phValue
+            cursor.isNull(offset + 29) ? null : cursor.getDouble(offset + 29), // condValue
+            cursor.isNull(offset + 30) ? null : cursor.getDouble(offset + 30), // orpValue
+            cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31), // pHUnit
+            cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32), // condUnit
+            cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33) // orpUnit
         );
         return entity;
     }
@@ -407,6 +485,12 @@ public class RecordDao extends AbstractDao<Record, Long> {
         entity.setUseState(cursor.getShort(offset + 25) != 0);
         entity.setCalibration(cursor.isNull(offset + 26) ? null : cursor.getString(offset + 26));
         entity.setValueUnit(cursor.isNull(offset + 27) ? null : cursor.getString(offset + 27));
+        entity.setPhValue(cursor.isNull(offset + 28) ? null : cursor.getDouble(offset + 28));
+        entity.setCondValue(cursor.isNull(offset + 29) ? null : cursor.getDouble(offset + 29));
+        entity.setOrpValue(cursor.isNull(offset + 30) ? null : cursor.getDouble(offset + 30));
+        entity.setPHUnit(cursor.isNull(offset + 31) ? null : cursor.getString(offset + 31));
+        entity.setCondUnit(cursor.isNull(offset + 32) ? null : cursor.getString(offset + 32));
+        entity.setOrpUnit(cursor.isNull(offset + 33) ? null : cursor.getString(offset + 33));
      }
     
     @Override

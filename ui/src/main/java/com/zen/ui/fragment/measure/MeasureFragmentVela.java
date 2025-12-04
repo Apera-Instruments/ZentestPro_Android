@@ -381,7 +381,6 @@ public class MeasureFragmentVela extends BaseFragment
     }
 
     private void updateMainValueRowVisibility() {
-
         boolean phSel   = modePatternManager.isPhSelected();
         boolean condSel = modePatternManager.isCondSelected();
         boolean orpSel  = modePatternManager.isOrpSelected();
@@ -520,16 +519,7 @@ public class MeasureFragmentVela extends BaseFragment
         graphLineController = new GraphLineController();
         tableController = new TableController();
         autoSaveManager = new AutoSaveManager();
-        saveRecordManager = new SaveRecordManager(
-                getContext(),
-                modePatternManager,
 
-                tv_value_ph, tv_danwei1_ph,
-                tv_value_cond, tv_danwei1_cond,
-                tv_value_orp, tv_danwei1_orp,
-
-                mTempTextView, mTempUnitTextView
-        );
         alarmManager = new AlarmManager();
         calibrationManager = new CalibrationManager();
 
@@ -643,6 +633,21 @@ public class MeasureFragmentVela extends BaseFragment
 
         return view;
     }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        saveRecordManager = new SaveRecordManager(
+                getContext(),
+                modePatternManager,
+                tv_value_ph, tv_danwei1_ph,
+                tv_value_cond, tv_danwei1_cond,
+                tv_value_orp, tv_danwei1_orp,
+                mTempTextView, mTempUnitTextView
+        );
+    }
+
 
     private LayoutInflater getMyLayoutInflater() {
         if (Build.VERSION.SDK_INT >= 26) {
