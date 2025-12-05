@@ -166,7 +166,7 @@
         android:layout_height="280dp"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"
-        android:src="@mipmap/bg" />
+        android:src="@mipmap/vela_bg" />
 
 
     <View

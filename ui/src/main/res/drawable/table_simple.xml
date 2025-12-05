@@ -6,11 +6,11 @@
     </item>
     <item
             android:state_checked="true"
-            android:drawable="@drawable/vela_data_tab_pressed">
+            android:drawable="@drawable/vela_data_tab">
     </item>
     <item
             android:state_enabled="false"
-            android:drawable="@drawable/vela_data_tab_pressed">
+            android:drawable="@drawable/vela_data_tab">
     </item>
     <item
             android:drawable="@drawable/vela_data_tab">

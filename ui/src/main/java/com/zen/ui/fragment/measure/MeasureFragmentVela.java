@@ -671,6 +671,8 @@ public class MeasureFragmentVela extends BaseFragment
                 tv_value_orp, tv_danwei1_orp,
                 mTempTextView, mTempUnitTextView
         );
+
+        selectTab(0);
     }
 
 
@@ -1861,8 +1863,8 @@ public class MeasureFragmentVela extends BaseFragment
                 Reid = 0;
                 HomeActivity activity = (HomeActivity) getActivity();
                 ImageView imageView = activity.findViewById(R.id.home_bg_tipimg);
-                imageView.setImageResource(R.mipmap.bg);
-                imageViewbg.setImageResource(R.mipmap.bg);
+                imageView.setImageResource(R.mipmap.vela_bg);
+                imageViewbg.setImageResource(R.mipmap.vela_bg);
                 return;
             }
 
@@ -1911,10 +1913,10 @@ public class MeasureFragmentVela extends BaseFragment
             }
 
             if (alarmId == 1) {
-                imageViewbg.setImageResource(R.mipmap.bg);
+                imageViewbg.setImageResource(R.mipmap.vela_bg);
                 HomeActivity activity = (HomeActivity) getActivity();
                 ImageView imageView = activity.findViewById(R.id.home_bg_tipimg);
-                imageView.setImageResource(R.mipmap.bg);
+                imageView.setImageResource(R.mipmap.vela_bg);
             }
             Reid++;
         }
