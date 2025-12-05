@@ -2,17 +2,17 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
             android:state_pressed="true"
-            android:drawable="@drawable/tab_graph_press">
+            android:drawable="@drawable/vela_dial_tab_pressed">
     </item>
     <item
             android:state_checked="true"
-            android:drawable="@drawable/tab_graph_press">
+            android:drawable="@drawable/vela_dial_tab_pressed">
     </item>
     <item
             android:state_enabled="false"
-            android:drawable="@drawable/tab_graph_press">
+            android:drawable="@drawable/vela_dial_tab_pressed">
     </item>
     <item
-            android:drawable="@drawable/tab_graph_normal">
+            android:drawable="@drawable/vela_dial_tab">
     </item>
 </selector>

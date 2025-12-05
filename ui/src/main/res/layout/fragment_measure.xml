@@ -307,7 +307,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="-3dp" />
-        <!--        <RelativeLayout-->
+<!--                <RelativeLayout-->
 <!--            android:id="@+id/alarm_dia"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="60dp"-->
@@ -475,21 +475,6 @@
 <!--                    android:layout_centerInParent="true"-->
 <!--                    android:scaleType="fitXY"-->
 <!--                    android:src="@drawable/table_simple" />-->
-<!--            </RelativeLayout>-->
-
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/tab_2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:layout_weight="1">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/iv_tab_2"-->
-<!--                    android:layout_width="@dimen/table_h"-->
-<!--                    android:layout_height="@dimen/table_h"-->
-<!--                    android:layout_centerInParent="true"-->
-<!--                    android:scaleType="fitXY"-->
-<!--                    android:src="@drawable/table_dial" />-->
 <!--            </RelativeLayout>-->
 
 <!--            <RelativeLayout-->
@@ -673,7 +658,7 @@
     <RelativeLayout
         android:id="@+id/layout_select"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/layout_bottom"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp">
@@ -706,14 +691,76 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:button="@drawable/dot_select" />
-
-<!--            <RadioButton-->
-<!--                android:id="@+id/rb_4"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="3dp"-->
-<!--                android:button="@drawable/dot_select" />-->
         </RadioGroup>
+
+        <!-- Vertical icon tab bar aligned with the dots -->
+        <LinearLayout
+            android:id="@+id/layout_tabs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rg_select"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="6dp">
+
+            <!-- Tab 1 -->
+            <RelativeLayout
+                android:id="@+id/tab_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/table_simple" />
+            </RelativeLayout>
+
+            <!-- Tab 2 -->
+            <RelativeLayout
+                android:id="@+id/tab_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_3"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/table_graph" />
+            </RelativeLayout>
+
+            <!-- Tab 3 -->
+            <RelativeLayout
+                android:id="@+id/tab_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_tab_4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/table_table" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 

@@ -174,6 +174,11 @@ public class MeasureFragmentVela extends BaseFragment
     private TextView tv_value_cond, tv_danwei1_cond;
     private TextView tv_value_orp, tv_danwei1_orp;
 
+    // radio group
+
+    private RelativeLayout tab1, tab3, tab4;
+    private ImageView ivTab1, ivTab3, ivTab4;
+
     // Graph / Dial
     private LineView mLineView;
     private List<Float> mDataList1 = new LinkedList<>();
@@ -593,6 +598,26 @@ public class MeasureFragmentVela extends BaseFragment
         iv_menu = view.findViewById(R.id.iv_menu);
         iv_menu.setOnClickListener(this);
 
+        tab1 = view.findViewById(R.id.tab_1);
+        tab3 = view.findViewById(R.id.tab_3);
+        tab4 = view.findViewById(R.id.tab_4);
+
+        ivTab1 = view.findViewById(R.id.iv_tab_1);
+        ivTab3 = view.findViewById(R.id.iv_tab_3);
+        ivTab4 = view.findViewById(R.id.iv_tab_4);
+
+        // Tab click → update ViewPager & RadioGroup
+        tab1.setOnClickListener(v -> selectTab(0));
+        tab3.setOnClickListener(v -> selectTab(1));
+        tab4.setOnClickListener(v -> selectTab(2));
+
+        // RadioGroup click → update ViewPager & Tabs
+        mRadioGroupSelect.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rb_1) selectTab(0);
+            else if (checkedId == R.id.rb_2) selectTab(1);
+            else if (checkedId == R.id.rb_3) selectTab(2);
+        });
+
         buttonSave.setOnClickListener(this);
 
         bt_set_timer = view.findViewById(R.id.bt_set_timer);
@@ -721,6 +746,7 @@ public class MeasureFragmentVela extends BaseFragment
 
             @Override
             public void onPageSelected(int position) {
+                selectTab(position);   // full sync here
                 updateTableView();
             }
 
@@ -955,6 +981,33 @@ public class MeasureFragmentVela extends BaseFragment
         }
         return false;
     }
+
+    /**
+     * Sync selected tab
+     * @param index
+     */
+    private void selectTab(int index) {
+        viewPager.setCurrentItem(index, true);
+
+        // Sync RadioGroup
+        switch (index) {
+            case 0:
+                mRadioGroupSelect.check(R.id.rb_1);
+                break;
+            case 1:
+                mRadioGroupSelect.check(R.id.rb_2);
+                break;
+            case 2:
+                mRadioGroupSelect.check(R.id.rb_3);
+                break;
+        }
+
+        // Sync Tab Icons (highlight selected)
+        ivTab1.setAlpha(index == 0 ? 1f : 0.4f);
+        ivTab3.setAlpha(index == 1 ? 1f : 0.4f);
+        ivTab4.setAlpha(index == 2 ? 1f : 0.4f);
+    }
+
 
     // ---------------------------------------------------------------------
     // Formatting helpers
