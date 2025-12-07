@@ -5,8 +5,6 @@ import android.content.Context;
 public class MyApi {
     private Context mContext;
     private static MyApi instance = new MyApi();
-
-
     private RestApi restApi;
     private DataApi dataApi;
     private BtApi btApi;
@@ -34,8 +32,6 @@ public class MyApi {
     public DataApi getDataApi() {
         return dataApi;
     }
-
-
     public void setBtApi(BtApi btApi) {
         this.btApi = btApi;
     }

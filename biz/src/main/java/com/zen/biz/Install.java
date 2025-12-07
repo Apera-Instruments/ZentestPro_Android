@@ -12,7 +12,7 @@ import com.clj.fastble.BleManager;
 import com.zen.api.MyApi;
 import com.zen.biz.greendao.gen.DaoMaster;
 import com.zen.biz.greendao.gen.DaoSession;
-import com.zen.biz.rest.MyRestApplication;
+
 import org.greenrobot.greendao.database.Database;
 
 public class Install {
