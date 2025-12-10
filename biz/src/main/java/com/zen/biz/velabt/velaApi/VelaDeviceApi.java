@@ -444,9 +444,9 @@ public class VelaDeviceApi implements BtApi {
         if (demoCalibrationPh.is700()) count++;
         demoCalibrationPh.setPointCount(count);
 
-        MyApi.getInstance().getDataApi().setLastCalibrationCond(demoCalibrationCond);
-        MyApi.getInstance().getDataApi().setLastCalibrationPh(demoCalibrationPh);
-        MyApi.getInstance().getDataApi().setReminder(random.nextInt(4));
+        MyApi.getInstance().getDataApi(mac).setLastCalibrationCond(demoCalibrationCond);
+        MyApi.getInstance().getDataApi(mac).setLastCalibrationPh(demoCalibrationPh);
+        MyApi.getInstance().getDataApi(mac).setReminder(random.nextInt(4));
     }
 
     private void scheduleDemoUpdates() {
@@ -496,9 +496,9 @@ public class VelaDeviceApi implements BtApi {
         data.setPointDigit2(1);
         data.setValue2(demoTemp + random.nextInt(50));
 
-        MyApi.getInstance().getDataApi().setLastData(data);
-        MyApi.getInstance().getDataApi().setLastCalibrationCond(demoCalibrationCond);
-        MyApi.getInstance().getDataApi().setLastCalibrationPh(demoCalibrationPh);
+        MyApi.getInstance().getDataApi(mac).setLastData(data);
+        MyApi.getInstance().getDataApi(mac).setLastCalibrationCond(demoCalibrationCond);
+        MyApi.getInstance().getDataApi(mac).setLastCalibrationPh(demoCalibrationPh);
 
         DeviceSession s = session();
         if (s != null) {

@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
+import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -48,6 +49,8 @@ public class BleCore {
 
     private static final String TAG = "BleCore";
 
+    private Context context;
+
     /*
      * 写：service uuid  FFE5  characteristic FFE9
      * 读：service uuid  FFE0  characteristic FFE4
@@ -67,6 +70,10 @@ public class BleCore {
     private volatile boolean scanning = false;
 
     private BleCore() {}
+
+    public void initialize(Context ctx) {
+        this.context = ctx.getApplicationContext();
+    }
 
     public static BleCore getInstance() {
         if (sInstance == null) {
@@ -449,6 +456,14 @@ public class BleCore {
     // ------------------------------------------------------------------------
     // Helpers
     // ------------------------------------------------------------------------
+
+    public boolean isBtEnable() {
+        try {
+            return BleManager.getInstance().isBlueEnable();
+        } catch (Exception e) {
+            return false;
+        }
+    }
 
     /**
      * Finds or builds a BleDevice for a given MAC using scan cache or BluetoothAdapter.

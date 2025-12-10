@@ -217,7 +217,7 @@ public class VelaHomeActivity extends BaseActivity implements View.OnClickListen
                 }
             });
         }
-        mBleDevicePopupWindow.clearDevices();
+//        mBleDevicePopupWindow.clearDevices();
         if (!MyApi.getInstance().getBtApi().isConnected()) {
 
             BleDevice device = BleDevice.buildDemo();

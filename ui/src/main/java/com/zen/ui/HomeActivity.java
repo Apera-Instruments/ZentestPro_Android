@@ -41,6 +41,10 @@ import com.zen.api.event.BleDeviceFoundEvent;
 import com.zen.api.event.StartEvent;
 import com.zen.api.event.SyncEventUpload;
 import com.zen.api.protocol.Key;
+import com.zen.biz.DataApiImpl;
+import com.zen.biz.velabt.BleCore;
+import com.zen.biz.velabt.session.DeviceSession;
+import com.zen.biz.velabt.velaApi.VelaDeviceApi;
 import com.zen.ui.base.BaseActivity;
 import com.zen.ui.base.BaseFragment;
 import com.zen.ui.fragment.CalibrationFragment;
@@ -130,7 +134,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     public void btConnect() {
         EventBus.getDefault().post(new SyncEventUpload());
-        if (!MyApi.getInstance().getBtApi().isBtEnable()) {
+        if (!BleCore.getInstance().isBtEnable()) {
             SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE);
             sweetAlertDialog.setTitleText(getString(R.string.bt))
                     .setContentText(getString(R.string.bt_turn_on))
@@ -188,10 +192,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mBleDevicePopupWindow.setOnClickListener(new BleDevicePopupWindow.onButtonClickListener() {
                 @Override
                 public void onClick(Object tag) {
-                    if (MyApi.getInstance().getBtApi().isScanning()) {
-                        MyApi.getInstance().getBtApi().stopScan();
+                    if (BleCore.getInstance().isScanning()) {
+                        BleCore.getInstance().stopScan();
                     }
-                    if (MyApi.getInstance().getBtApi().isConnected()) {
+                    if (isCurrentDeviceConnected()) {
                         BleDevice bleDevice = MyApi.getInstance().getBtApi().getLastDevice();
                         if (bleDevice != null) {
                             if (!bleDevice.getMac().equals(tag.toString())) {
@@ -204,19 +208,49 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     }
 
                     if (DEMO_DEVICE.equals(tag) || BleDevice.DEMO.equals(tag)) {
+                        // Build demo bleDevice
                         BleDevice bleDevice = BleDevice.buildDemo();
                         bleDevice.setName(DEMO_DEVICE);
-                        MyApi.getInstance().getBtApi().connect(bleDevice);
+
+                        String mac = bleDevice.getMac();   // demo MAC
+
+                        // 1. Register device into MyApi (per-device BtApi + DataApi)
+                        VelaDeviceApi api = VelaDeviceApi.forDevice(mac);
+                        DataApiImpl dataApi = new DataApiImpl();
+                        MyApi.getInstance().registerDevice(mac, api, dataApi);
+
+                        // 2. Set this as the current active device (old code compatibility)
+                        MyApi.getInstance().setCurrentDevice(mac);
+
+                        // 3. Connect using the per-device API
+                        api.connect(bleDevice);
+
                         Tracker.INSTANCE.trackEvent("ble_connect", null);
                     } else if (tag != null) {
-                        MyApi.getInstance().getBtApi().connect(new BleDevice("", tag.toString()));
+                        String mac = tag.toString();
+
+                        // create a stub device wrapper for connection
+                        com.zen.api.data.BleDevice device = new com.zen.api.data.BleDevice("", mac);
+
+                        // 1. Register device into MyApi
+                        VelaDeviceApi api = VelaDeviceApi.forDevice(mac);
+                        DataApiImpl dataApi = new DataApiImpl();
+                        MyApi.getInstance().registerDevice(mac, api, dataApi);
+
+                        // 2. Set as current device
+                        MyApi.getInstance().setCurrentDevice(mac);
+
+                        // 3. Connect
+                        api.connect(device);
+
                         Tracker.INSTANCE.trackEvent("ble_connect", null);
                     }
                 }
             });
         }
-        mBleDevicePopupWindow.clearDevices();
-        if (!MyApi.getInstance().getBtApi().isConnected()) {
+//        mBleDevicePopupWindow.clearDevices();
+
+        if (!isCurrentDeviceConnected()) {
 
             BleDevice device = BleDevice.buildDemo();
             device.setName(DEMO_DEVICE);
@@ -225,7 +259,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         }
         //mBleDevicePopupWindow.showAsDropDown(mBtView, 0,0, Gravity.TOP | Gravity.END);
         mBleDevicePopupWindow.showAsDropDown(mBtView, -mBleDevicePopupWindow.getWidth(), 0);
-        MyApi.getInstance().getBtApi().startScan();
+        BleCore.getInstance().startScan();
     }
 
     private boolean checkPermissionGranted(String permission) {
@@ -246,8 +280,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     //BleDeviceConnectEvent
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(BleDeviceConnectEvent event) {
-        updateBtView(event.isConnected());
+        updateBtView(isCurrentDeviceConnected());
         EventBus.getDefault().post(new SyncEventUpload());
+
+        if (mBleDevicePopupWindow != null && mBleDevicePopupWindow.isShowing()) {
+
+            String mac = MyApi.getInstance().getCurrentDeviceMac();
+            mBleDevicePopupWindow.updateConnectedUI();
+        }
     }
 
     private void updateBtView(boolean connected) {
@@ -266,24 +306,25 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 mFrameLayout.setVisibility(View.INVISIBLE);
             }
             if (mBleDevicePopupWindow != null) {
-                mBleDevicePopupWindow.clearLinkDevice();
-                BleDevice device = BleDevice.buildDemo();
-                device.setName(DEMO_DEVICE);
-                mBleDevicePopupWindow.addDevice(device.getName(), device.getMac());
+                mBleDevicePopupWindow.updateConnectedUI();
+
+//                BleDevice device = BleDevice.buildDemo();
+//                device.setName(DEMO_DEVICE);
+//                mBleDevicePopupWindow.addDevice(device.getName(), device.getMac());
             }
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(BleDeviceFoundEvent event) {
-        if (MyApi.getInstance().getBtApi().isScanning()) {
-            // showMsg("" + event.getName() + " " + event.getMac());
-            if (mBleDevicePopupWindow != null) {
-                if (!TextUtils.isEmpty(event.getName())) {
-                    mBleDevicePopupWindow.addDevice(event.getName(), event.getMac());
-                }
-            }
+        if (!BleCore.getInstance().isScanning() || mBleDevicePopupWindow == null) return;
+
+        String name = event.getName();
+        if (TextUtils.isEmpty(name)) {
+            name = event.getMac(); // fallback for nameless devices
         }
+
+        mBleDevicePopupWindow.addDevice(name, event.getMac());
     }
 
     @Override
@@ -293,11 +334,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mToast.cancel();
         }
 
-        if (MyApi.getInstance().getBtApi().isConnected()) {
+        if (isCurrentDeviceConnected()) {
             MyApi.getInstance().getBtApi().disconnect();
         }
-        if (MyApi.getInstance().getBtApi().isScanning()) {
-            MyApi.getInstance().getBtApi().stopScan();
+        if (BleCore.getInstance().isScanning()) {
+            BleCore.getInstance().stopScan();
         }
  /*       FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         for (int i = 0; i < fragmentArray.size(); i++) {
@@ -547,7 +588,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     public void onResume() {
         super.onResume();
-        updateBtView(MyApi.getInstance().getBtApi().isConnected());
+        updateBtView(isCurrentDeviceConnected());
     }
 /*
     @Override
@@ -585,7 +626,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mCurrentIndex = 0;
             setViewGroupSelect(viewGroups[mCurrentIndex], true);
             updateView();
-            if (MyApi.getInstance().getBtApi().isConnected()) {
+            if (isCurrentDeviceConnected()) {
                 mFrameLayout.setVisibility(View.VISIBLE);
                 noDeviceView.setVisibility(View.GONE);
             } else {
@@ -593,7 +634,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 noDeviceView.setVisibility(View.VISIBLE);
             }
         } else if (id == R.id.ll_calibration) {
-            if (MyApi.getInstance().getBtApi().isConnected()) {
+            if (isCurrentDeviceConnected()) {
                 MyApi.getInstance().getBtApi().sendCommand(new Key(Key.Calibration));
 
                 Intent intent = new Intent(this, CalibrationActivity.class);
@@ -652,7 +693,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mCurrentIndex = 4;
             setViewGroupSelect(viewGroups[mCurrentIndex], true);
             updateView();
-            if (MyApi.getInstance().getBtApi().isConnected()) {
+            if (isCurrentDeviceConnected()) {
                 mFrameLayout.setVisibility(View.VISIBLE);
                 noDeviceView.setVisibility(View.GONE);
             } else {
@@ -713,7 +754,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             Log.v(TAG, "same Fragment not run updateView");
             return;
         }
-        updateBtView(MyApi.getInstance().getBtApi().isConnected());
+        updateBtView(isCurrentDeviceConnected());
 
         Fragment fragment = fragmentArray.get(mPreIndex);
 
@@ -766,7 +807,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mCurrentIndex = 0;
             setViewGroupSelect(viewGroups[mCurrentIndex], true);
             updateView();
-            if (MyApi.getInstance().getBtApi().isConnected()) {
+            if (isCurrentDeviceConnected()) {
                 mFrameLayout.setVisibility(View.VISIBLE);
                 noDeviceView.setVisibility(View.GONE);
             } else {
@@ -787,5 +828,26 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 //        ToastUtils.showShort(R.string.press_back_again);
         ToastUtilsX.showActi(this, R.string.press_back_again);
         mBackUpdateTimestamp = System.currentTimeMillis();
+    }
+
+    private boolean isCurrentDeviceConnected() {
+        // 1. Get the current device MAC
+        String mac = MyApi.getInstance().getCurrentDeviceMac();
+
+        // 2. If MAC is null or empty → not connected
+        if (mac == null || mac.isEmpty()) {
+            return false;
+        }
+
+        // 3. Get session (may be null)
+        DeviceSession session = BleCore.getInstance().getSession(mac);
+
+        // 4. If session is null, not connected
+        if (session == null) {
+            return false;
+        }
+
+        // 5. Finally return session connected state
+        return session.connected;
     }
 }

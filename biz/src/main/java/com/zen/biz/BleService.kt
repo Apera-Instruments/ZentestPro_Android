@@ -55,10 +55,6 @@ class BleService : Service() {
             }
         }
 
-        MyApi.getInstance().dataApi.records?.forEach { value ->
-
-        }
-
         /*     var mPhData =  PhData();
              mPhData.category = "category";
              mPhData.value = "value";

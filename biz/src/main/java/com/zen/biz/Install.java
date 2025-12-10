@@ -12,6 +12,7 @@ import com.clj.fastble.BleManager;
 import com.zen.api.MyApi;
 import com.zen.biz.greendao.gen.DaoMaster;
 import com.zen.biz.greendao.gen.DaoSession;
+import com.zen.biz.velabt.BleCore;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -70,8 +71,15 @@ public class Install {
         this.application = application;
         setDatabase(application);
 
+        // 1. Initialize FastBLE library
         //https://github.com/Jasonchenlijian/FastBle
         BleManager.getInstance().init(application);
+
+        // 2. Initialize BleCore (MUST)
+        BleCore.getInstance().initialize(application);
+
+        // 3. Initialize MyApi (context + rest API)
+
         /*
         *   BleScanRuleConfig scanRuleConfig = new BleScanRuleConfig.Builder()
           .setServiceUuids(serviceUuids)      // 只扫描指定的服务的设备，可选
@@ -86,9 +94,11 @@ public class Install {
         String url =SERVER_URL;
         MyApi.getInstance().setContext(application);
         MyApi.getInstance().setRestApi(new RestApiImpl(application,url));
-        MyApi.getInstance().setDataApi(new DataApiImpl());
-        MyApi.getInstance().setBtApi(new BtApiImpl());
+//        MyApi.getInstance().setDataApi(new DataApiImpl());
+//        MyApi.getInstance().setBtApi(new BtApiImpl());
         MyApi.getInstance().getRestApi().setLocalType(application.getString(R.string.local_type));
+
+        // 4. Start BLE service
         application.startService(new Intent(application,BleService.class));
     }
 

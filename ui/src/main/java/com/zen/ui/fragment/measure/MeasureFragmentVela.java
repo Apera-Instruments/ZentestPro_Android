@@ -920,8 +920,19 @@ public class MeasureFragmentVela extends BaseFragment
     @Override
     public void updateView() {
         super.updateView();
-        DataBean bean = MyApi.getInstance().getDataApi().getData();
+        // Do nothing if no active device
+        if (MyApi.getInstance().getBtApi() == null) {
+            return;
+        }
 
+        if (!MyApi.getInstance().getBtApi().isConnected()) {
+            return;
+        }
+
+        DataBean bean = MyApi.getInstance().getDataApi().getData();
+        if (bean == null) {
+            return; // still avoid crash
+        }
         new UpdatePipeline().run(bean);
     }
 
@@ -1690,6 +1701,8 @@ public class MeasureFragmentVela extends BaseFragment
     private class AlarmManager {
 
         void loadAlarm() {
+            if (MyApi.getInstance().getCurrentDeviceMac() == null) return;
+
             SharedPreferences sharedPreferences =
                     MyApi.getInstance().getDataApi().getSetting();
 
