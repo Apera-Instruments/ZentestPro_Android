@@ -33,6 +33,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.foolchen.lib.tracker.Tracker;
+import com.zen.api.BtApi;
 import com.zen.api.Constant;
 import com.zen.api.MyApi;
 import com.zen.api.data.BleDevice;
@@ -47,6 +48,8 @@ import com.zen.biz.velabt.session.DeviceSession;
 import com.zen.biz.velabt.velaApi.VelaDeviceApi;
 import com.zen.ui.base.BaseActivity;
 import com.zen.ui.base.BaseFragment;
+import com.zen.ui.event.BleUiConnectEvent;
+import com.zen.ui.event.BleUiDisconnectEvent;
 import com.zen.ui.fragment.CalibrationFragment;
 import com.zen.ui.fragment.DataFragment;
 import com.zen.ui.fragment.InfoFragment;
@@ -192,59 +195,32 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             mBleDevicePopupWindow.setOnClickListener(new BleDevicePopupWindow.onButtonClickListener() {
                 @Override
                 public void onClick(Object tag) {
+                    if (tag == null) return;
+
+                    // Stop scanning immediately
                     if (BleCore.getInstance().isScanning()) {
                         BleCore.getInstance().stopScan();
                     }
-                    if (isCurrentDeviceConnected()) {
-                        BleDevice bleDevice = MyApi.getInstance().getBtApi().getLastDevice();
-                        if (bleDevice != null) {
-                            if (!bleDevice.getMac().equals(tag.toString())) {
-                                MyApi.getInstance().getBtApi().disconnect();
-                            } else {
-                                Log.i(TAG, "same device return");
-                                return;
-                            }
-                        }
-                    }
 
+                    BleDevice device;
+
+                    // -------------------------
+                    // Build device object ONLY
+                    // -------------------------
                     if (DEMO_DEVICE.equals(tag) || BleDevice.DEMO.equals(tag)) {
-                        // Build demo bleDevice
-                        BleDevice bleDevice = BleDevice.buildDemo();
-                        bleDevice.setName(DEMO_DEVICE);
-
-                        String mac = bleDevice.getMac();   // demo MAC
-
-                        // 1. Register device into MyApi (per-device BtApi + DataApi)
-                        VelaDeviceApi api = VelaDeviceApi.forDevice(mac);
-                        DataApiImpl dataApi = new DataApiImpl();
-                        MyApi.getInstance().registerDevice(mac, api, dataApi);
-
-                        // 2. Set this as the current active device (old code compatibility)
-                        MyApi.getInstance().setCurrentDevice(mac);
-
-                        // 3. Connect using the per-device API
-                        api.connect(bleDevice);
-
-                        Tracker.INSTANCE.trackEvent("ble_connect", null);
-                    } else if (tag != null) {
-                        String mac = tag.toString();
-
-                        // create a stub device wrapper for connection
-                        com.zen.api.data.BleDevice device = new com.zen.api.data.BleDevice("", mac);
-
-                        // 1. Register device into MyApi
-                        VelaDeviceApi api = VelaDeviceApi.forDevice(mac);
-                        DataApiImpl dataApi = new DataApiImpl();
-                        MyApi.getInstance().registerDevice(mac, api, dataApi);
-
-                        // 2. Set as current device
-                        MyApi.getInstance().setCurrentDevice(mac);
-
-                        // 3. Connect
-                        api.connect(device);
-
-                        Tracker.INSTANCE.trackEvent("ble_connect", null);
+                        device = BleDevice.buildDemo();
+                        device.setName(DEMO_DEVICE);
+                    } else {
+                        device = new BleDevice("", tag.toString());
                     }
+
+                    // -------------------------
+                    // 🔥 POST UI EVENT ONLY
+                    // -------------------------
+                    EventBus.getDefault().post(new BleUiConnectEvent(device));
+
+                    // Optional analytics (still OK here)
+                    Tracker.INSTANCE.trackEvent("ble_connect", null);
                 }
             });
         }
@@ -281,14 +257,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(BleDeviceConnectEvent event) {
         updateBtView(isCurrentDeviceConnected());
-        EventBus.getDefault().post(new SyncEventUpload());
 
-        if (mBleDevicePopupWindow != null && mBleDevicePopupWindow.isShowing()) {
-
-            String mac = MyApi.getInstance().getCurrentDeviceMac();
-            mBleDevicePopupWindow.updateConnectedUI();
-        }
+//        if (mBleDevicePopupWindow != null && mBleDevicePopupWindow.isShowing()) {
+//            BleDevice device = event.getDevice();
+//            if (device != null) {
+//                mBleDevicePopupWindow.setLinkDevice(
+//                        device.getName(),
+//                        device.getMac()
+//                );
+//            }
+//        }
     }
+
 
     private void updateBtView(boolean connected) {
         if (connected) {
@@ -306,7 +286,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 mFrameLayout.setVisibility(View.INVISIBLE);
             }
             if (mBleDevicePopupWindow != null) {
-                mBleDevicePopupWindow.updateConnectedUI();
 
 //                BleDevice device = BleDevice.buildDemo();
 //                device.setName(DEMO_DEVICE);
@@ -850,4 +829,51 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         // 5. Finally return session connected state
         return session.connected;
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUiConnect(BleUiConnectEvent event) {
+        BleDevice device = event.device;
+        if (device == null) return;
+
+        String mac = device.getMac();
+
+        VelaDeviceApi api = VelaDeviceApi.forDevice(mac);
+        DataApiImpl dataApi = new DataApiImpl();
+        MyApi.getInstance().registerDevice(mac, api, dataApi);
+
+        if (MyApi.getInstance().getCurrentDeviceMac() == null) {
+            MyApi.getInstance().setCurrentDevice(mac);
+        }
+
+        api.connect(device);
+
+        // TODO: this should trigger after successfully connected
+        mBleDevicePopupWindow.setLinkDevice(
+                device.getName(),
+                device.getMac()
+        );
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUiDisconnect(BleUiDisconnectEvent event) {
+        String mac = event.mac;
+        if (TextUtils.isEmpty(mac)) return;
+
+        BtApi btApi = MyApi.getInstance().getBtApi(mac);
+
+        if (btApi != null) {
+            btApi.disconnect();
+        }
+
+//        if (mac.equals(MyApi.getInstance().getCurrentDeviceMac())) {
+//            MyApi.getInstance().setCurrentDevice(null);
+//        }
+
+        // TODO: this should trigger after successfully disconnected
+        if (mBleDevicePopupWindow != null) {
+            mBleDevicePopupWindow.clearLinkDevice(event.name, event.mac);
+        }
+    }
 }
+
+

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,33 +26,33 @@ import com.zen.api.MyApi;
 import com.zen.api.data.BleDevice;
 import com.zen.biz.velabt.BleCore;
 import com.zen.ui.R;
+import com.zen.ui.event.BleUiConnectEvent;
+import com.zen.ui.event.BleUiDisconnectEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BleDevicePopupWindow extends PopupWindow {
 
-    private static final String TAG = "BleDevicePopupWindow";
+    private RecyclerView availableRecyclerView;
+    private RecyclerView connectedRecyclerView;
 
-    private RecyclerView recyclerView;
-    private DeviceAdapter adapter;
+    private AvailableAdapter availableAdapter;
+    private ConnectedAdapter connectedAdapter;
 
     private final ImageView searchIcon;
     private final Animation animation;
 
-    private final Switch linkedSwitch;
-    private final View linkedView;
-    private final TextView linkedNameView;
-    private final View linkedDeviceView;
-
-    private String linkedMac = null;
-    private String linkedName = null;
-
-    private onButtonClickListener onClickListener;
+    /** Connected devices (UI only, backend still single-device) */
+    private final List<ConnectedItem> connectedList = new ArrayList<>();
 
     public interface onButtonClickListener {
-        void onClick(Object index);
+        void onClick(Object mac);
     }
+
+    private onButtonClickListener onClickListener;
 
     public void setOnClickListener(onButtonClickListener listener) {
         this.onClickListener = listener;
@@ -62,7 +61,8 @@ public class BleDevicePopupWindow extends PopupWindow {
     public BleDevicePopupWindow(Context context) {
         super(context);
 
-        View root = LayoutInflater.from(context).inflate(R.layout.ble_device_popup_layout, null);
+        View root = LayoutInflater.from(context)
+                .inflate(R.layout.ble_device_popup_layout, null);
         setContentView(root);
 
         setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -71,162 +71,97 @@ public class BleDevicePopupWindow extends PopupWindow {
         setOutsideTouchable(true);
         setBackgroundDrawable(new ColorDrawable(0x00000000));
 
-        // Linked device section
-        linkedDeviceView = root.findViewById(R.id.lv_associated_devices);
-        linkedView = root.findViewById(R.id.layout_associated_devices);
-        linkedNameView = root.findViewById(R.id.tv_associated_name);
-        linkedView.setOnClickListener(v -> {
-            if (onClickListener != null && linkedMac != null)
-                onClickListener.onClick(linkedMac);
-        });
+        // --------------------
+        // Connected devices list
+        // --------------------
+        connectedRecyclerView = root.findViewById(R.id.rv_connected_devices);
+        connectedRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        connectedAdapter = new ConnectedAdapter();
+        connectedRecyclerView.setAdapter(connectedAdapter);
 
-        linkedDeviceView.setVisibility(View.INVISIBLE);
-
-        linkedSwitch = root.findViewById(R.id.iv_associated_link);
-        linkedSwitch.setOnCheckedChangeListener(this::onLinkedSwitchChange);
-
-        // Replace the old layout container with a RecyclerView at runtime.
+        // --------------------
+        // Available devices list
+        // --------------------
         ViewGroup container = root.findViewById(R.id.layout_devices);
+        availableRecyclerView = new RecyclerView(context);
+        availableRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+        availableAdapter = new AvailableAdapter();
+        availableRecyclerView.setAdapter(availableAdapter);
 
-        recyclerView = new RecyclerView(context);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new DeviceAdapter();
-        recyclerView.setAdapter(adapter);
-
-        // 🔧 FIX 1: ensure the list expands normally
-        RecyclerView.LayoutParams params =
-                new RecyclerView.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-        recyclerView.setLayoutParams(params);
-
-// 🔧 FIX 2: prevent content from being vertically centered
         if (container instanceof LinearLayout) {
             ((LinearLayout) container).setGravity(Gravity.TOP);
         }
 
-        // Replace old ViewGroup children with RecyclerView
         container.removeAllViews();
-        container.addView(recyclerView);
+        container.addView(availableRecyclerView);
 
-        // scanning animation
+        // --------------------
+        // Scanning animation
+        // --------------------
         searchIcon = root.findViewById(R.id.iv_searching);
         animation = AnimationUtils.loadAnimation(context, R.anim.rotate);
         animation.setInterpolator(new LinearInterpolator());
         animation.setAnimationListener(animLoopListener);
     }
 
-    // ------------------------------
-    // SWITCH LOGIC
-    // ------------------------------
-    private void onLinkedSwitchChange(CompoundButton buttonView, boolean isChecked) {
-        if (MyApi.getInstance().getBtApi() == null) return;
+    // ==============================
+    // PUBLIC API
+    // ==============================
 
-        if (isChecked) {
-            int ret = MyApi.getInstance().getBtApi().reconnect();
-            if (ret == 0) {
-                if (onClickListener != null && MyApi.getInstance().getBtApi().getLastDevice() == null)
-                    onClickListener.onClick(linkedMac);
-
-                buttonView.post(() -> {
-                    boolean connected = MyApi.getInstance().getBtApi().isConnected();
-                    if (connected != linkedSwitch.isChecked())
-                        linkedSwitch.setChecked(connected);
-                });
-            }
-        } else {
-            MyApi.getInstance().getBtApi().disconnect();
-            Tracker.INSTANCE.trackEvent("ble_disconnect", null);
-
-            SharedPreferences sp = MyApi.getInstance().getDataApi().getSetting();
-            sp.edit().putString("connectedDev", "").apply();
-        }
+    public void addDevice(String name, String mac) {
+        if (TextUtils.isEmpty(mac)) return;
+        if (TextUtils.isEmpty(name)) name = mac;
+        availableAdapter.addOrUpdate(new DeviceItem(name, mac));
     }
 
-    // ------------------------------
-    // POPUP SHOW
-    // ------------------------------
+    public void removeDevice(String mac) {
+        availableAdapter.remove(mac);
+    }
+
+    public void resetScanResults() {
+        availableAdapter.replaceAll(new ArrayList<>());
+    }
+
+    /** Call ONLY when BLE confirms connection */
+    public void setLinkDevice(String name, String mac) {
+        if (TextUtils.isEmpty(mac)) return;
+
+        for (ConnectedItem c : connectedList) {
+            if (c.mac.equals(mac)) return;
+        }
+
+        connectedList.add(new ConnectedItem(
+                TextUtils.isEmpty(name) ? mac : name,
+                mac
+        ));
+
+        connectedAdapter.notifyDataSetChanged();
+        availableAdapter.notifyDataSetChanged();
+    }
+
+    /** Call ONLY when BLE confirms disconnection */
+    public void clearLinkDevice(String name, String mac) {
+        for (int i = 0; i < connectedList.size(); i++) {
+            if (connectedList.get(i).mac.equals(mac)) {
+                connectedList.remove(i);
+                connectedAdapter.notifyItemRemoved(i);
+                break;
+            }
+        }
+
+        availableAdapter.notifyDataSetChanged();
+    }
+
+    // ==============================
+    // POPUP SHOW / DISMISS
+    // ==============================
+
     @Override
     public void showAsDropDown(View anchor, int xoff, int yoff) {
         super.showAsDropDown(anchor, xoff, yoff);
 
         searchIcon.clearAnimation();
         searchIcon.startAnimation(animation);
-
-        if (MyApi.getInstance().getBtApi() == null) return;
-
-        linkedSwitch.setChecked(MyApi.getInstance().getBtApi().isConnected());
-        BleDevice d = MyApi.getInstance().getBtApi().getLastDevice();
-
-        if (d != null && MyApi.getInstance().getBtApi().isConnected()) {
-            setLinkDevice(d.getName(), d.getMac());
-        } else {
-            linkedDeviceView.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    // ------------------------------
-    // LINKED DEVICE UI
-    // ------------------------------
-    public void clearLinkDevice() {
-        linkedMac = null;
-        linkedName = null;
-        linkedNameView.setText("");
-        linkedView.setTag(null);
-        linkedDeviceView.setVisibility(View.INVISIBLE);
-
-        // Refresh list so previously linked device becomes visible again
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    public void setLinkDevice(String name, String mac) {
-        linkedMac = mac;
-        linkedName = name;
-        linkedNameView.setText(name);
-        linkedView.setTag(mac);
-        linkedDeviceView.setVisibility(View.VISIBLE);
-
-        // Refresh list so this device disappears from the available list
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    // ------------------------------
-    // DEVICE LIST CONTROL
-    // ------------------------------
-
-    public void addDevice(String name, String mac) {
-        if (TextUtils.isEmpty(mac)) return;
-
-        if (TextUtils.isEmpty(name)) name = mac;
-
-        adapter.addOrUpdate(new DeviceItem(name, mac));
-    }
-
-    public void removeDevice(String mac) {
-        adapter.remove(mac);
-    }
-
-    public void resetScanResults() {
-        adapter.replaceAll(new ArrayList<>());
-    }
-
-    public void updateConnectedUI() {
-        if (MyApi.getInstance().getBtApi() == null) return;
-
-        boolean connected = MyApi.getInstance().getBtApi().isConnected();
-        linkedSwitch.setChecked(connected);
-
-        BleDevice dev = MyApi.getInstance().getBtApi().getLastDevice();
-
-        if (connected && dev != null)
-            setLinkDevice(dev.getName(), dev.getMac());
-        else
-            clearLinkDevice();
     }
 
     @Override
@@ -236,9 +171,10 @@ public class BleDevicePopupWindow extends PopupWindow {
         searchIcon.clearAnimation();
     }
 
-    // ------------------------------
-    // SCAN ANIMATION LOOP
-    // ------------------------------
+    // ==============================
+    // SCAN LOOP
+    // ==============================
+
     private final Animation.AnimationListener animLoopListener = new Animation.AnimationListener() {
         @Override public void onAnimationStart(Animation animation) {}
         @Override public void onAnimationRepeat(Animation animation) {}
@@ -248,13 +184,8 @@ public class BleDevicePopupWindow extends PopupWindow {
             if (!isShowing()) return;
 
             if (MyApi.getInstance().getBtApi() != null) {
-                boolean connected = MyApi.getInstance().getBtApi().isConnected();
-                if (connected != linkedSwitch.isChecked())
-                    linkedSwitch.setChecked(connected);
-                if (connected) return;
-
-                boolean connecting = MyApi.getInstance().getBtApi().isConnecting();
-                if (connecting) return;
+                if (MyApi.getInstance().getBtApi().isConnected()) return;
+                if (MyApi.getInstance().getBtApi().isConnecting()) return;
             }
 
             if (!BleCore.getInstance().isScanning()) {
@@ -266,115 +197,177 @@ public class BleDevicePopupWindow extends PopupWindow {
     };
 
     // ============================================================
-    //                        RECYCLER ADAPTER
+    // CONNECTED DEVICES
     // ============================================================
+
+    private static class ConnectedItem {
+        final String name;
+        final String mac;
+        ConnectedItem(String n, String m) {
+            name = n;
+            mac = m;
+        }
+    }
+
+    private class ConnectedAdapter extends RecyclerView.Adapter<ConnectedVH> {
+
+        @Override
+        public ConnectedVH onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.ble_connected_device_item, parent, false);
+            return new ConnectedVH(v);
+        }
+
+        @Override
+        public void onBindViewHolder(ConnectedVH h, int pos) {
+            ConnectedItem item = connectedList.get(pos);
+            h.name.setText(item.name);
+
+            h.sw.setOnCheckedChangeListener(null);
+            h.sw.setChecked(true);
+
+            h.sw.setOnCheckedChangeListener((btn, checked) -> {
+                if (!checked) {
+                    EventBus.getDefault()
+                            .post(new BleUiDisconnectEvent(item.name, item.mac));
+                }
+            });
+
+            h.itemView.setOnClickListener(v -> {
+                BleDevice device = new BleDevice(item.name, item.mac);
+                EventBus.getDefault().post(new BleUiConnectEvent(device));
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return connectedList.size();
+        }
+    }
+
+    private static class ConnectedVH extends RecyclerView.ViewHolder {
+        TextView name;
+        Switch sw;
+
+        ConnectedVH(View v) {
+            super(v);
+            name = v.findViewById(R.id.tv_associated_name);
+            sw = v.findViewById(R.id.iv_associated_link);
+        }
+    }
+
+    // ============================================================
+    // AVAILABLE DEVICES
+    // ============================================================
+
     private static class DeviceItem {
         final String name;
         final String mac;
         DeviceItem(String n, String m) { name = n; mac = m; }
     }
 
-    private class DeviceAdapter extends RecyclerView.Adapter<DeviceViewHolder> {
+    private class AvailableAdapter extends RecyclerView.Adapter<DeviceVH> {
+
         private final List<DeviceItem> list = new ArrayList<>();
 
         @Override
-        public DeviceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public DeviceVH onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.ble_device_item, parent, false);
-
-            RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) v.getLayoutParams();
-            if (lp != null) {
-                lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                v.setLayoutParams(lp);
-            }
-
-            return new DeviceViewHolder(v);
+            return new DeviceVH(v);
         }
 
         @Override
-        public void onBindViewHolder(DeviceViewHolder holder, int position) {
-            DeviceItem item = list.get(position);
-            holder.nameView.setText(item.name);
-            holder.itemView.setTag(item.mac);
+        public void onBindViewHolder(DeviceVH h, int pos) {
+            DeviceItem item = list.get(pos);
+            h.name.setText(item.name);
 
-            boolean isLinked = linkedMac != null && linkedMac.equals(item.mac);
+            boolean connected = isDeviceReallyConnected(item.mac);
 
-            RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) holder.itemView.getLayoutParams();
-            if (lp == null) {
-                lp = new RecyclerView.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                );
-            }
+            RecyclerView.LayoutParams lp =
+                    (RecyclerView.LayoutParams) h.itemView.getLayoutParams();
 
-            if (isLinked) {
-                // Connected device → hide from available list
-                holder.itemView.setVisibility(View.GONE);
+            if (connected) {
+                // Hide AND remove layout space
+                h.itemView.setVisibility(View.GONE);
                 lp.height = 0;
-                holder.itemView.setLayoutParams(lp);
-
-                // (Optional) disable click
-                holder.itemView.setOnClickListener(null);
-
             } else {
-                // Normal available device
-                holder.itemView.setVisibility(View.VISIBLE);
+                // Restore visibility AND height (IMPORTANT for recycling)
+                h.itemView.setVisibility(View.VISIBLE);
                 lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                holder.itemView.setLayoutParams(lp);
 
-                holder.itemView.setOnClickListener(v -> {
-                    if (onClickListener != null)
+                h.itemView.setOnClickListener(v -> {
+                    if (onClickListener != null) {
                         onClickListener.onClick(item.mac);
+                    }
                 });
             }
-        }
 
+            h.itemView.setLayoutParams(lp);
+        }
 
         @Override
         public int getItemCount() {
             return list.size();
         }
 
-        // --------- List operations ---------
-
-        void addOrUpdate(DeviceItem item) {
-            int idx = find(item.mac);
-            if (idx >= 0) {
-                list.set(idx, item);
-                notifyItemChanged(idx);
-            } else {
-                list.add(0, item);
-                notifyItemInserted(0);
+        void addOrUpdate(DeviceItem d) {
+            // Always keep device in the list; just update its name if needed.
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).mac.equals(d.mac)) {
+                    list.set(i, d);
+                    notifyItemChanged(i);
+                    return;
+                }
             }
+            list.add(0, d);
+            notifyItemInserted(0);
         }
 
         void remove(String mac) {
-            int idx = find(mac);
-            if (idx >= 0) {
-                list.remove(idx);
-                notifyItemRemoved(idx);
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).mac.equals(mac)) {
+                    list.remove(i);
+                    notifyItemRemoved(i);
+                    return;
+                }
             }
         }
 
-        void replaceAll(List<DeviceItem> newList) {
+        void replaceAll(List<DeviceItem> n) {
             list.clear();
-            list.addAll(newList);
+            list.addAll(n);
             notifyDataSetChanged();
-        }
-
-        private int find(String mac) {
-            for (int i = 0; i < list.size(); i++)
-                if (list.get(i).mac.equals(mac))
-                    return i;
-            return -1;
         }
     }
 
-    private static class DeviceViewHolder extends RecyclerView.ViewHolder {
-        final TextView nameView;
-        DeviceViewHolder(View itemView) {
-            super(itemView);
-            nameView = itemView.findViewById(R.id.tv_name);
+    private static class DeviceVH extends RecyclerView.ViewHolder {
+        TextView name;
+        DeviceVH(View v) {
+            super(v);
+            name = v.findViewById(R.id.tv_name);
         }
+    }
+
+    private boolean isDeviceReallyConnected(String mac) {
+        if (TextUtils.isEmpty(mac)) return false;
+
+        // UI truth: if it's in connectedList, we treat it as connected
+        for (ConnectedItem c : connectedList) {
+            if (mac.equals(c.mac)) {
+                return true;
+            }
+        }
+
+        // fall back on BleCore as a backup:
+        // BleCore.Session s = BleCore.getInstance().getSession(mac);
+        // return s != null && s.connected;
+
+        return false;
+    }
+
+
+    private boolean shouldShow(DeviceItem item) {
+        return !isDeviceReallyConnected(item.mac);
     }
 }

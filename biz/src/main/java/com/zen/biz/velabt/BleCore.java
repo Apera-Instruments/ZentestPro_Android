@@ -34,6 +34,7 @@ import com.zen.api.protocol.Time;
 import com.zen.api.protocol.Version;
 import com.zen.api.protocol.velaprotocal.VelaDataInfo;
 import com.zen.api.protocol.velaprotocal.VelaParamModeDeviceToApp;
+import com.zen.biz.velabt.event.DeviceDataUpdatedEvent;
 import com.zen.biz.velabt.session.DeviceSession;
 
 import org.greenrobot.eventbus.EventBus;
@@ -329,6 +330,7 @@ public class BleCore {
 
     private void handleNotification(DeviceSession session, byte[] data) {
         try {
+            String receivedDeviceMac = session.mac;
             Object object = Command.unpack(data);
             if (!(object instanceof Convent)) return;
 
@@ -374,7 +376,8 @@ public class BleCore {
                 VelaDataInfo vela = (VelaDataInfo) convent;
                 Data dataPack = vela.toMeasureDataPack();
                 session.updateLastData(dataPack);
-                MyApi.getInstance().getDataApi().setLastData(dataPack);
+                MyApi.getInstance().getDataApi(receivedDeviceMac).setLastData(dataPack);
+                EventBus.getDefault().post(new DeviceDataUpdatedEvent(receivedDeviceMac));
                 Log.i(TAG, "Received VelaData: " + vela);
 
             } else if (convent instanceof VelaParamModeDeviceToApp) {
@@ -383,7 +386,7 @@ public class BleCore {
 
                 // Notify MeasureFragmentVela
                 EventBus.getDefault().post(new ModePatternChangedFromDevice());
-                MyApi.getInstance().getDataApi().setLastVelaModeUpload(modeUpload);
+                MyApi.getInstance().getDataApi(receivedDeviceMac).setLastVelaModeUpload(modeUpload);
 
             } else {
                 Log.i(TAG, "Unknown convent instance: " + convent.getClass().getSimpleName());

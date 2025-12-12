@@ -268,7 +268,6 @@ public class VelaHomeActivity extends BaseActivity implements View.OnClickListen
                 mFrameLayout.setVisibility(View.INVISIBLE);
             }
             if(mBleDevicePopupWindow!=null){
-                mBleDevicePopupWindow.clearLinkDevice();
                 BleDevice device = BleDevice.buildDemo();
                 device.setName(DEMO_DEVICE);
                 mBleDevicePopupWindow.addDevice(device.getName(), device.getMac());

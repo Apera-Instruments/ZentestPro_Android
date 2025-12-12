@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="4dp"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Title Row -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_mac"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- PH row -->
+        <LinearLayout
+            android:id="@+id/row_ph"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="6dp">
+
+            <TextView
+                android:text="PH:"
+                android:textSize="16sp"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_value_ph"
+                android:textSize="22sp"
+                android:textColor="#1ab9f0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_unit_ph"
+                android:textSize="14sp"
+                android:layout_marginLeft="6dp"
+                android:textColor="#777777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- COND row -->
+        <LinearLayout
+            android:id="@+id/row_cond"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:paddingTop="6dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="COND:"
+                android:textSize="16sp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_value_cond"
+                android:textSize="22sp"
+                android:textColor="#a9e65d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_unit_cond"
+                android:textSize="14sp"
+                android:layout_marginLeft="6dp"
+                android:textColor="#777777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!-- ORP row -->
+        <LinearLayout
+            android:id="@+id/row_orp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:paddingTop="6dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="ORP:"
+                android:textSize="16sp"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_value_orp"
+                android:textSize="22sp"
+                android:textColor="#ff8800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_unit_orp"
+                android:textSize="14sp"
+                android:layout_marginLeft="6dp"
+                android:textColor="#777777"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
